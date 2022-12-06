@@ -619,6 +619,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+shop.o: shop.cpp.o
+.PHONY : shop.o
+
+# target to build an object file
+shop.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/shop.cpp.o
+.PHONY : shop.cpp.o
+
+shop.i: shop.cpp.i
+.PHONY : shop.i
+
+# target to preprocess a source file
+shop.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/shop.cpp.i
+.PHONY : shop.cpp.i
+
+shop.s: shop.cpp.s
+.PHONY : shop.s
+
+# target to generate assembly for a file
+shop.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/shop.cpp.s
+.PHONY : shop.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -671,6 +695,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... shop.o"
+	@echo "... shop.i"
+	@echo "... shop.s"
 .PHONY : help
 
 

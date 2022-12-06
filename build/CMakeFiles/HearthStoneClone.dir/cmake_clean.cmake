@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/HearthStoneClone.dir/game.cpp.o.d"
   "CMakeFiles/HearthStoneClone.dir/main.cpp.o"
   "CMakeFiles/HearthStoneClone.dir/main.cpp.o.d"
+  "CMakeFiles/HearthStoneClone.dir/shop.cpp.o"
+  "CMakeFiles/HearthStoneClone.dir/shop.cpp.o.d"
   "HearthStoneClone"
   "HearthStoneClone.pdb"
 )

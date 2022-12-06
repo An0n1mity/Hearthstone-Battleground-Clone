@@ -3,7 +3,7 @@
 class Murlock : public Minion
 {
 public:
-    Murlock(unsigned int health_points, unsigned int attack_points) : Minion(0, health_points, attack_points) {}
+    Murlock(unsigned int health_points, unsigned int attack_points) : Minion(1, health_points, attack_points) {}
     virtual ~Murlock() {}
     virtual void printType() const override { std::cout << "Murlock"; }
 };
@@ -35,7 +35,7 @@ public:
 class Dragon : public Minion
 {
 public:
-    Dragon(unsigned int health_points, unsigned int attack_points) : Minion(1, health_points, attack_points) {}
+    Dragon(unsigned int health_points, unsigned int attack_points) : Minion(2, health_points, attack_points) {}
     virtual ~Dragon() {}
     virtual void printType() const override { std::cout << "Dragon"; }
 };

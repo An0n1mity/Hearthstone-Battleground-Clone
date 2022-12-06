@@ -18,5 +18,10 @@
   "directory": "/home/axel/git/Hearthstone-Battleground-Clone/build",
   "command": "/usr/bin/g++   -g -o CMakeFiles/HearthStoneClone.dir/Minions.cpp.o -c /home/axel/git/Hearthstone-Battleground-Clone/Minions.cpp",
   "file": "/home/axel/git/Hearthstone-Battleground-Clone/Minions.cpp"
+},
+{
+  "directory": "/home/axel/git/Hearthstone-Battleground-Clone/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/HearthStoneClone.dir/shop.cpp.o -c /home/axel/git/Hearthstone-Battleground-Clone/shop.cpp",
+  "file": "/home/axel/git/Hearthstone-Battleground-Clone/shop.cpp"
 }
 ]

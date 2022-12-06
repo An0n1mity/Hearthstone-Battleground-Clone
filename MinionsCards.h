@@ -15,3 +15,11 @@ public:
     virtual ~DeckSwabbie() {}
     virtual void printName() const override { std::cout << "DeckSwabbie"; }
 };
+
+class Cave_hydra : public Dragon
+{
+public:
+    Cave_hydra() : Dragon(6, 4) {}
+    virtual ~Cave_hydra() {}
+    virtual void printName() const override { std::cout << "Cave Hydra"; }
+};

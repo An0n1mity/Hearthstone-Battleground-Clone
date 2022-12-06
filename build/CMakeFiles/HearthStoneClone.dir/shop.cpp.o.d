@@ -1,6 +1,11 @@
-CMakeFiles/HearthStoneClone.dir/main.cpp.o: \
- /home/axel/git/Hearthstone-Battleground-Clone/main.cpp \
- /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
+CMakeFiles/HearthStoneClone.dir/shop.cpp.o: \
+ /home/axel/git/Hearthstone-Battleground-Clone/shop.cpp \
+ /usr/include/stdc-predef.h \
+ /home/axel/git/Hearthstone-Battleground-Clone/shop.h \
+ /home/axel/git/Hearthstone-Battleground-Clone/Player.h \
+ /home/axel/git/Hearthstone-Battleground-Clone/Heroes.h \
+ /home/axel/git/Hearthstone-Battleground-Clone/Cards.h \
+ /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -146,10 +151,6 @@ CMakeFiles/HearthStoneClone.dir/main.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/axel/git/Hearthstone-Battleground-Clone/shop.h \
- /home/axel/git/Hearthstone-Battleground-Clone/Player.h \
- /home/axel/git/Hearthstone-Battleground-Clone/Heroes.h \
- /home/axel/git/Hearthstone-Battleground-Clone/Cards.h \
  /home/axel/git/Hearthstone-Battleground-Clone/MinionsCards.h \
  /home/axel/git/Hearthstone-Battleground-Clone/MinionsTribes.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Minions.h \

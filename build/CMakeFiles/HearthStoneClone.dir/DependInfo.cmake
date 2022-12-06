@@ -12,6 +12,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/axel/git/Hearthstone-Battleground-Clone/Player.cpp" "CMakeFiles/HearthStoneClone.dir/Player.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/Player.cpp.o.d"
   "/home/axel/git/Hearthstone-Battleground-Clone/game.cpp" "CMakeFiles/HearthStoneClone.dir/game.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/game.cpp.o.d"
   "/home/axel/git/Hearthstone-Battleground-Clone/main.cpp" "CMakeFiles/HearthStoneClone.dir/main.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/main.cpp.o.d"
+  "/home/axel/git/Hearthstone-Battleground-Clone/shop.cpp" "CMakeFiles/HearthStoneClone.dir/shop.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/shop.cpp.o.d"
   )
 
 # Targets to which this target links.

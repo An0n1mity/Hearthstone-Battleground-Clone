@@ -30,6 +30,9 @@ public:
     // Move a battler from the deck to the board
     void moveCardFromDeckToBoard(int index);
 
+    int getLevel() const { return m_level; }
+    int getGolds() const { return m_golds; }
+
     // operator overloading for std::cout << player
     friend std::ostream &operator<<(std::ostream &os, Player &player);
 
