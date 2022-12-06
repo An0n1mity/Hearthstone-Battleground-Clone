@@ -5,8 +5,8 @@ std::ostream &operator<<(std::ostream &os, Player &player)
     os << "Player name: " << player.m_name << '\n';
     os << "Player golds: " << player.m_golds << '\n';
     os << "Player level: " << player.m_level << '\n'; 
-    os << "Player hero: ";
-    player.m_hero->printName();
+    /*os << "Player hero: ";
+    player.m_hero->printName();*/
     os << "\nPlayer deck: " << '\n';
     for (auto &card : player.m_in_hand)
     {

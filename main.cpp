@@ -8,8 +8,8 @@ int main(int, char **)
 
     Shop shop;
     shop.createDeck();
-    shop.shuffleDeck();
-    shop.drawCards(player);
+    shop.chooseCard(player);
+    std::cout << player << '\n';
 
     // Create a Card AlleyCat
     /*std::unique_ptr<Card> abomination_card = std::unique_ptr<Card>(new AlleyCat());
