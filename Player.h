@@ -15,13 +15,15 @@ private:
     // Hero of the player
     std::unique_ptr<Hero> m_hero;
     // Player deck the cards on his hand
-    std::vector<std::unique_ptr<Card>> m_deck;
+    std::vector<std::unique_ptr<Card>> m_in_hand;
     // Player board the cards on the board
     std::vector<std::shared_ptr<Card>> m_on_board;
 
 public:
     Player(std::string name) : m_name(name) {}
     ~Player() {}
+    // Add hero to the player
+    void addHero(std::unique_ptr<Hero> hero);
     // Add a battler to the deck of the player
     void addCardToDeck(std::unique_ptr<Card> card);
     // Move a battler from the deck to the board
