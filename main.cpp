@@ -3,12 +3,15 @@
 
 int main(int, char **)
 {
-    Player player = Player("Player 1");
+    Player player = Player("Player 1", 1);
 
     // Create a Card AlleyCat
     std::unique_ptr<Card> abomination_card = std::unique_ptr<Card>(new AlleyCat());
     // Create a Card DeckSwabbie
     std::unique_ptr<Card> deck_swabbie_card = std::unique_ptr<Card>(new DeckSwabbie());
+
+    // Add heroe to the player
+    player.addHero(std::unique_ptr<Hero>(new Rafaam()));
 
     // Add the card to the deck of the player
     player.addCardToDeck(std::move(abomination_card));

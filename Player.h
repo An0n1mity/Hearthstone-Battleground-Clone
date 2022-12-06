@@ -11,7 +11,8 @@ private:
     // Player name
     std::string m_name;
     // Player golds
-    unsigned int m_golds = 0;
+    unsigned int m_level;
+    unsigned int m_golds = 3;
     // Hero of the player
     std::unique_ptr<Hero> m_hero;
     // Player deck the cards on his hand
@@ -20,7 +21,7 @@ private:
     std::vector<std::shared_ptr<Card>> m_on_board;
 
 public:
-    Player(std::string name) : m_name(name) {}
+    Player(std::string name, unsigned int level) : m_name(name), m_level(level) {}
     ~Player() {}
     // Add hero to the player
     void addHero(std::unique_ptr<Hero> hero);

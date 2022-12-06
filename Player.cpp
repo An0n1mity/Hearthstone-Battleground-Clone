@@ -4,17 +4,22 @@ std::ostream &operator<<(std::ostream &os, Player &player)
 {
     os << "Player name: " << player.m_name << '\n';
     os << "Player golds: " << player.m_golds << '\n';
-
-    os << "Player hero: " << '\n';
-    os << "Player deck: " << '\n';
+    os << "Player level: " << player.m_level << '\n'; 
+    os << "Player hero: ";
+    player.m_hero->printName();
+    os << "\nPlayer deck: " << '\n';
     for (auto &card : player.m_in_hand)
     {
-        card->print();
+        os << "- ";
+        card->printName();
+        os << '\n';
     }
-    os << "Player board: " << '\n';
+    os << "\nPlayer board: " << '\n';
     for (auto &card : player.m_on_board)
     {
-        card->print();
+        os << "- ";
+        card->printName();
+        os << '\n';
     }
     return os;
 }
