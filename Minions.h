@@ -9,7 +9,7 @@ protected:
     unsigned int m_attack_points;
 
 public:
-    Minion(unsigned int health_points, unsigned int attack_points) : Card(3), m_health_points(health_points), m_attack_points(attack_points) {}
+    Minion(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Card(0, std::move(effects)), m_health_points(health_points), m_attack_points(attack_points) {}
     virtual ~Minion() {}
     void attackEnemy(Minion &enemy);
 };

@@ -6,13 +6,12 @@ int main(int, char **)
     Player player = Player("Player 1");
 
     // Create a Card AlleyCat
-    std::unique_ptr<Card> abomination_card = std::unique_ptr<Card>(new AlleyCat());
-    // Create a Card DeckSwabbie
-    std::unique_ptr<Card> deck_swabbie_card = std::unique_ptr<Card>(new DeckSwabbie());
-
+    std::unique_ptr<Card> alleycat = std::unique_ptr<Card>(new AlleyCat());
+    // activate the effect of the card
+    alleycat->applyEffects();
     // Add the card to the deck of the player
-    player.addCardToDeck(std::move(abomination_card));
-    player.addCardToDeck(std::move(deck_swabbie_card));
+    player.addCardToDeck(std::move(alleycat));
+
     std::cout << player << '\n';
 
     return 0;
