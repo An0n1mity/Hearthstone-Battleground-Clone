@@ -1,6 +1,8 @@
 #include "Player.h"
 #include <algorithm>
-#include <ctime>  
+#include <ctime>
+#include <future>
+#include <thread>
 
 class Shop {
     private:
@@ -11,7 +13,8 @@ class Shop {
         ~Shop() {}
         void createDeck();
         void shuffleDeck();
-        void chooseCard(Player &player);
         void drawCards(Player &player);
+        void displayCards();
+        void chooseCard(Player &player);
         void buyCard(int index, Player &player);
 };

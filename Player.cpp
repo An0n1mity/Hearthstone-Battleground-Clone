@@ -29,7 +29,7 @@ void Player::addHero(std::unique_ptr<Hero> hero)
     m_hero = std::move(hero);
 }
 
-void Player::addCardToDeck(std::unique_ptr<Card> card)
+void Player::addCardToHand(std::unique_ptr<Card> card)
 {
     m_in_hand.push_back(std::move(card));
 }

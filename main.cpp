@@ -6,7 +6,6 @@ int main(int, char **)
 {
     Game game = Game(std::unique_ptr<Player>(new Player("Player 1", 1)), std::unique_ptr<Player>(new Player("Player 2", 1)));
     game.startGame();
-    game.deckPhase();
     /*Player player = Player("Player 1", 1);
 
     Shop shop;

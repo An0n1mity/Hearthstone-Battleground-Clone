@@ -26,7 +26,7 @@ public:
     // Add hero to the player
     void addHero(std::unique_ptr<Hero> hero);
     // Add a battler to the deck of the player
-    void addCardToDeck(std::unique_ptr<Card> card);
+    void addCardToHand(std::unique_ptr<Card> card);
     // Move a battler from the deck to the board
     void moveCardFromDeckToBoard(int index);
 

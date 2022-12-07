@@ -2,7 +2,6 @@
 
 void Shop::createDeck()
 {
-    std::srand(std::time(nullptr));
     m_deck.push_back(std::unique_ptr<Minion>(new DeckSwabbie()));
     m_deck.push_back(std::unique_ptr<Minion>(new DeckSwabbie()));
     m_deck.push_back(std::unique_ptr<Minion>(new DeckSwabbie()));
@@ -38,6 +37,7 @@ void Shop::drawCards(Player &player)
                 break;
         }
     }
+
 }
 
 void Shop::buyCard(int index, Player &player)
@@ -47,25 +47,33 @@ void Shop::buyCard(int index, Player &player)
     if (player.getGolds() >= 3)
     {
         player.setGolds(player.getGolds() - 3);
-        player.addCardToDeck(std::move(m_choices[index]));
+        player.addCardToHand(std::move(m_choices[index]));
         m_choices.erase(m_choices.begin() + index);
+    }
+    else
+    {
+        std::cout << "You don't have enough golds to buy this card\n";
     }
 }
 
-void Shop::chooseCard(Player &player)
-{
-    int index = 0;
-    drawCards(player);
+void Shop::displayCards(){
+    std::cout << "draw cards : \n";
     for (int i = 0; i < m_choices.size(); i++)
     {
         std::cout << "Carte "<< i+1 << " : ";
         m_choices[i]->printName();
         std::cout << "\n";
     }
-    std::cout << "Choisissez une carte (Entre 1 et 3): ";
+    std::cout << "Choisissez une carte (Entre 1 et " << m_choices.size() << ") and if you don't want to buy a card enter n : ";
+}
+
+void Shop::chooseCard(Player &player)
+{
+    int index = 0;
     std::cin >> index;
     buyCard(index-1, player);
     std::cout << '\n';
+    std::cout << player;
     int size = m_choices.size();
     for(int i = 0; i < size; i++)
     {
