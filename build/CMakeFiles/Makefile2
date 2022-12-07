@@ -858,12 +858,12 @@ CMakeFiles/ContinuousSubmit.dir/clean:
 CMakeFiles/HearthStoneClone.dir/all:
 	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/depend
 	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target HearthStoneClone"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target HearthStoneClone"
 .PHONY : CMakeFiles/HearthStoneClone.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/HearthStoneClone.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/HearthStoneClone.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles 0
 .PHONY : CMakeFiles/HearthStoneClone.dir/rule

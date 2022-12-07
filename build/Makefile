@@ -520,6 +520,33 @@ HearthStoneClone/fast:
 	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/build
 .PHONY : HearthStoneClone/fast
 
+Board.o: Board.cpp.o
+
+.PHONY : Board.o
+
+# target to build an object file
+Board.cpp.o:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Board.cpp.o
+.PHONY : Board.cpp.o
+
+Board.i: Board.cpp.i
+
+.PHONY : Board.i
+
+# target to preprocess a source file
+Board.cpp.i:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Board.cpp.i
+.PHONY : Board.cpp.i
+
+Board.s: Board.cpp.s
+
+.PHONY : Board.s
+
+# target to generate assembly for a file
+Board.cpp.s:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Board.cpp.s
+.PHONY : Board.cpp.s
+
 Minions.o: Minions.cpp.o
 
 .PHONY : Minions.o
@@ -668,6 +695,9 @@ help:
 	@echo "... ContinuousTest"
 	@echo "... ContinuousSubmit"
 	@echo "... HearthStoneClone"
+	@echo "... Board.o"
+	@echo "... Board.i"
+	@echo "... Board.s"
 	@echo "... Minions.o"
 	@echo "... Minions.i"
 	@echo "... Minions.s"

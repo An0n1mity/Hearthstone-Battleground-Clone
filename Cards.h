@@ -8,10 +8,14 @@
 
 #include "Effects.h"
 
+class Player;
+
 class Card
 {
 
 protected:
+    // The card's owner
+    Player *m_owner;
     const unsigned int m_gold_cost;
     // The card's effects
     std::vector<std::unique_ptr<Effect>> m_effects;
@@ -39,6 +43,9 @@ public:
             effect->activate();
         }
     }
+
+    Player *getOwner() { return m_owner; }
+    void setOwner(Player *owner) { m_owner = owner; }
 };
 
 #endif

@@ -6,6 +6,8 @@
 
 #include "Cards.h"
 
+class Player;
+
 class Board
 {
 private:
