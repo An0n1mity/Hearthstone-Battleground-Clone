@@ -46,6 +46,7 @@ void Shop::buyCard(int index, Player &player)
         return;
     if (player.getGolds() >= 3)
     {
+        player.setGolds(player.getGolds() - 3);
         player.addCardToDeck(std::move(m_choices[index]));
         m_choices.erase(m_choices.begin() + index);
     }
@@ -53,7 +54,7 @@ void Shop::buyCard(int index, Player &player)
 
 void Shop::chooseCard(Player &player)
 {
-    int index;
+    int index = 0;
     drawCards(player);
     for (int i = 0; i < m_choices.size(); i++)
     {
@@ -65,8 +66,10 @@ void Shop::chooseCard(Player &player)
     std::cin >> index;
     buyCard(index-1, player);
     std::cout << '\n';
-    for(int i = 0; i < m_choices.size(); i++)
+    int size = m_choices.size();
+    for(int i = 0; i < size; i++)
     {
-        m_deck.push_back(std::move(m_choices[i]));
+        m_deck.push_back(std::move(m_choices[0]));
+        m_choices.erase(m_choices.begin());
     }
 }

@@ -32,6 +32,7 @@ public:
 
     int getLevel() const { return m_level; }
     int getGolds() const { return m_golds; }
+    void setGolds(int golds) { m_golds = golds; }
 
     // operator overloading for std::cout << player
     friend std::ostream &operator<<(std::ostream &os, Player &player);

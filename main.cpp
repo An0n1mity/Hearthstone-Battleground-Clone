@@ -1,18 +1,21 @@
 #include <iostream>
 //#include "Player.h"
-#include "shop.h"
+#include "game.h"
 
 int main(int, char **)
 {
-    Player player = Player("Player 1", 1);
+    Game game = Game(std::unique_ptr<Player>(new Player("Player 1", 1)), std::unique_ptr<Player>(new Player("Player 2", 1)));
+    game.startGame();
+    game.deckPhase();
+    /*Player player = Player("Player 1", 1);
 
     Shop shop;
     shop.createDeck();
     shop.chooseCard(player);
-    std::cout << player << '\n';
+    std::cout << player << '\n';*/
 
-    // Create a Card AlleyCat
-    /*std::unique_ptr<Card> abomination_card = std::unique_ptr<Card>(new AlleyCat());
+    /*// Create a Card AlleyCat
+    std::unique_ptr<Card> abomination_card = std::unique_ptr<Card>(new AlleyCat());
     // Create a Card DeckSwabbie
     std::unique_ptr<Card> deck_swabbie_card = std::unique_ptr<Card>(new DeckSwabbie());
 
