@@ -1,6 +1,3 @@
-#ifndef HEROES_H
-#define HEROES_H
-
 #include "Cards.h"
 
 // Heroes are a type of card
@@ -17,5 +14,3 @@ public:
     // Print the type of the card
     void printType() const override { std::cout << "Hero" << std::endl; }
 };
-
-#endif

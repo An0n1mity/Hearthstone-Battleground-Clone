@@ -1,6 +1,3 @@
-#ifndef MINIONS_CARDS_H
-#define MINIONS_CARDS_H
-
 #include "MinionsTribes.h"
 
 class AlleyCat : public Beast
@@ -30,5 +27,3 @@ public:
     virtual ~DeckSwabbie() {}
     virtual void printName() const override { std::cout << "DeckSwabbie"; }
 };
-
-#endif

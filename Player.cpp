@@ -1,10 +1,5 @@
 #include "Player.h"
 
-std::string Card::getOwnerName()
-{
-    return m_owner->getName();
-}
-
 std::ostream &operator<<(std::ostream &os, Player &player)
 {
     os << "Player name: " << player.m_name << '\n';
@@ -12,27 +7,29 @@ std::ostream &operator<<(std::ostream &os, Player &player)
 
     os << "Player hero: " << '\n';
     os << "Player deck: " << '\n';
-    for (auto &card : player.m_on_hand)
+    for (auto &card : player.m_deck)
+    {
+        card->print();
+    }
+    os << "Player board: " << '\n';
+    for (auto &card : player.m_on_board)
     {
         card->print();
     }
     return os;
 }
 
-void Player::addCardToHand(std::unique_ptr<Card> card)
+void Player::addCardToDeck(std::unique_ptr<Card> card)
 {
-    // Set the owner of the card
-    card->setOwner(this);
-    // Add the card to the hand
-    m_on_hand.push_back(std::move(card));
+    m_deck.push_back(std::move(card));
 }
 
-void Player::moveCardFromHandToBoard(int index)
+void Player::moveCardFromDeckToBoard(int index)
 {
     // Sanity check
-    if (index < 0 || index >= m_on_hand.size() || m_on_hand.empty())
+    if (index < 0 || index >= m_deck.size() || m_deck.empty())
         return;
 
-    // Add the card to the board
-    m_board->addCard(std::move(m_on_hand[index]));
+    m_on_board.push_back(std::move(m_deck[index]));
+    m_deck.erase(m_deck.begin() + index);
 }
