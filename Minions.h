@@ -1,3 +1,6 @@
+#ifndef MINIONS_H
+#define MINIONS_H
+
 #include "Cards.h"
 
 // Minion is a type of card
@@ -13,3 +16,5 @@ public:
     virtual ~Minion() {}
     void attackEnemy(Minion &enemy);
 };
+
+#endif

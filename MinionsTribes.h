@@ -1,3 +1,6 @@
+#ifndef MINIONS_TRIBES_H
+#define MINIONS_TRIBES_H
+
 #include "Minions.h"
 
 class Murlock : public Minion
@@ -71,3 +74,5 @@ public:
     virtual ~Menagerie() {}
     virtual void printType() const override { std::cout << "Menagerie"; }
 };
+
+#endif
