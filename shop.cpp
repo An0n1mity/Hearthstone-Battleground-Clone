@@ -67,17 +67,19 @@ void Shop::displayCards(){
     std::cout << "Choisissez une carte (Entre 1 et " << m_choices.size() << ") and if you don't want to buy a card enter n : ";
 }
 
-void Shop::chooseCard(Player &player)
+void Shop::putCardBack()
 {
-    int index = 0;
-    std::cin >> index;
-    buyCard(index-1, player);
-    std::cout << '\n';
-    std::cout << player;
     int size = m_choices.size();
-    for(int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         m_deck.push_back(std::move(m_choices[0]));
-        m_choices.erase(m_choices.begin());
     }
+    m_choices.clear();
+}
+
+void Shop::sellCard(int index, Player &player)
+{
+    player.setGolds(player.getGolds() + 1);
+    //add card to deck
+    m_deck.push_back(std::move(player->m_in_hand[index]));
 }

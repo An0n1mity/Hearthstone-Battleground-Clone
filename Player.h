@@ -33,10 +33,12 @@ public:
     int getLevel() const { return m_level; }
     int getGolds() const { return m_golds; }
     void setGolds(int golds) { m_golds = golds; }
+    std::vector<std::shared_ptr<Card>> getCardFromHand(int index) { return m_in_hand; }
 
     // operator overloading for std::cout << player
     friend std::ostream &operator<<(std::ostream &os, Player &player);
 
     // Allow Game to access private members of Player, because game manages the players
     friend class Game;
+    friend class Board;
 };

@@ -42,37 +42,78 @@ void Game::startGame()
     }  
 }
 
+void Game::getInput()
+{
+    std::cin >> m_input;
+}
 
 void Game::threadDeckPhase(std::future<void> futureObj)
 {
     char input;
     m_shop->drawCards(*m_player1);
+    std::cout << "Thread Start" << std::endl;
+    std::cout << "Press b to buy a card" << std::endl;
+    std::cout << "Press s to sell a card" << std::endl;
+    std::cout << "Press p to put a card on the board" << std::endl;
+    std::cout << "Input: ";
     while (futureObj.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
     {
-        std::cout << "Press b to buy a card" << std::endl;
-        std::cout << "Press s to sell a card" << std::endl;
-        std::cout << "Press p to put a card on the board" << std::endl;
-        std::cin >> input;
-        if (input == 'b'){
+        std::cin >> m_input;
+        //std::thread t(&Game::getInput, this);
+        if (m_input == 'b'){
             m_shop->displayCards();
             std::string cardChoice;
             std::cin >> cardChoice;
-            std::cout << cardChoice << std::endl;
             if (cardChoice == "1" || cardChoice == "2" || cardChoice == "3"){
                 m_shop->buyCard(std::stoi(cardChoice) - 1, *m_player1);
                 std::cout << '\n' << *m_player1 << '\n';
             }
+            m_shop->putCardBack();
             std::cout << '\n';
+            std::cout << "Press b to buy a card" << std::endl;
+            std::cout << "Press s to sell a card" << std::endl;
+            std::cout << "Press p to put a card on the board" << std::endl;
+            std::cout << "Input: ";
         }
-        else if (input == 's'){
-
+        else if (m_input == 's'){
+            if (m_board->getPlayerCards(m_player1.get()).size() == 0 && m_player1->m_in_hand.size() == 0){
+                std::cout << "You have no cards to sell" << std::endl;
+            }
+            else {
+                if (m_board->getPlayerCards(m_player1.get()).size() > 0){
+                    std::cout << "Cards on board : " << std::endl;
+                    for(int i = 0; i < m_board->getPlayerCards(m_player1.get()).size(); i++){
+                        std::cout << "Card " << i + 1 << " : ";
+                        m_board->getPlayerCards(m_player1.get())[i]->printName();
+                    }
+                }
+                if (m_player1->m_in_hand.size() > 0){
+                    std::cout << "Cards in your hand : " << std::endl;
+                    for(int i = 0; i < m_player1->m_in_hand.size(); i++){
+                        std::cout << "Card " << i + 1 << " : ";
+                        m_player1->m_in_hand[i]->printName();
+                    }
+                }
+            }
+            std::cout << "Which card do you want to sell?" << std::endl;
+            std::cout << "Input: ";
+            std::cout << "Press b to buy a card" << std::endl;
+            std::cout << "Press s to sell a card" << std::endl;
+            std::cout << "Press p to put a card on the board" << std::endl;
+            std::cout << "Input: ";
         }
-        else if (input == 'p'){
-
+        else if (m_input == 'p'){
+            std::cout << "Press b to buy a card" << std::endl;
+            std::cout << "Press s to sell a card" << std::endl;
+            std::cout << "Press p to put a card on the board" << std::endl;
+            std::cout << "Input: ";
         }
+        //t.join();
+        //std::cout << "Ending thread getchar" << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
     std::cout << "Thread End" << std::endl;
+    return;
 }
 
 int Game::deckPhase()
@@ -94,7 +135,33 @@ int Game::deckPhase()
     std::cout << "Asking Thread to Stop" << std::endl;
     //Set the value in promise
     exitSignal.set_value();
+    std::cout << "Waiting for Thread to join" << std::endl;
     //Wait for thread to join
+    /*std::istringstream iss("\n");
+    std::streambuf *cinbuf;
+    cinbuf = std::cin.rdbuf();
+    std::cin.rdbuf(iss.rdbuf());
+    std::string input;
+    std::cin >> input;*/
+
+    /*std::cin.fail();
+
+    std::istringstream iss("adzada");
+    std::cin.rdbuf(iss.rdbuf());  // This line actually sets cin's input buffer
+                             // to the same one as used in iss (namely the
+                             // string data that was used to initialize it)
+    int num = 0;
+    char c;
+    while(std::cin >> c || !std::cin.eof()) {
+        if(std::cin.fail()) {
+            std::cin.clear();
+            std::string dummy;
+            std::cin >> dummy;
+            continue;
+        }
+        std::cout << num << ", " << c << std::endl;
+    }*/
+
     th.join();
     std::cout << "Exiting Main Function" << std::endl;
     return 0;

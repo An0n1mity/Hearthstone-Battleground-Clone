@@ -9,8 +9,8 @@ protected:
     unsigned int m_health_points;
 
 public:
-    Hero() : Card(), m_name("Default"), m_health_points(20) {}
-    Hero(std::string name) : Card(), m_name(name), m_health_points(20) {}
+    Hero() : Card(0), m_name("Default"), m_health_points(20) {}
+    Hero(std::string name) : Card(0), m_name(name), m_health_points(20) {}
     virtual ~Hero() {}
 
     // Print the type of the card

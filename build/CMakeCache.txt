@@ -306,7 +306,7 @@ HearthStoneClone_SOURCE_DIR:STATIC=/home/axel/git/Hearthstone-Battleground-Clone
 MAKECOMMAND:STRING=/usr/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 
 //Path to the memory checking command, used for memory error detection.
-MEMORYCHECK_COMMAND:FILEPATH=MEMORYCHECK_COMMAND-NOTFOUND
+MEMORYCHECK_COMMAND:FILEPATH=/usr/bin/valgrind
 
 //File that contains suppressions for the memory checker
 MEMORYCHECK_SUPPRESSIONS_FILE:FILEPATH=

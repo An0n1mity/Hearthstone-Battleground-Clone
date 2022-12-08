@@ -15,6 +15,7 @@ class Shop {
         void shuffleDeck();
         void drawCards(Player &player);
         void displayCards();
-        void chooseCard(Player &player);
         void buyCard(int index, Player &player);
+        void putCardBack();
+        void sellCard(int index, Player &player);
 };

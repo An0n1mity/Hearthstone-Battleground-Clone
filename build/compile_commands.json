@@ -23,5 +23,10 @@
   "directory": "/home/axel/git/Hearthstone-Battleground-Clone/build",
   "command": "/usr/bin/g++   -g -o CMakeFiles/HearthStoneClone.dir/shop.cpp.o -c /home/axel/git/Hearthstone-Battleground-Clone/shop.cpp",
   "file": "/home/axel/git/Hearthstone-Battleground-Clone/shop.cpp"
+},
+{
+  "directory": "/home/axel/git/Hearthstone-Battleground-Clone/build",
+  "command": "/usr/bin/g++   -g -o CMakeFiles/HearthStoneClone.dir/Board.cpp.o -c /home/axel/git/Hearthstone-Battleground-Clone/Board.cpp",
+  "file": "/home/axel/git/Hearthstone-Battleground-Clone/Board.cpp"
 }
 ]
