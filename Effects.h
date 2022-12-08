@@ -25,6 +25,7 @@ public:
     Effect(enum ActivationPhase_e activation_phase, void (*effect_function)(Card *), Card *card = nullptr) : m_activation_phase(activation_phase), m_effect_function(effect_function), m_card(card) {}
     virtual ~Effect() {}
 
+    enum ActivationPhase_e getActivationPhase() const { return m_activation_phase; }
     void activate() const { m_effect_function(m_card); }
 
     // Test function

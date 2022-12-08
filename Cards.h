@@ -34,11 +34,12 @@ public:
     void print() const;
 
     // Apply the effects of the card
-    void applyEffects() const
+    void applyEffects(Effect::ActivationPhase_e phase) const
     {
         for (const auto &effect : m_effects)
         {
-            effect->activate();
+            if (effect->getActivationPhase() == phase)
+                effect->activate();
         }
     }
 

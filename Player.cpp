@@ -33,7 +33,7 @@ void Player::moveCardFromHandToBoard(int index)
     // Link the card to the board
     card_to_move->linkBoard(m_board);
     // Apply the effect of the card
-    card_to_move->applyEffects();
+    card_to_move->applyEffects(Effect::ON_HAND);
     m_board->addCard(std::move(card_to_move));
 }
 
