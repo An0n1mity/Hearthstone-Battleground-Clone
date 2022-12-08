@@ -81,5 +81,5 @@ void Shop::sellCard(int index, Player &player)
 {
     player.setGolds(player.getGolds() + 1);
     //add card to deck
-    m_deck.push_back(std::move(player->m_in_hand[index]));
+    m_deck.push_back(player.getCardFromHand(index));
 }
