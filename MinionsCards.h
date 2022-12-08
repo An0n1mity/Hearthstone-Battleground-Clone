@@ -1,18 +1,18 @@
+#ifndef MINIONSCARDS_H
+#define MINIONSCARDS_H
+
 #include "MinionsTribes.h"
 
 class AlleyCat : public Beast
 {
 private:
-    static void Summon1_1Cat()
-    {
-        std::cout << "Summoning a 1/1 Cat" << std::endl;
-    }
+    static void Summon1_1Cat(Card *card);
 
 public:
     AlleyCat() : Beast(1, 1)
     {
         // Create a battle cry effect that have a pointer to the function Summon1_1Cat
-        Effect *battlecry = new Battlecry(Summon1_1Cat);
+        Effect *battlecry = new Battlecry(Summon1_1Cat, this);
         // Add the effect to the vector of effects
         m_effects.push_back(std::unique_ptr<Effect>(battlecry));
     }
@@ -27,3 +27,5 @@ public:
     virtual ~DeckSwabbie() {}
     virtual void printName() const override { std::cout << "DeckSwabbie"; }
 };
+
+#endif

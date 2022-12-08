@@ -9,6 +9,7 @@
 #include "Effects.h"
 
 class Player;
+class Board;
 
 class Card
 {
@@ -16,6 +17,8 @@ class Card
 protected:
     // The card's owner
     Player *m_owner;
+    // The card can be linked to a board
+    std::weak_ptr<Board> m_board;
     const unsigned int m_gold_cost;
     // The card's effects
     std::vector<std::unique_ptr<Effect>> m_effects;
@@ -26,6 +29,8 @@ public:
     Card(unsigned int gold_cost, std::vector<std::unique_ptr<Effect>> effects = {}) : m_gold_cost(gold_cost), m_effects(std::move(effects)) {}
     virtual ~Card() {}
     unsigned int getManaCost() const { return m_gold_cost; }
+    // Link the card to a board
+    void linkBoard(std::shared_ptr<Board> board) { m_board = board; }
     void print() const
     {
         std::cout << "{Card type: ";
@@ -45,6 +50,9 @@ public:
     }
 
     Player *getOwner() { return m_owner; }
+    // Get the board
+    std::weak_ptr<Board> getBoard() { return m_board; }
+
     void setOwner(Player *owner) { m_owner = owner; }
 };
 

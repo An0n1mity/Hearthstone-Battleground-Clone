@@ -11,11 +11,7 @@ std::ostream &operator<<(std::ostream &os, Player &player)
     {
         card->print();
     }
-    os << "Player board: " << '\n';
-    for (auto &card : player.m_on_board)
-    {
-        card->print();
-    }
+
     return os;
 }
 
@@ -32,7 +28,12 @@ void Player::moveCardFromHandToBoard(int index)
     if (index < 0 || index >= m_hand.size() || m_hand.empty())
         return;
 
-    m_board->addCard(std::move(m_hand[index]));
+    // the card is now linked to the board
+    // m_hand[index]->linkBoard(m_board);
+
+    // Move the card from the hand to the board
+    std::unique_ptr<Card> card_to_move = std::move(m_hand[index]);
+    m_board->addCard(std::move(card_to_move));
 }
 
 void Player::linkBoard(std::shared_ptr<Board> board)
