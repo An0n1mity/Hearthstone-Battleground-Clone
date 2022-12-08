@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/HearthStoneClone.dir/Board.cpp.o"
   "CMakeFiles/HearthStoneClone.dir/Minions.cpp.o"
+  "CMakeFiles/HearthStoneClone.dir/MinionsCards.cpp.o"
   "CMakeFiles/HearthStoneClone.dir/Player.cpp.o"
   "CMakeFiles/HearthStoneClone.dir/game.cpp.o"
   "CMakeFiles/HearthStoneClone.dir/main.cpp.o"

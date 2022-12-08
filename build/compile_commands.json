@@ -23,5 +23,10 @@
   "directory": "/home/an0n1mity/Hearthstone-Battleground-Clone/build",
   "command": "/usr/bin/g++    -g   -o CMakeFiles/HearthStoneClone.dir/Board.cpp.o -c /home/an0n1mity/Hearthstone-Battleground-Clone/Board.cpp",
   "file": "/home/an0n1mity/Hearthstone-Battleground-Clone/Board.cpp"
+},
+{
+  "directory": "/home/an0n1mity/Hearthstone-Battleground-Clone/build",
+  "command": "/usr/bin/g++    -g   -o CMakeFiles/HearthStoneClone.dir/MinionsCards.cpp.o -c /home/an0n1mity/Hearthstone-Battleground-Clone/MinionsCards.cpp",
+  "file": "/home/an0n1mity/Hearthstone-Battleground-Clone/MinionsCards.cpp"
 }
 ]

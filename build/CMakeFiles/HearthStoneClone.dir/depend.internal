@@ -7,6 +7,13 @@ CMakeFiles/HearthStoneClone.dir/Minions.cpp.o
  /home/an0n1mity/Hearthstone-Battleground-Clone/Effects.h
  /home/an0n1mity/Hearthstone-Battleground-Clone/Minions.cpp
  /home/an0n1mity/Hearthstone-Battleground-Clone/Minions.h
+CMakeFiles/HearthStoneClone.dir/MinionsCards.cpp.o
+ /home/an0n1mity/Hearthstone-Battleground-Clone/Cards.h
+ /home/an0n1mity/Hearthstone-Battleground-Clone/Effects.h
+ /home/an0n1mity/Hearthstone-Battleground-Clone/Minions.h
+ /home/an0n1mity/Hearthstone-Battleground-Clone/MinionsCards.cpp
+ /home/an0n1mity/Hearthstone-Battleground-Clone/MinionsCards.h
+ /home/an0n1mity/Hearthstone-Battleground-Clone/MinionsTribes.h
 CMakeFiles/HearthStoneClone.dir/Player.cpp.o
  /home/an0n1mity/Hearthstone-Battleground-Clone/Board.h
  /home/an0n1mity/Hearthstone-Battleground-Clone/Cards.h

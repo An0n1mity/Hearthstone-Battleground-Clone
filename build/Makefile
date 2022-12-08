@@ -574,6 +574,33 @@ Minions.cpp.s:
 	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Minions.cpp.s
 .PHONY : Minions.cpp.s
 
+MinionsCards.o: MinionsCards.cpp.o
+
+.PHONY : MinionsCards.o
+
+# target to build an object file
+MinionsCards.cpp.o:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/MinionsCards.cpp.o
+.PHONY : MinionsCards.cpp.o
+
+MinionsCards.i: MinionsCards.cpp.i
+
+.PHONY : MinionsCards.i
+
+# target to preprocess a source file
+MinionsCards.cpp.i:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/MinionsCards.cpp.i
+.PHONY : MinionsCards.cpp.i
+
+MinionsCards.s: MinionsCards.cpp.s
+
+.PHONY : MinionsCards.s
+
+# target to generate assembly for a file
+MinionsCards.cpp.s:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/MinionsCards.cpp.s
+.PHONY : MinionsCards.cpp.s
+
 Player.o: Player.cpp.o
 
 .PHONY : Player.o
@@ -701,6 +728,9 @@ help:
 	@echo "... Minions.o"
 	@echo "... Minions.i"
 	@echo "... Minions.s"
+	@echo "... MinionsCards.o"
+	@echo "... MinionsCards.i"
+	@echo "... MinionsCards.s"
 	@echo "... Player.o"
 	@echo "... Player.i"
 	@echo "... Player.s"

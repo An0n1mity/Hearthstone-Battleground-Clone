@@ -28,9 +28,6 @@ void Player::moveCardFromHandToBoard(int index)
     if (index < 0 || index >= m_hand.size() || m_hand.empty())
         return;
 
-    // the card is now linked to the board
-    // m_hand[index]->linkBoard(m_board);
-
     // Move the card from the hand to the board
     std::unique_ptr<Card> card_to_move = std::move(m_hand[index]);
     m_board->addCard(std::move(card_to_move));
