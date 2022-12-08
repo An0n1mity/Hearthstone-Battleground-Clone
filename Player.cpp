@@ -53,5 +53,5 @@ void Player::giveCardFromHand(int index, Shop *shop)
 
     // Give the card to the shop
     std::unique_ptr<Card> card = std::move(m_in_hand[index]);
-    shop->receiveCard(std::move(card), this);
+    shop->sellCard(std::move(card), this);
 }

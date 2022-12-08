@@ -94,9 +94,26 @@ void Game::threadDeckPhase(std::future<void> futureObj)
                         m_player1->m_in_hand[i]->printName();
                     }
                 }
+                std::cout << "If you want to sell card from your board enter the number 1 and if you want to sell card from your hand enter the number 2" << std::endl;
+                std::cout << "Input: ";
+                std::string cardChoice;
+                std::cin >> cardChoice;
+                if (std::stoi(cardChoice) == 1){
+                    std::cout << "Enter the number of the card you want to sell" << std::endl;
+                    std::cout << "Input: ";
+                    std::string cardNumber;
+                    std::cin >> cardNumber;
+                    m_board->giveCardFromBoard(std::stoi(cardNumber) - 1, m_shop.get(), m_player1.get());
+                }
+                else if (std::stoi(cardChoice) == 2){
+                    std::cout << "Enter the number of the card you want to sell" << std::endl;
+                    std::cout << "Input: ";
+                    std::string cardNumber;
+                    std::cin >> cardNumber;
+                    m_player1->giveCardFromHand(std::stoi(cardNumber) - 1, m_shop.get());
+                }
+                else std::cout << "Wrong input" << std::endl;
             }
-            std::cout << "Which card do you want to sell?" << std::endl;
-            std::cout << "Input: ";
             std::cout << "Press b to buy a card" << std::endl;
             std::cout << "Press s to sell a card" << std::endl;
             std::cout << "Press p to put a card on the board" << std::endl;

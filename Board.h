@@ -5,8 +5,10 @@
 #include <vector>
 
 #include "Cards.h"
+#include "shop.h"
 
 class Player;
+class Shop;
 
 class Board
 {
@@ -20,6 +22,8 @@ public:
     std::vector<std::shared_ptr<Card>> getPlayerCards(Player *player);
     // Add a card to the board
     void addCard(std::unique_ptr<Card> card) { m_cards.push_back(std::move(card)); }
+
+    void giveCardFromBoard(int index, Shop *shop, Player *player);
 };
 
 #endif

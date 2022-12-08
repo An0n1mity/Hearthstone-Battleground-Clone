@@ -19,10 +19,12 @@ class Shop {
         void displayCards();
         void buyCard(int index, Player &player);
         void putCardBack();
-        void receiveCard(std::unique_ptr<Card> card, Player *player)
+        void sellCard(std::unique_ptr<Card> card, Player *player)
         {
             // Add the card to the shop
             m_deck.push_back(std::move(card));
+            // Add a gold to the player
+            player->setGolds(player->getGolds() + 1);
         }
         void sellCard(int index, Player &player);
 };
