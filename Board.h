@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Cards.h"
+#include "Minions.h"
 
 class Player;
 
@@ -27,6 +28,26 @@ public:
     };
     // Get the cards own by a certain player on the board
     std::vector<std::shared_ptr<Card>> getPlayerCards(Player *player);
+
+    // Get the cards of a certain type on the board and own by a certain player
+    template <typename T>
+    std::vector<std::shared_ptr<Card>> getPlayerCardsOfSameTypeAs(Player *player, Card *card_)
+    {
+        std::vector<std::shared_ptr<Card>> player_cards;
+        for (auto card : m_cards)
+        {
+            // synamic cast to a minion
+            Minion *minion_ptr = dynamic_cast<Minion *>(card.get());
+            // dynamic cast T to a minion
+            Minion *minion_ptr2 = dynamic_cast<Minion *>(card_);
+            // Debug the type of the minion
+            if (card->getOwner() == player && minion_ptr->getType() == minion_ptr2->getType())
+            {
+                player_cards.push_back(card);
+            }
+        }
+        return player_cards;
+    }
     // Add a card to the board
     void addCard(std::unique_ptr<Card> card)
     {

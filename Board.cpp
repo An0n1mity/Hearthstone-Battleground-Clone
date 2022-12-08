@@ -1,4 +1,6 @@
 #include "Board.h"
+#include "Minions.h"
+#include <typeinfo>
 
 std::vector<std::shared_ptr<Card>> Board::getPlayerCards(Player *player)
 {

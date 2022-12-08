@@ -13,6 +13,8 @@ vector
 -
 Cards.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/Cards.h
+Minions.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/Minions.h
 
 /home/an0n1mity/Hearthstone-Battleground-Clone/Cards.h
 iostream
@@ -27,6 +29,12 @@ Effects.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/Effects.h
 
 /home/an0n1mity/Hearthstone-Battleground-Clone/Effects.h
+vector
+-
+memory
+-
+iostream
+-
 
 /home/an0n1mity/Hearthstone-Battleground-Clone/Heroes.h
 Cards.h
@@ -39,6 +47,8 @@ Cards.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/MinionsCards.h
 MinionsTribes.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/MinionsTribes.h
+Board.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/Board.h
 
 /home/an0n1mity/Hearthstone-Battleground-Clone/MinionsTribes.h
 Minions.h
@@ -63,10 +73,4 @@ string
 -
 iostream
 -
-
-/home/an0n1mity/Hearthstone-Battleground-Clone/main.cpp
-iostream
--
-Player.h
-/home/an0n1mity/Hearthstone-Battleground-Clone/Player.h
 

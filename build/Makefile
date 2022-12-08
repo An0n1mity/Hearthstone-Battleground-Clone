@@ -547,6 +547,33 @@ Board.cpp.s:
 	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Board.cpp.s
 .PHONY : Board.cpp.s
 
+Cards.o: Cards.cpp.o
+
+.PHONY : Cards.o
+
+# target to build an object file
+Cards.cpp.o:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Cards.cpp.o
+.PHONY : Cards.cpp.o
+
+Cards.i: Cards.cpp.i
+
+.PHONY : Cards.i
+
+# target to preprocess a source file
+Cards.cpp.i:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Cards.cpp.i
+.PHONY : Cards.cpp.i
+
+Cards.s: Cards.cpp.s
+
+.PHONY : Cards.s
+
+# target to generate assembly for a file
+Cards.cpp.s:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Cards.cpp.s
+.PHONY : Cards.cpp.s
+
 Minions.o: Minions.cpp.o
 
 .PHONY : Minions.o
@@ -725,6 +752,9 @@ help:
 	@echo "... Board.o"
 	@echo "... Board.i"
 	@echo "... Board.s"
+	@echo "... Cards.o"
+	@echo "... Cards.i"
+	@echo "... Cards.s"
 	@echo "... Minions.o"
 	@echo "... Minions.i"
 	@echo "... Minions.s"

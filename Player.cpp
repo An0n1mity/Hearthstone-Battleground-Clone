@@ -30,6 +30,10 @@ void Player::moveCardFromHandToBoard(int index)
 
     // Move the card from the hand to the board
     std::unique_ptr<Card> card_to_move = std::move(m_hand[index]);
+    // Link the card to the board
+    card_to_move->linkBoard(m_board);
+    // Apply the effect of the card
+    card_to_move->applyEffects();
     m_board->addCard(std::move(card_to_move));
 }
 

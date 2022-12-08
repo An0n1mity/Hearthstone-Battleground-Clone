@@ -34,7 +34,8 @@ public:
     void linkBoard(std::shared_ptr<Board> board);
     // Get board
     std::shared_ptr<Board> getBoard() { return m_board; }
-
+    // Get the name of the player
+    std::string getName() const { return m_name; }
     // operator overloading for std::cout << player
     friend std::ostream &operator<<(std::ostream &os, Player &player);
 

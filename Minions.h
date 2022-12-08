@@ -20,11 +20,21 @@ public:
 
     // Summon a minion of a type T on the board
     template <typename T>
-    static void summonMinion(std::shared_ptr<Board> board)
+    static void summonMinion(std::weak_ptr<Board> board, Card *card)
     {
         // Create a new minion of type T
         std::unique_ptr<Minion> minion = std::make_unique<T>();
+        // Convert the weak pointer to a shared pointer
+        std::shared_ptr<Board> board_ptr = board.lock();
+        // Update owner and board
+        Player *pl = card->getOwner();
+        minion->setOwner(card->getOwner());
+        // Add the minion to the board
+        board_ptr->addCard(std::move(minion));
     }
+
+    // Get the type of the minion
+    virtual std::string getType() const = 0;
 };
 
 #endif

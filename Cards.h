@@ -31,14 +31,7 @@ public:
     unsigned int getManaCost() const { return m_gold_cost; }
     // Link the card to a board
     void linkBoard(std::shared_ptr<Board> board) { m_board = board; }
-    void print() const
-    {
-        std::cout << "{Card type: ";
-        printType();
-        std::cout << "; Card name: ";
-        printName();
-        std::cout << "; Card cost: " << m_gold_cost << "}\n";
-    }
+    void print() const;
 
     // Apply the effects of the card
     void applyEffects() const
