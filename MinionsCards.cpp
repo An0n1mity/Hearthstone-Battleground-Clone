@@ -1,7 +1,6 @@
 #include "MinionsCards.h"
-#include "Board.h"
 
-void AlleyCat::Summon1_1Cat(Card *card)
+/*void AlleyCat::Summon1_1Cat(Card *card)
 {
     std::cout << "Summoning a 1/1 Cat" << std::endl;
     // Get the card board
@@ -14,4 +13,4 @@ void AlleyCat::Summon1_1Cat(Card *card)
     // Convert the board to a shared pointer
     std::shared_ptr<Board> board_ptr = board.lock();
     board_ptr->addCard(std::move(newCard));
-}
+}*/

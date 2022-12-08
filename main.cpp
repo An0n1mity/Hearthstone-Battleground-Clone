@@ -16,6 +16,10 @@ int main(int, char **)
 
     // Create a Card AlleyCat
     std::unique_ptr<Card> alleycat = std::unique_ptr<Card>(new AlleyCat());
+    // Link the board to the card
+    alleycat->linkBoard(board);
+    // Activate the card
+    alleycat->applyEffects();
     // Create a Card DeckSwabbie
     std::unique_ptr<Card> deckswabbie = std::unique_ptr<Card>(new DeckSwabbie());
 
@@ -41,6 +45,9 @@ int main(int, char **)
     {
         card->print();
     }
+
+    // Print the card on the board
+    board->printCards();
 
     return 0;
 }
