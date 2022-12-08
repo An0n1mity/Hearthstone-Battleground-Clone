@@ -1,3 +1,4 @@
+#pragma once
 #include "Cards.h"
 
 // Heroes are a type of card

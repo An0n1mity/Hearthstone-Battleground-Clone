@@ -1,3 +1,4 @@
+#pragma once
 #include "MinionsTribes.h"
 
 class AlleyCat : public Beast

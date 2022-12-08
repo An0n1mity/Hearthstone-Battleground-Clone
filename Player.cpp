@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "shop.h"
 
 std::ostream &operator<<(std::ostream &os, Player &player)
 {
@@ -42,4 +43,15 @@ void Player::moveCardFromDeckToBoard(int index)
 
     m_on_board.push_back(std::move(m_in_hand[index]));
     m_in_hand.erase(m_in_hand.begin() + index);
+}
+
+void Player::giveCardFromHand(int index, Shop *shop)
+{
+    // Sanity check
+    if (index < 0 || index >= m_in_hand.size() || m_in_hand.empty())
+        return;
+
+    // Give the card to the shop
+    std::unique_ptr<Card> card = std::move(m_in_hand[index]);
+    shop->receiveCard(std::move(card), this);
 }

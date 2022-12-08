@@ -1,9 +1,12 @@
+#pragma once
 #include "Heroes.h"
 #include "MinionsCards.h"
 #include <vector>
 #include <memory>
 #include <string>
 #include <iostream>
+
+class Shop;
 
 class Player
 {
@@ -33,7 +36,9 @@ public:
     int getLevel() const { return m_level; }
     int getGolds() const { return m_golds; }
     void setGolds(int golds) { m_golds = golds; }
-    std::unique_ptr<Card> getCardFromHand(int index) { return std::move(m_in_hand[index]); }
+
+    // Give a card from the hand to the shop
+    void giveCardFromHand(int index, Shop *shop);
 
     // operator overloading for std::cout << player
     friend std::ostream &operator<<(std::ostream &os, Player &player);

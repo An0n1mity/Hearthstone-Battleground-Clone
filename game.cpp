@@ -2,7 +2,7 @@
 
 void Game::mode_raw(int activer)
 {
-    static struct termios cooked;
+    /*static struct termios cooked;
     static int raw_actif = 0;
 
     if (raw_actif == activer)
@@ -21,7 +21,7 @@ void Game::mode_raw(int activer)
     else
         tcsetattr(STDIN_FILENO, TCSANOW, &cooked);
 
-    raw_actif = activer;
+    raw_actif = activer;*/
 }
 
 void Game::startGame()

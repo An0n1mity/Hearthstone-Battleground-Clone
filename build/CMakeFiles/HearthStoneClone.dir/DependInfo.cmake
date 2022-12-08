@@ -1,19 +1,20 @@
-
-# Consider dependencies only in project.
-set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
-
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
   )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/an0n1mity/Hearthstone-Battleground-Clone/Board.cpp" "/home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles/HearthStoneClone.dir/Board.cpp.o"
+  "/home/an0n1mity/Hearthstone-Battleground-Clone/Minions.cpp" "/home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles/HearthStoneClone.dir/Minions.cpp.o"
+  "/home/an0n1mity/Hearthstone-Battleground-Clone/Player.cpp" "/home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles/HearthStoneClone.dir/Player.cpp.o"
+  "/home/an0n1mity/Hearthstone-Battleground-Clone/game.cpp" "/home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles/HearthStoneClone.dir/game.cpp.o"
+  "/home/an0n1mity/Hearthstone-Battleground-Clone/main.cpp" "/home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles/HearthStoneClone.dir/main.cpp.o"
+  "/home/an0n1mity/Hearthstone-Battleground-Clone/shop.cpp" "/home/an0n1mity/Hearthstone-Battleground-Clone/build/CMakeFiles/HearthStoneClone.dir/shop.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
-# The set of dependency files which are needed:
-set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/axel/git/Hearthstone-Battleground-Clone/Board.cpp" "CMakeFiles/HearthStoneClone.dir/Board.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/Board.cpp.o.d"
-  "/home/axel/git/Hearthstone-Battleground-Clone/Minions.cpp" "CMakeFiles/HearthStoneClone.dir/Minions.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/Minions.cpp.o.d"
-  "/home/axel/git/Hearthstone-Battleground-Clone/Player.cpp" "CMakeFiles/HearthStoneClone.dir/Player.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/Player.cpp.o.d"
-  "/home/axel/git/Hearthstone-Battleground-Clone/game.cpp" "CMakeFiles/HearthStoneClone.dir/game.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/game.cpp.o.d"
-  "/home/axel/git/Hearthstone-Battleground-Clone/main.cpp" "CMakeFiles/HearthStoneClone.dir/main.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/main.cpp.o.d"
-  "/home/axel/git/Hearthstone-Battleground-Clone/shop.cpp" "CMakeFiles/HearthStoneClone.dir/shop.cpp.o" "gcc" "CMakeFiles/HearthStoneClone.dir/shop.cpp.o.d"
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
   )
 
 # Targets to which this target links.

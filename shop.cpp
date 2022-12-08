@@ -29,13 +29,13 @@ void Shop::drawCards(Player &player)
     int count = 0;
     for (int i = 0; i < m_deck.size(); i++)
     {
-        if (m_deck[i]->getRang() <= player.getLevel())
+        /*if (m_deck[i]->getRang() <= player.getLevel())
         {
             m_choices.push_back(std::move(m_deck[i]));
             m_deck.erase(m_deck.begin() + i);
             if(++count == 3)
                 break;
-        }
+        }*/
     }
 
 }
@@ -77,9 +77,3 @@ void Shop::putCardBack()
     m_choices.clear();
 }
 
-void Shop::sellCard(int index, Player &player)
-{
-    player.setGolds(player.getGolds() + 1);
-    //add card to deck
-    m_deck.push_back(player.getCardFromHand(index));
-}

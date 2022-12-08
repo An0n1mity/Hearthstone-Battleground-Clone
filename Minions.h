@@ -1,3 +1,4 @@
+#pragma once
 #include "Cards.h"
 
 // Minion is a type of card
