@@ -179,6 +179,7 @@ CMakeFiles/HearthStoneClone.dir/game.cpp.o: \
  /home/axel/git/Hearthstone-Battleground-Clone/MinionsCards.h \
  /home/axel/git/Hearthstone-Battleground-Clone/MinionsTribes.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Minions.h \
+ /home/axel/git/Hearthstone-Battleground-Clone/Board.h \
  /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \
@@ -199,9 +200,8 @@ CMakeFiles/HearthStoneClone.dir/game.cpp.o: \
  /usr/include/c++/11/condition_variable /usr/include/c++/11/atomic \
  /usr/include/c++/11/bits/atomic_futex.h \
  /usr/include/c++/11/bits/std_thread.h /usr/include/c++/11/thread \
- /usr/include/c++/11/bits/this_thread_sleep.h \
- /home/axel/git/Hearthstone-Battleground-Clone/Board.h \
- /usr/include/termios.h /usr/include/x86_64-linux-gnu/bits/termios.h \
+ /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios.h \
  /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
  /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
  /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \

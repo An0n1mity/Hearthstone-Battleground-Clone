@@ -1,10 +1,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include <memory>
 #include <vector>
 
-#include "Cards.h"
 #include "shop.h"
 
 class Player;

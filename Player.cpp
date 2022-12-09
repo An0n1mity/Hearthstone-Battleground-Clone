@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "shop.h"
 
 std::ostream &operator<<(std::ostream &os, Player &player)
 {
@@ -8,19 +7,26 @@ std::ostream &operator<<(std::ostream &os, Player &player)
     os << "Player level: " << player.m_level << '\n'; 
     /*os << "Player hero: ";
     player.m_hero->printName();*/
-    os << "\nPlayer deck: " << '\n';
-    for (auto &card : player.m_in_hand)
+    if (player.m_in_hand.size() > 0)
     {
-        os << "- ";
-        card->printName();
-        os << '\n';
+        os << "\nPlayer deck: " << '\n';
+        for (auto &card : player.m_in_hand)
+        {
+            os << "- ";
+            card->printName();
+            os << '\n';
+        }
     }
-    os << "\nPlayer board: " << '\n';
-    for (auto &card : player.m_on_board)
+    std::unique_ptr<Player> p = std::unique_ptr<Player>(&player);
+    if (player.getBoard()->getPlayerCards(p.get()).size() > 0)
     {
-        os << "- ";
-        card->printName();
-        os << '\n';
+        os << "\nPlayer board: " << '\n';
+        for (auto &card : player.getBoard()->getPlayerCards(p.get()))
+        {
+            os << "- ";
+            card->printName();
+            os << '\n';
+        }
     }
     return os;
 }
@@ -41,7 +47,7 @@ void Player::moveCardFromDeckToBoard(int index)
     if (index < 0 || index >= m_in_hand.size() || m_in_hand.empty())
         return;
 
-    m_on_board.push_back(std::move(m_in_hand[index]));
+    m_board->addCard(std::move(m_in_hand[index]));
     m_in_hand.erase(m_in_hand.begin() + index);
 }
 

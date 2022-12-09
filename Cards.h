@@ -46,6 +46,7 @@ public:
 
     Player *getOwner() { return m_owner; }
     void setOwner(Player *owner) { m_owner = owner; }
+    virtual int getRang() const = 0;
 };
 
 #endif

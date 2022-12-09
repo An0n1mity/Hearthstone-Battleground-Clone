@@ -34,6 +34,14 @@ void Board::giveCardFromBoard(int index, Shop *shop, Player *player)
     }
 
     // Give the card to the shop
-    std::unique_ptr<Card> card = std::make_unique<Card>(std::move(m_cards[counter]));
-    shop->sellCard(std::move(card), card->getOwner());
+
+    // Get raw pointer to the card
+    Card *card = m_cards[counter].get();
+    // Remove the card from the board
+    m_cards.erase(m_cards.begin() + counter);
+    // Give the card to the shop converts the raw pointer to a unique pointer
+    shop->sellCard(std::unique_ptr<Card>(card), card->getOwner());
+
+    /*std::unique_ptr<Card> card = std::make_unique<Card>(std::move(m_cards[counter]));
+    shop->sellCard(std::move(card), card->getOwner());*/
 }

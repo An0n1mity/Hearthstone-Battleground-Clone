@@ -68,7 +68,6 @@ void Game::threadDeckPhase(std::future<void> futureObj)
                 m_shop->buyCard(std::stoi(cardChoice) - 1, *m_player1);
                 std::cout << '\n' << *m_player1 << '\n';
             }
-            m_shop->putCardBack();
             std::cout << '\n';
             std::cout << "Press b to buy a card" << std::endl;
             std::cout << "Press s to sell a card" << std::endl;
@@ -94,7 +93,7 @@ void Game::threadDeckPhase(std::future<void> futureObj)
                         m_player1->m_in_hand[i]->printName();
                     }
                 }
-                std::cout << "If you want to sell card from your board enter the number 1 and if you want to sell card from your hand enter the number 2" << std::endl;
+                std::cout << "\nIf you want to sell card from your board enter the number 1 and if you want to sell card from your hand enter the number 2" << std::endl;
                 std::cout << "Input: ";
                 std::string cardChoice;
                 std::cin >> cardChoice;
@@ -114,6 +113,7 @@ void Game::threadDeckPhase(std::future<void> futureObj)
                 }
                 else std::cout << "Wrong input" << std::endl;
             }
+            std::cout << *m_player1 << '\n';
             std::cout << "Press b to buy a card" << std::endl;
             std::cout << "Press s to sell a card" << std::endl;
             std::cout << "Press p to put a card on the board" << std::endl;
@@ -129,6 +129,7 @@ void Game::threadDeckPhase(std::future<void> futureObj)
         //std::cout << "Ending thread getchar" << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
+    m_shop->putCardBack();
     std::cout << "Thread End" << std::endl;
     return;
 }
@@ -148,7 +149,7 @@ int Game::deckPhase()
     // Starting Thread & move the future object in lambda function by reference
     std::thread th(&Game::threadDeckPhase, this, std::move(futureObj));
     //Wait for 10 sec
-    std::this_thread::sleep_for(std::chrono::seconds(30));
+    std::this_thread::sleep_for(std::chrono::seconds(60));
     std::cout << "Asking Thread to Stop" << std::endl;
     //Set the value in promise
     exitSignal.set_value();
