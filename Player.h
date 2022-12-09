@@ -27,7 +27,7 @@ public:
     Player(std::string name) : m_name(name) {}
     ~Player() {}
     // Add a battler to the deck of the player
-    void addCardToHand(std::unique_ptr<Card> card);
+    void addCardToHand(std::unique_ptr<Card> &card);
     // Move a battler from the deck to the board
     void moveCardFromHandToBoard(int index);
 

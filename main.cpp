@@ -20,8 +20,8 @@ int main(int, char **)
     std::unique_ptr<Card> deckswabbie = std::unique_ptr<Card>(new DeckSwabbie());
 
     // Add the card to the deck of the player
-    player.addCardToHand(std::move(alleycat));
-    player2.addCardToHand(std::move(deckswabbie));
+    player.addCardToHand(alleycat);
+    player2.addCardToHand(deckswabbie);
 
     std::cout << player << '\n';
     std::cout << player2 << '\n';

@@ -30,7 +30,9 @@ public:
         Player *pl = card->getOwner();
         minion->setOwner(card->getOwner());
         // Add the minion to the board
-        board_ptr->addCard(std::move(minion));
+        // Dynamic cast the minion to a card
+        std::unique_ptr<Card> card_ptr = std::move(minion);
+        board_ptr->addCard(card_ptr);
     }
 
     // Get the type of the minion

@@ -16,6 +16,12 @@ Cards.h
 Minions.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/Minions.h
 
+/home/an0n1mity/Hearthstone-Battleground-Clone/Cards.cpp
+Cards.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/Cards.h
+Player.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/Player.h
+
 /home/an0n1mity/Hearthstone-Battleground-Clone/Cards.h
 iostream
 -
@@ -73,4 +79,20 @@ string
 -
 iostream
 -
+
+/home/an0n1mity/Hearthstone-Battleground-Clone/game.cpp
+game.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/game.h
+
+/home/an0n1mity/Hearthstone-Battleground-Clone/game.h
+Player.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/Player.h
+memory
+-
+
+/home/an0n1mity/Hearthstone-Battleground-Clone/main.cpp
+iostream
+-
+Player.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/Player.h
 

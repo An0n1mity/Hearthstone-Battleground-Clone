@@ -15,7 +15,7 @@ std::ostream &operator<<(std::ostream &os, Player &player)
     return os;
 }
 
-void Player::addCardToHand(std::unique_ptr<Card> card)
+void Player::addCardToHand(std::unique_ptr<Card> &card)
 {
     // Set the owner of the card
     card->setOwner(this);
@@ -36,7 +36,7 @@ void Player::moveCardFromHandToBoard(int index)
     card_to_move->applyEffects(Effect::ON_HAND);
     // Aquire lock on the board
     std::shared_ptr<Board> board = m_board.lock();
-    board->addCard(std::move(card_to_move));
+    board->addCard(card_to_move);
 }
 
 void Player::linkBoard(std::weak_ptr<Board> board)

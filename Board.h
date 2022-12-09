@@ -49,7 +49,7 @@ public:
         return player_cards;
     }
     // Add a card to the board
-    void addCard(std::unique_ptr<Card> card)
+    void addCard(std::unique_ptr<Card> &card)
     {
         // Show the reference count of the card
         m_cards.push_back(std::move(card));
