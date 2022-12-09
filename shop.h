@@ -11,7 +11,10 @@ class Shop {
         std::vector<std::unique_ptr<Card>> m_choices;
 
     public:
-        Shop() {}
+        Shop() {
+            createDeck();
+            shuffleDeck();
+        }
         ~Shop() {}
         void createDeck();
         void shuffleDeck();

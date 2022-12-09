@@ -8,6 +8,7 @@
 
 class Shop;
 class Board;
+class Card;
 
 class Player
 {

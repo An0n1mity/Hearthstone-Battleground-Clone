@@ -28,8 +28,6 @@ void Game::startGame()
 {
     std::srand(std::time(nullptr));
     m_player->setBoard(m_board);
-    m_shop->createDeck();
-    m_shop->shuffleDeck(); 
     m_running = true;
     while (m_running){
         m_player->setGolds(max_gold);
