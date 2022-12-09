@@ -655,6 +655,33 @@ Player.cpp.s:
 	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Player.cpp.s
 .PHONY : Player.cpp.s
 
+Shop.o: Shop.cpp.o
+
+.PHONY : Shop.o
+
+# target to build an object file
+Shop.cpp.o:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Shop.cpp.o
+.PHONY : Shop.cpp.o
+
+Shop.i: Shop.cpp.i
+
+.PHONY : Shop.i
+
+# target to preprocess a source file
+Shop.cpp.i:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Shop.cpp.i
+.PHONY : Shop.cpp.i
+
+Shop.s: Shop.cpp.s
+
+.PHONY : Shop.s
+
+# target to generate assembly for a file
+Shop.cpp.s:
+	$(MAKE) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Shop.cpp.s
+.PHONY : Shop.cpp.s
+
 game.o: game.cpp.o
 
 .PHONY : game.o
@@ -764,6 +791,9 @@ help:
 	@echo "... Player.o"
 	@echo "... Player.i"
 	@echo "... Player.s"
+	@echo "... Shop.o"
+	@echo "... Shop.i"
+	@echo "... Shop.s"
 	@echo "... game.o"
 	@echo "... game.i"
 	@echo "... game.s"

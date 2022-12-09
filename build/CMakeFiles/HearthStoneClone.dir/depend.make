@@ -36,6 +36,17 @@ CMakeFiles/HearthStoneClone.dir/Player.cpp.o: ../MinionsTribes.h
 CMakeFiles/HearthStoneClone.dir/Player.cpp.o: ../Player.cpp
 CMakeFiles/HearthStoneClone.dir/Player.cpp.o: ../Player.h
 
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../Board.h
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../Cards.h
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../Effects.h
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../Heroes.h
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../Minions.h
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../MinionsCards.h
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../MinionsTribes.h
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../Player.h
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../Shop.cpp
+CMakeFiles/HearthStoneClone.dir/Shop.cpp.o: ../Shop.h
+
 CMakeFiles/HearthStoneClone.dir/game.cpp.o: ../Board.h
 CMakeFiles/HearthStoneClone.dir/game.cpp.o: ../Cards.h
 CMakeFiles/HearthStoneClone.dir/game.cpp.o: ../Effects.h
