@@ -18,8 +18,8 @@ int main(int, char **)
     shop.giveGold(player, 10);
     // Draw 3 cards from the shop
     shop.drawCards(player);
-    // Display the cards
-    shop.displayCards();
+
+    shop.reDrawCards(player);
 
     // Player 1 buy a card
     int choice = 0;

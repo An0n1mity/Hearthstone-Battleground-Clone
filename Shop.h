@@ -34,4 +34,5 @@ public:
     void sellCard(std::unique_ptr<Card> &card, Player *player);
     // Give gold to the player
     void giveGold(Player &player, unsigned int golds);
+    void reDrawCards(Player &player);
 };
