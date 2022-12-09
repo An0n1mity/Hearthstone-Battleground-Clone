@@ -23,7 +23,6 @@ protected:
     // The card's effects
     std::vector<std::unique_ptr<Effect>> m_effects;
     virtual void printType() const = 0;
-    virtual void printName() const = 0;
 
 public:
     Card(unsigned int gold_cost, std::vector<std::unique_ptr<Effect>> effects = {}) : m_gold_cost(gold_cost), m_effects(std::move(effects)) {}
@@ -44,10 +43,13 @@ public:
     }
 
     Player *getOwner() { return m_owner; }
+    virtual int getRang() const = 0;
     // Get the board
     std::weak_ptr<Board> getBoard() { return m_board; }
 
     void setOwner(Player *owner) { m_owner = owner; }
+
+    virtual void printName() const = 0;
 };
 
 #endif

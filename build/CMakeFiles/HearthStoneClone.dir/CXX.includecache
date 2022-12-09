@@ -54,6 +54,10 @@ Board.h
 Minions.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/Minions.h
 
+/home/an0n1mity/Hearthstone-Battleground-Clone/Player.cpp
+Player.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/Player.h
+
 /home/an0n1mity/Hearthstone-Battleground-Clone/Player.h
 Heroes.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/Heroes.h
@@ -61,6 +65,8 @@ MinionsCards.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/MinionsCards.h
 Board.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/Board.h
+Shop.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/Shop.h
 vector
 -
 memory
@@ -70,13 +76,7 @@ string
 iostream
 -
 
-/home/an0n1mity/Hearthstone-Battleground-Clone/Shop.cpp
-Shop.h
 /home/an0n1mity/Hearthstone-Battleground-Clone/Shop.h
-
-/home/an0n1mity/Hearthstone-Battleground-Clone/Shop.h
-Player.h
-/home/an0n1mity/Hearthstone-Battleground-Clone/Player.h
 algorithm
 -
 ctime
@@ -85,4 +85,6 @@ future
 -
 thread
 -
+Cards.h
+/home/an0n1mity/Hearthstone-Battleground-Clone/Cards.h
 
