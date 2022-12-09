@@ -32,7 +32,6 @@
 *.app
 
 # build files
-.build/*
 *.make
 *.cmake
 *.json

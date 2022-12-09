@@ -1,4 +1,5 @@
 #include "Minions.h"
+#include "MinionsTribes.h"
 
 void Minion::attackEnemy(Minion &enemy)
 {
