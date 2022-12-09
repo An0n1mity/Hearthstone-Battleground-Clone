@@ -73,7 +73,7 @@ void Shop::putCardBack()
     int size = m_choices.size();
     for (int i = 0; i < size; i++)
     {
-        m_deck.push_back(std::move(m_choices[0]));
+        m_deck.push_back(std::move(m_choices[i]));
     }
     m_choices.clear();
 }

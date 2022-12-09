@@ -124,6 +124,7 @@ void Game::threadDeckPhase(std::future<void> futureObj)
                 for(int i = 0; i < m_player1->m_in_hand.size(); i++){
                     std::cout << "Card " << i + 1 << " : ";
                     m_player1->m_in_hand[i]->printName();
+                    std::cout << '\n';
                 }
             }
             std::cout << "\nEnter the number of the card you want to put on the board : " << std::endl;
