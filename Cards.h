@@ -30,7 +30,7 @@ public:
     virtual ~Card() {}
     unsigned int getManaCost() const { return m_gold_cost; }
     // Link the card to a board
-    void linkBoard(std::shared_ptr<Board> board) { m_board = board; }
+    void linkBoard(std::weak_ptr<Board> board) { m_board = board; }
     void print() const;
 
     // Apply the effects of the card

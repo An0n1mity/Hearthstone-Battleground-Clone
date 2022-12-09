@@ -27,7 +27,7 @@ public:
         }
     };
     // Get the cards own by a certain player on the board
-    std::vector<std::shared_ptr<Card>> getPlayerCards(Player *player);
+    std::vector<std::weak_ptr<Card>> getPlayerCards(Player *player);
 
     // Get the cards of a certain type on the board and own by a certain player
     template <typename T>

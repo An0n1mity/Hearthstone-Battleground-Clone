@@ -21,7 +21,7 @@ private:
     // Player deck the cards on his hand
     std::vector<std::unique_ptr<Card>> m_hand;
     // Link to the board
-    std::shared_ptr<Board> m_board;
+    std::weak_ptr<Board> m_board;
 
 public:
     Player(std::string name) : m_name(name) {}
@@ -31,9 +31,9 @@ public:
     // Move a battler from the deck to the board
     void moveCardFromHandToBoard(int index);
 
-    void linkBoard(std::shared_ptr<Board> board);
+    void linkBoard(std::weak_ptr<Board> board);
     // Get board
-    std::shared_ptr<Board> getBoard() { return m_board; }
+    std::weak_ptr<Board> getBoard() { return m_board; }
     // Get the name of the player
     std::string getName() const { return m_name; }
     // operator overloading for std::cout << player

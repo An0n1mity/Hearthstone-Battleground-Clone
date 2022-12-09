@@ -34,10 +34,12 @@ void Player::moveCardFromHandToBoard(int index)
     card_to_move->linkBoard(m_board);
     // Apply the effect of the card
     card_to_move->applyEffects(Effect::ON_HAND);
-    m_board->addCard(std::move(card_to_move));
+    // Aquire lock on the board
+    std::shared_ptr<Board> board = m_board.lock();
+    board->addCard(std::move(card_to_move));
 }
 
-void Player::linkBoard(std::shared_ptr<Board> board)
+void Player::linkBoard(std::weak_ptr<Board> board)
 {
     m_board = board;
 }

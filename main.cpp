@@ -30,16 +30,23 @@ int main(int, char **)
     player2.moveCardFromHandToBoard(0);
 
     // Get the cards of the player on the board
-    std::vector<std::shared_ptr<Card>> player_cards = board->getPlayerCards(&player);
+    std::vector<std::weak_ptr<Card>> player_cards = board->getPlayerCards(&player);
     for (auto &card : player_cards)
     {
-        card->print();
+        // Convert to a shared pointer
+        std::shared_ptr<Card> card_ptr = card.lock();
+        // Print the card
+        card_ptr->print();
     }
 
-    std::vector<std::shared_ptr<Card>> player2_cards = board->getPlayerCards(&player2);
+    std::vector<std::weak_ptr<Card>> player2_cards = board->getPlayerCards(&player2);
     for (auto &card : player2_cards)
     {
-        card->print();
+
+        // Convert to a shared pointer
+        std::shared_ptr<Card> card_ptr = card.lock();
+        // Print the card
+        card_ptr->print();
     }
 
     // Print the card on the board
