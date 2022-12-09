@@ -24,6 +24,18 @@ void Shop::shuffleDeck()
     std::random_shuffle(m_deck.begin(), m_deck.end());
 }
 
+void Shop::displayCards()
+{
+    std::cout << "draw cards : \n";
+    for (int i = 0; i < m_choices.size(); i++)
+    {
+        std::cout << "Carte " << i + 1 << " : ";
+        m_choices[i]->printName();
+        std::cout << "\n";
+    }
+    std::cout << "Choisissez une carte (Entre 1 et " << m_choices.size() << ") and if you don't want to buy a card enter n : ";
+}
+
 void Shop::drawCards(Player &player)
 {
     shuffleDeck();
@@ -38,6 +50,7 @@ void Shop::drawCards(Player &player)
                 break;
         }
     }
+    displayCards();
 }
 
 void Shop::buyCard(int index, Player &player)
@@ -55,18 +68,6 @@ void Shop::buyCard(int index, Player &player)
     {
         std::cout << "You don't have enough golds to buy this card\n";
     }
-}
-
-void Shop::displayCards()
-{
-    std::cout << "draw cards : \n";
-    for (int i = 0; i < m_choices.size(); i++)
-    {
-        std::cout << "Carte " << i + 1 << " : ";
-        m_choices[i]->printName();
-        std::cout << "\n";
-    }
-    std::cout << "Choisissez une carte (Entre 1 et " << m_choices.size() << ") and if you don't want to buy a card enter n : ";
 }
 
 void Shop::putCardBack()
@@ -90,4 +91,13 @@ void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
 void Shop::giveGold(Player &player, unsigned int golds)
 {
     player.m_golds += golds;
+}
+
+void Shop::reDrawCards(Player &player)
+{
+    if(player.getGolds() > 1){
+        player.setGolds(player.getGolds() - 1);
+        putCardBack();
+        drawCards(player);
+    }
 }

@@ -41,6 +41,8 @@ public:
     std::string getName() const { return m_name; }
     // Get the golds of the player
     unsigned int getGolds() const { return m_golds; }
+    // Set the golds of the player
+    void setGolds(unsigned int golds) { m_golds = golds; }
     // Get level of player
     unsigned int getLevel() const { return m_level; }
     // operator overloading for std::cout << player

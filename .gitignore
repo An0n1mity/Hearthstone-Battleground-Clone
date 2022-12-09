@@ -37,3 +37,4 @@
 *.json
 *.tcl
 .vscode/*
+build/*
