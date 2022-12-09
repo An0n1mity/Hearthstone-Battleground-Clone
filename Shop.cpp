@@ -82,10 +82,11 @@ void Shop::putCardBack()
 
 void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
 {
+    // Add a gold to the player
+    player->setGolds(player->getGolds() + 1);
+    card->setOwner(nullptr);
     // Add the card to the shop
     m_deck.push_back(std::move(card));
-    // Add a gold to the player
-    // player->setGolds(player->getGolds() + 1);
 }
 
 void Shop::giveGold(Player &player, unsigned int golds)

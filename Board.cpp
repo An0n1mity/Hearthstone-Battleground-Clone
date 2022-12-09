@@ -14,3 +14,13 @@ std::vector<std::weak_ptr<Card>> Board::getPlayerCards(Player *player)
     }
     return player_cards;
 }
+
+std::vector<std::weak_ptr<Card>> Board::getCards()
+{
+    std::vector<std::weak_ptr<Card>> cards;
+    for (auto card : m_cards)
+    {
+        cards.push_back(card);
+    }
+    return cards;
+}

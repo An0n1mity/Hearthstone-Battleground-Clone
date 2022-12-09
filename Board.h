@@ -29,6 +29,9 @@ public:
     // Get the cards own by a certain player on the board
     std::vector<std::weak_ptr<Card>> getPlayerCards(Player *player);
 
+    // Get Cards of the board
+    std::vector<std::weak_ptr<Card>> getCards();
+
     // Get the cards of a certain type on the board and own by a certain player
     template <typename T>
     std::vector<std::shared_ptr<Card>> getPlayerCardsOfSameTypeAs(Player *player, Card *card_)
@@ -72,6 +75,12 @@ public:
         {
             std::cout << "Reference count of the card: " << card.use_count() << std::endl;
         }
+    }
+
+    //remove a card from the board
+    void removeCard(int index)
+    {
+        m_cards.erase(m_cards.begin() + index);
     }
 };
 

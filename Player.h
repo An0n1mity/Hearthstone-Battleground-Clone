@@ -45,6 +45,8 @@ public:
     void setGolds(unsigned int golds) { m_golds = golds; }
     // Get level of player
     unsigned int getLevel() const { return m_level; }
+    // Set level of player
+    void setLevel(unsigned int level) { m_level = level; }
     // operator overloading for std::cout << player
     friend std::ostream &operator<<(std::ostream &os, Player &player);
 
@@ -56,6 +58,9 @@ public:
 
     // Allow Game to access private members of Player, because game manages the players
     friend class Game;
+
+    // give a card from the board to shop
+    void giveCardFromBoard(int index, Shop *shop, Player *player);
 };
 
 #endif

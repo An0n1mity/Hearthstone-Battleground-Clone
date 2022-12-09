@@ -6,12 +6,29 @@ std::ostream &operator<<(std::ostream &os, Player &player)
     os << "Player golds: " << player.m_golds << '\n';
 
     os << "Player hero: " << '\n';
-    os << "Player deck: " << '\n';
-    for (auto &card : player.m_hand)
-    {
-        card->print();
+    if (player.m_hand.size() > 0){
+        os << "Player deck: " << '\n';
+        for (auto &card : player.m_hand)
+        {
+            card->print();
+        }
     }
-
+    std::shared_ptr<Board> board = player.m_board.lock();
+    std::vector<std::shared_ptr<Card>> boardCard;
+    for(auto &card : board->getPlayerCards(&player))
+    {   
+        boardCard.push_back(card.lock());
+    }
+    if (boardCard.size() > 0)
+    {
+        os << "\nPlayer board: " << '\n';
+        for (auto &card : boardCard)
+        {
+            os << "- ";
+            card->printName();
+            os << '\n';
+        }
+    }
     return os;
 }
 
@@ -37,6 +54,7 @@ void Player::moveCardFromHandToBoard(int index)
     // Aquire lock on the board
     std::shared_ptr<Board> board = m_board.lock();
     board->addCard(card_to_move);
+    m_hand.erase(m_hand.begin() + index);
 }
 
 void Player::linkBoard(std::weak_ptr<Board> board)
@@ -56,4 +74,38 @@ void Player::sellCardFromHand(int index, Shop *shop)
     shop->sellCard(card_to_move, this);
     // Remove the card from the hand
     m_hand.erase(m_hand.begin() + index);
+}
+
+void Player::giveCardFromBoard(int index, Shop *shop, Player *player)
+{
+    std::shared_ptr<Board> board = m_board.lock();
+    std::vector<std::shared_ptr<Card>> boardCard;
+    for(auto &card : board->getCards())
+    {   
+        boardCard.push_back(card.lock());
+    }
+    // Sanity check
+    if (index < 0 || index >= boardCard.size() || boardCard.empty())
+        return;
+
+    int counter = -1;
+    for(int i = 0; i < boardCard.size(); i++)
+    {
+        if (boardCard[i]->getOwner() == player)
+        {
+            counter++;
+        }
+        if (counter == index)
+        {
+            counter = i;
+            break;
+        }
+    }
+    // Get raw pointer to the card
+    Card *card = boardCard[counter].get();
+    // Remove the card from the board
+    board->removeCard(counter);
+    // Give the card to the shop converts the raw pointer to a unique pointer
+    std::unique_ptr<Card> card_ptr(card);
+    shop->sellCard(card_ptr, card->getOwner());
 }
