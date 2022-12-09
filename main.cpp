@@ -137,7 +137,7 @@ int main(int, char **)
     }
     return 0;*/
 
-    Game game = Game(std::unique_ptr<Player>(new Player("Player 1", 1)), std::unique_ptr<Player>(new Player("Player 2", 1)));
+    Game game = Game(std::unique_ptr<Player>(new Player()), std::unique_ptr<Bot>(new Bot()));
     game.startGame();
 
 

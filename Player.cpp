@@ -41,7 +41,7 @@ void Player::addCardToHand(std::unique_ptr<Card> card)
     m_in_hand.push_back(std::move(card));
 }
 
-void Player::moveCardFromDeckToBoard(int index)
+void Player::moveCardFromHandToBoard(int index)
 {
     // Sanity check
     if (index < 0 || index >= m_in_hand.size() || m_in_hand.empty())

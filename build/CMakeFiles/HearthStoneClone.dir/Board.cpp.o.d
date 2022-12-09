@@ -45,6 +45,7 @@ CMakeFiles/HearthStoneClone.dir/Board.cpp.o: \
  /usr/include/c++/11/bits/range_access.h \
  /usr/include/c++/11/bits/vector.tcc \
  /home/axel/git/Hearthstone-Battleground-Clone/shop.h \
+ /home/axel/git/Hearthstone-Battleground-Clone/Bot.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Player.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Heroes.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Cards.h \

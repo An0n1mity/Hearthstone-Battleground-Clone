@@ -27,12 +27,12 @@ void Game::mode_raw(int activer)
 void Game::startGame()
 {
     std::srand(std::time(nullptr));
-    m_player1->setBoard(m_board);
+    m_player->setBoard(m_board);
     m_shop->createDeck();
     m_shop->shuffleDeck(); 
     m_running = true;
     while (m_running){
-        m_player1->setGolds(max_gold);
+        m_player->setGolds(max_gold);
         deckPhase();
         //battlePhase();
         //endGame();
@@ -49,11 +49,12 @@ void Game::getInput()
 void Game::threadDeckPhase(std::future<void> futureObj)
 {
     char input;
-    m_shop->drawCards(*m_player1);
+    m_shop->drawCards(*m_player);
     std::cout << "Thread Start" << std::endl;
     std::cout << "Press b to buy a card" << std::endl;
     std::cout << "Press s to sell a card" << std::endl;
     std::cout << "Press p to put a card on the board" << std::endl;
+    std::cout << "Press u to up the card level" << std::endl;
     std::cout << "Input: ";
     while (futureObj.wait_for(std::chrono::milliseconds(1)) == std::future_status::timeout)
     {
@@ -64,32 +65,33 @@ void Game::threadDeckPhase(std::future<void> futureObj)
             std::string cardChoice;
             std::cin >> cardChoice;
             if (cardChoice == "1" || cardChoice == "2" || cardChoice == "3"){
-                m_shop->buyCard(std::stoi(cardChoice) - 1, *m_player1);
-                std::cout << '\n' << *m_player1 << '\n';
+                m_shop->buyCard(std::stoi(cardChoice) - 1, *m_player);
+                std::cout << '\n' << *m_player << '\n';
             }
             std::cout << '\n';
             std::cout << "Press b to buy a card" << std::endl;
             std::cout << "Press s to sell a card" << std::endl;
             std::cout << "Press p to put a card on the board" << std::endl;
+            std::cout << "Press u to up the card level" << std::endl;
             std::cout << "Input: ";
         }
         else if (m_input == 's'){
-            if (m_board->getPlayerCards(m_player1.get()).size() == 0 && m_player1->m_in_hand.size() == 0){
+            if (m_board->getPlayerCards(m_player.get()).size() == 0 && m_player->m_in_hand.size() == 0){
                 std::cout << "You have no cards to sell" << std::endl;
             }
             else {
-                if (m_board->getPlayerCards(m_player1.get()).size() > 0){
+                if (m_board->getPlayerCards(m_player.get()).size() > 0){
                     std::cout << "Cards on board : " << std::endl;
-                    for(int i = 0; i < m_board->getPlayerCards(m_player1.get()).size(); i++){
+                    for(int i = 0; i < m_board->getPlayerCards(m_player.get()).size(); i++){
                         std::cout << "Card " << i + 1 << " : ";
-                        m_board->getPlayerCards(m_player1.get())[i]->printName();
+                        m_board->getPlayerCards(m_player.get())[i]->printName();
                     }
                 }
-                if (m_player1->m_in_hand.size() > 0){
+                if (m_player->m_in_hand.size() > 0){
                     std::cout << "Cards in your hand : " << std::endl;
-                    for(int i = 0; i < m_player1->m_in_hand.size(); i++){
+                    for(int i = 0; i < m_player->m_in_hand.size(); i++){
                         std::cout << "Card " << i + 1 << " : ";
-                        m_player1->m_in_hand[i]->printName();
+                        m_player->m_in_hand[i]->printName();
                     }
                 }
                 std::cout << "\nIf you want to sell card from your board enter the number 1 and if you want to sell card from your hand enter the number 2" << std::endl;
@@ -101,29 +103,30 @@ void Game::threadDeckPhase(std::future<void> futureObj)
                     std::cout << "Input: ";
                     std::string cardNumber;
                     std::cin >> cardNumber;
-                    m_board->giveCardFromBoard(std::stoi(cardNumber) - 1, m_shop.get(), m_player1.get());
+                    m_board->giveCardFromBoard(std::stoi(cardNumber) - 1, m_shop.get(), m_player.get());
                 }
                 else if (std::stoi(cardChoice) == 2){
                     std::cout << "Enter the number of the card you want to sell" << std::endl;
                     std::cout << "Input: ";
                     std::string cardNumber;
                     std::cin >> cardNumber;
-                    m_player1->giveCardFromHand(std::stoi(cardNumber) - 1, m_shop.get());
+                    m_player->giveCardFromHand(std::stoi(cardNumber) - 1, m_shop.get());
                 }
                 else std::cout << "Wrong input" << std::endl;
             }
-            std::cout << *m_player1 << '\n';
+            std::cout << *m_player << '\n';
             std::cout << "Press b to buy a card" << std::endl;
             std::cout << "Press s to sell a card" << std::endl;
             std::cout << "Press p to put a card on the board" << std::endl;
+            std::cout << "Press u to up the card level" << std::endl;
             std::cout << "Input: ";
         }
         else if (m_input == 'p'){
-            if (m_player1->m_in_hand.size() > 0){
+            if (m_player->m_in_hand.size() > 0){
                 std::cout << "Cards in your hand : " << std::endl;
-                for(int i = 0; i < m_player1->m_in_hand.size(); i++){
+                for(int i = 0; i < m_player->m_in_hand.size(); i++){
                     std::cout << "Card " << i + 1 << " : ";
-                    m_player1->m_in_hand[i]->printName();
+                    m_player->m_in_hand[i]->printName();
                     std::cout << '\n';
                 }
             }
@@ -131,12 +134,26 @@ void Game::threadDeckPhase(std::future<void> futureObj)
             std::cout << "Input: ";
             std::string cardChoice;
             std::cin >> cardChoice;
-            m_board->addCard(std::move(m_player1->m_in_hand[std::stoi(cardChoice) - 1]));
-            m_player1->m_in_hand.erase(m_player1->m_in_hand.begin() + std::stoi(cardChoice) - 1);
-            std::cout << *m_player1 << '\n';
+            m_board->addCard(std::move(m_player->m_in_hand[std::stoi(cardChoice) - 1]));
+            m_player->m_in_hand.erase(m_player->m_in_hand.begin() + std::stoi(cardChoice) - 1);
+            std::cout << *m_player << '\n';
             std::cout << "Press b to buy a card" << std::endl;
             std::cout << "Press s to sell a card" << std::endl;
             std::cout << "Press p to put a card on the board" << std::endl;
+            std::cout << "Press u to up the card level" << std::endl;
+            std::cout << "Input: ";
+        }
+        else if (m_input == 'u'){
+            if (m_player->getGolds() >= 5)
+            {
+                m_player->setLevel(m_player->getLevel() + 1);
+                m_player->setGolds(m_player->getGolds() - 5);
+            }
+            else std::cout << "You don't have enough golds" << std::endl;
+            std::cout << "Press b to buy a card" << std::endl;
+            std::cout << "Press s to sell a card" << std::endl;
+            std::cout << "Press p to put a card on the board" << std::endl;
+            std::cout << "Press u to up the card level" << std::endl;
             std::cout << "Input: ";
         }
         //t.join();
@@ -197,4 +214,8 @@ int Game::deckPhase()
     th.join();
     std::cout << "Exiting Main Function" << std::endl;
     return 0;
+}
+
+void Game::battlePhase(){
+
 }

@@ -148,6 +148,7 @@ CMakeFiles/HearthStoneClone.dir/main.cpp.o: \
  /usr/include/c++/11/bits/istream.tcc \
  /home/axel/git/Hearthstone-Battleground-Clone/game.h \
  /home/axel/git/Hearthstone-Battleground-Clone/shop.h \
+ /home/axel/git/Hearthstone-Battleground-Clone/Bot.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Player.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Heroes.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Cards.h \

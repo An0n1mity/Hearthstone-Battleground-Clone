@@ -179,6 +179,7 @@ CMakeFiles/HearthStoneClone.dir/Player.cpp.o: \
  /home/axel/git/Hearthstone-Battleground-Clone/Minions.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Board.h \
  /home/axel/git/Hearthstone-Battleground-Clone/shop.h \
+ /home/axel/git/Hearthstone-Battleground-Clone/Bot.h \
  /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
  /usr/include/c++/11/bits/algorithmfwd.h \
  /usr/include/c++/11/bits/stl_heap.h \

@@ -25,6 +25,9 @@ private:
     std::shared_ptr<Board> m_board;
 
 public:
+    Player() : m_name("Player"), m_level(1) {
+        m_board = std::make_shared<Board>();
+    }
     Player(std::string name, unsigned int level) : m_name(name), m_level(level) {
         m_board = std::make_shared<Board>();
     }
@@ -38,9 +41,12 @@ public:
     // Add a battler to the deck of the player
     void addCardToHand(std::unique_ptr<Card> card);
     // Move a battler from the deck to the board
-    void moveCardFromDeckToBoard(int index);
+    void moveCardFromHandToBoard(int index);
 
+    // Getters and setters level
     int getLevel() const { return m_level; }
+    void setLevel(int level) { m_level = level; }
+    // Getters and setters golds
     int getGolds() const { return m_golds; }
     void setGolds(int golds) { m_golds = golds; }
 

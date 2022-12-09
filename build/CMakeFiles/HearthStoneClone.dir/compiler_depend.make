@@ -52,6 +52,7 @@ CMakeFiles/HearthStoneClone.dir/Board.cpp.o: ../Board.cpp \
   /usr/include/c++/11/bits/range_access.h \
   /usr/include/c++/11/bits/vector.tcc \
   ../shop.h \
+  ../Bot.h \
   ../Player.h \
   ../Heroes.h \
   ../Cards.h \
@@ -681,6 +682,7 @@ CMakeFiles/HearthStoneClone.dir/Player.cpp.o: ../Player.cpp \
   ../Minions.h \
   ../Board.h \
   ../shop.h \
+  ../Bot.h \
   /usr/include/c++/11/algorithm \
   /usr/include/c++/11/bits/stl_algo.h \
   /usr/include/c++/11/bits/algorithmfwd.h \
@@ -716,6 +718,7 @@ CMakeFiles/HearthStoneClone.dir/game.cpp.o: ../game.cpp \
   /usr/include/stdc-predef.h \
   ../game.h \
   ../shop.h \
+  ../Bot.h \
   ../Player.h \
   ../Heroes.h \
   ../Cards.h \
@@ -1166,6 +1169,7 @@ CMakeFiles/HearthStoneClone.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/istream.tcc \
   ../game.h \
   ../shop.h \
+  ../Bot.h \
   ../Player.h \
   ../Heroes.h \
   ../Cards.h \
@@ -1289,6 +1293,7 @@ CMakeFiles/HearthStoneClone.dir/main.cpp.o: ../main.cpp \
 CMakeFiles/HearthStoneClone.dir/shop.cpp.o: ../shop.cpp \
   /usr/include/stdc-predef.h \
   ../shop.h \
+  ../Bot.h \
   ../Player.h \
   ../Heroes.h \
   ../Cards.h \
@@ -1590,6 +1595,8 @@ CMakeFiles/HearthStoneClone.dir/shop.cpp.o: ../shop.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h:
 
+/usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
@@ -1670,6 +1677,8 @@ CMakeFiles/HearthStoneClone.dir/shop.cpp.o: ../shop.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
+../Bot.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
 
 /usr/include/c++/11/cwchar:
@@ -1703,6 +1712,8 @@ CMakeFiles/HearthStoneClone.dir/shop.cpp.o: ../shop.cpp \
 /usr/include/c++/11/cstdint:
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/c++/11/bits/stringfwd.h:
 
 /usr/include/c++/11/bits/exception_ptr.h:
 
@@ -1872,8 +1883,6 @@ CMakeFiles/HearthStoneClone.dir/shop.cpp.o: ../shop.cpp \
 
 /usr/include/c++/11/bits/cxxabi_forced.h:
 
-/usr/include/c++/11/bits/stringfwd.h:
-
 /usr/include/ctype.h:
 
 /usr/include/c++/11/bits/stl_uninitialized.h:
@@ -1891,12 +1900,6 @@ CMakeFiles/HearthStoneClone.dir/shop.cpp.o: ../shop.cpp \
 ../shop.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/c++/11/bits/stl_bvector.h:
 
 /usr/include/c++/11/bits/move.h:
 
@@ -1933,6 +1936,12 @@ CMakeFiles/HearthStoneClone.dir/shop.cpp.o: ../shop.cpp \
 /usr/include/c++/11/initializer_list:
 
 /usr/include/c++/11/iosfwd:
+
+/usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
+
+/usr/include/c++/11/bits/stl_bvector.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
@@ -2036,17 +2045,15 @@ CMakeFiles/HearthStoneClone.dir/shop.cpp.o: ../shop.cpp \
 
 /usr/include/c++/11/cwctype:
 
-/usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h:
-
 /usr/include/c++/11/bits/streambuf_iterator.h:
 
 /usr/include/linux/types.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
-/usr/include/c++/11/bits/this_thread_sleep.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/11/bits/this_thread_sleep.h:
 
 /usr/include/c++/11/bits/locale_facets.tcc:
 

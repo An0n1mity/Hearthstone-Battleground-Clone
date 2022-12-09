@@ -2,6 +2,7 @@ CMakeFiles/HearthStoneClone.dir/shop.cpp.o: \
  /home/axel/git/Hearthstone-Battleground-Clone/shop.cpp \
  /usr/include/stdc-predef.h \
  /home/axel/git/Hearthstone-Battleground-Clone/shop.h \
+ /home/axel/git/Hearthstone-Battleground-Clone/Bot.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Player.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Heroes.h \
  /home/axel/git/Hearthstone-Battleground-Clone/Cards.h \

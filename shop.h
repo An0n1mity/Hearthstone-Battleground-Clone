@@ -1,5 +1,5 @@
 #pragma once
-#include "Player.h"
+#include "Bot.h"
 #include <algorithm>
 #include <ctime>
 #include <future>
