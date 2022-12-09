@@ -19,22 +19,34 @@ int main(int, char **)
     // Draw 3 cards from the shop
     shop.drawCards(player);
 
-    shop.reDrawCards(player);
-
     // Player 1 buy a card
     int choice = 0;
     shop.buyCard(choice, player);
+
     // Sell the card to the shop
     player.sellCardFromHand(choice, &shop);
+
+    shop.reDrawCards(player);
+    shop.buyCard(choice, player);
 
     // Link the board to the players
     player.linkBoard(board);
     player2.linkBoard(board);
 
+    // add card to board from hand
+    player.moveCardFromHandToBoard(choice);
+
+    std::cout << player << '\n';
+
+    // sell card from board
+    player.giveCardFromBoard(choice, &shop);
+
+    std::cout << player << '\n';
+
     // Create a Card AlleyCat
-    std::unique_ptr<Card> alleycat = std::unique_ptr<Card>(new AlleyCat());
+    std::shared_ptr<Card> alleycat = std::shared_ptr<Card>(new AlleyCat());
     // Create a Card DeckSwabbie
-    std::unique_ptr<Card> deckswabbie = std::unique_ptr<Card>(new DeckSwabbie());
+    std::shared_ptr<Card> deckswabbie = std::shared_ptr<Card>(new DeckSwabbie());
 
     // Add the card to the deck of the player
     player.addCardToHand(alleycat);
@@ -68,6 +80,7 @@ int main(int, char **)
 
     // Print the card on the board
     board->printCards();
+    shop.putCardBack();
 
     return 0;
 }

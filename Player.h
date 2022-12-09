@@ -22,7 +22,7 @@ private:
     // Hero of the player
     std::unique_ptr<Hero> m_hero;
     // Player deck the cards on his hand
-    std::vector<std::unique_ptr<Card>> m_hand;
+    std::vector<std::shared_ptr<Card>> m_hand;
     // Link to the board
     std::weak_ptr<Board> m_board;
 
@@ -30,7 +30,7 @@ public:
     Player(std::string name) : m_name(name) {}
     ~Player() {}
     // Add a battler to the deck of the player
-    void addCardToHand(std::unique_ptr<Card> &card);
+    void addCardToHand(std::shared_ptr<Card> &card);
     // Move a battler from the deck to the board
     void moveCardFromHandToBoard(int index);
 
@@ -45,6 +45,8 @@ public:
     void setGolds(unsigned int golds) { m_golds = golds; }
     // Get level of player
     unsigned int getLevel() const { return m_level; }
+    // Set level of player
+    void setLevel(unsigned int level) { m_level = level; }
     // operator overloading for std::cout << player
     friend std::ostream &operator<<(std::ostream &os, Player &player);
 
@@ -56,6 +58,9 @@ public:
 
     // Allow Game to access private members of Player, because game manages the players
     friend class Game;
+
+    // give a card from the board to shop
+    void giveCardFromBoard(int index, Shop *shop);
 };
 
 #endif

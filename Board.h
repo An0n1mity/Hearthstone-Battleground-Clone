@@ -29,6 +29,11 @@ public:
     // Get the cards own by a certain player on the board
     std::vector<std::weak_ptr<Card>> getPlayerCards(Player *player);
 
+    // Get Cards of the board
+    std::vector<std::weak_ptr<Card>> getCards();
+    // Get the real cards shared_ptr
+    std::vector<std::shared_ptr<Card>> getRealCards();
+
     // Get the cards of a certain type on the board and own by a certain player
     template <typename T>
     std::vector<std::shared_ptr<Card>> getPlayerCardsOfSameTypeAs(Player *player, Card *card_)
@@ -49,7 +54,7 @@ public:
         return player_cards;
     }
     // Add a card to the board
-    void addCard(std::unique_ptr<Card> &card)
+    void addCard(std::shared_ptr<Card> &card)
     {
         // Show the reference count of the card
         m_cards.push_back(std::move(card));
@@ -72,6 +77,19 @@ public:
         {
             std::cout << "Reference count of the card: " << card.use_count() << std::endl;
         }
+    }
+
+    //remove a card from the board
+    void removeCard(int index)
+    {
+        m_cards.erase(m_cards.begin() + index);
+    }
+
+    // Pop a card from the board
+    std::shared_ptr<Card> popCard(int index)
+    {
+        std::shared_ptr<Card> card_ptr = m_cards[index];
+        return card_ptr;
     }
 };
 

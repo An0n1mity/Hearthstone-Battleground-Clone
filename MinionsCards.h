@@ -21,6 +21,7 @@ public:
     }
     virtual ~AlleyCat() {}
     virtual void printName() const override { std::cout << "AlleyCat"; }
+    // Clone the card
 };
 
 class DeckSwabbie : public Pirate
@@ -29,6 +30,7 @@ public:
     DeckSwabbie() : Pirate(1, 2, 2) {}
     virtual ~DeckSwabbie() {}
     virtual void printName() const override { std::cout << "DeckSwabbie"; }
+    // Clone the card
 };
 
 #endif
