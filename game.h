@@ -15,7 +15,7 @@ private:
     std::unique_ptr<Player> m_player1;
     std::unique_ptr<Player> m_player2;
     std::unique_ptr<Shop> m_shop;
-    std::unique_ptr<Board> m_board;
+    std::shared_ptr<Board> m_board;
     bool m_running = false;
     int max_gold = 3;
     char m_input;

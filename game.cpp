@@ -27,14 +27,13 @@ void Game::mode_raw(int activer)
 void Game::startGame()
 {
     std::srand(std::time(nullptr));
+    m_player1->setBoard(m_board);
     m_shop->createDeck();
     m_shop->shuffleDeck(); 
     m_running = true;
     while (m_running){
         m_player1->setGolds(max_gold);
-        m_player2->setGolds(max_gold);
         deckPhase();
-        if (m_player1->getGolds() == 0) m_running = false;
         //battlePhase();
         //endGame();
         if(max_gold < 10) max_gold++;
@@ -120,6 +119,20 @@ void Game::threadDeckPhase(std::future<void> futureObj)
             std::cout << "Input: ";
         }
         else if (m_input == 'p'){
+            if (m_player1->m_in_hand.size() > 0){
+                std::cout << "Cards in your hand : " << std::endl;
+                for(int i = 0; i < m_player1->m_in_hand.size(); i++){
+                    std::cout << "Card " << i + 1 << " : ";
+                    m_player1->m_in_hand[i]->printName();
+                }
+            }
+            std::cout << "\nEnter the number of the card you want to put on the board : " << std::endl;
+            std::cout << "Input: ";
+            std::string cardChoice;
+            std::cin >> cardChoice;
+            m_board->addCard(std::move(m_player1->m_in_hand[std::stoi(cardChoice) - 1]));
+            m_player1->m_in_hand.erase(m_player1->m_in_hand.begin() + std::stoi(cardChoice) - 1);
+            std::cout << *m_player1 << '\n';
             std::cout << "Press b to buy a card" << std::endl;
             std::cout << "Press s to sell a card" << std::endl;
             std::cout << "Press p to put a card on the board" << std::endl;
@@ -149,7 +162,7 @@ int Game::deckPhase()
     // Starting Thread & move the future object in lambda function by reference
     std::thread th(&Game::threadDeckPhase, this, std::move(futureObj));
     //Wait for 10 sec
-    std::this_thread::sleep_for(std::chrono::seconds(60));
+    std::this_thread::sleep_for(std::chrono::seconds(10));
     std::cout << "Asking Thread to Stop" << std::endl;
     //Set the value in promise
     exitSignal.set_value();

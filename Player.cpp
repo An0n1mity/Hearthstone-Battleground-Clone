@@ -17,11 +17,11 @@ std::ostream &operator<<(std::ostream &os, Player &player)
             os << '\n';
         }
     }
-    std::unique_ptr<Player> p = std::unique_ptr<Player>(&player);
-    if (player.getBoard()->getPlayerCards(p.get()).size() > 0)
+    Player * p = &player;
+    if (player.getBoard()->getPlayerCards(p).size() > 0)
     {
         os << "\nPlayer board: " << '\n';
-        for (auto &card : player.getBoard()->getPlayerCards(p.get()))
+        for (auto &card : player.getBoard()->getPlayerCards(p))
         {
             os << "- ";
             card->printName();
@@ -60,4 +60,5 @@ void Player::giveCardFromHand(int index, Shop *shop)
     // Give the card to the shop
     std::unique_ptr<Card> card = std::move(m_in_hand[index]);
     shop->sellCard(std::move(card), this);
+    m_in_hand.erase(m_in_hand.begin() + index);
 }
