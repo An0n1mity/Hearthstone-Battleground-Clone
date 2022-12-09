@@ -6,7 +6,7 @@
 class Murlock : public Minion
 {
 public:
-    Murlock(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(health_points, attack_points, std::move(effects)) {}
+    Murlock(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
     virtual ~Murlock() {}
     virtual void printType() const override { std::cout << "Murlock"; }
     virtual std::string getType() const override { return "Murlock"; }
@@ -15,7 +15,7 @@ public:
 class Beast : public Minion
 {
 public:
-    Beast(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(health_points, attack_points, std::move(effects)) {}
+    Beast(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
     virtual ~Beast() {}
     virtual void printType() const override { std::cout << "Beast"; }
     virtual std::string getType() const override { return "Beast"; }
@@ -24,7 +24,7 @@ public:
 class Mech : public Minion
 {
 public:
-    Mech(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(health_points, attack_points, std::move(effects)) {}
+    Mech(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
     virtual ~Mech() {}
     virtual void printType() const override { std::cout << "Mech"; }
     virtual std::string getType() const override { return "Mech"; }
@@ -33,7 +33,7 @@ public:
 class Demon : public Minion
 {
 public:
-    Demon(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(health_points, attack_points, std::move(effects)) {}
+    Demon(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
     virtual ~Demon() {}
     virtual void printType() const override { std::cout << "Demon"; }
     virtual std::string getType() const override { return "Demon"; }
@@ -42,7 +42,7 @@ public:
 class Dragon : public Minion
 {
 public:
-    Dragon(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(health_points, attack_points, std::move(effects)) {}
+    Dragon(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
     virtual ~Dragon() {}
     virtual void printType() const override { std::cout << "Dragon"; }
     virtual std::string getType() const override { return "Dragon"; }
@@ -51,7 +51,7 @@ public:
 class Pirate : public Minion
 {
 public:
-    Pirate(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(health_points, attack_points, std::move(effects)) {}
+    Pirate(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
     virtual ~Pirate() {}
     virtual void printType() const override { std::cout << "Pirate"; }
     virtual std::string getType() const override { return "Pirate"; }
@@ -60,7 +60,7 @@ public:
 class Elemental : public Minion
 {
 public:
-    Elemental(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(health_points, attack_points, std::move(effects)) {}
+    Elemental(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
     virtual ~Elemental() {}
     virtual void printType() const override { std::cout << "Elemental"; }
     virtual std::string getType() const override { return "Elemental"; }
@@ -69,7 +69,7 @@ public:
 class Quilboar : public Minion
 {
 public:
-    Quilboar(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(health_points, attack_points, std::move(effects)) {}
+    Quilboar(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
     virtual ~Quilboar() {}
     virtual void printType() const override { std::cout << "Quilboar"; }
     virtual std::string getType() const override { return "Quilboar"; }
@@ -78,7 +78,7 @@ public:
 class Menagerie : public Minion
 {
 public:
-    Menagerie(unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(health_points, attack_points, std::move(effects)) {}
+    Menagerie(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
     virtual ~Menagerie() {}
     virtual void printType() const override { std::cout << "Menagerie"; }
     virtual std::string getType() const override { return "Menagerie"; }

@@ -43,3 +43,17 @@ void Player::linkBoard(std::weak_ptr<Board> board)
 {
     m_board = board;
 }
+
+// Give a card to the shop
+void Player::sellCardFromHand(int index, Shop *shop)
+{
+    // Sanity check
+    if (index < 0 || index >= m_hand.size() || m_hand.empty())
+        return;
+
+    // Move the card from the hand to the shop
+    std::unique_ptr<Card> card_to_move = std::move(m_hand[index]);
+    shop->sellCard(card_to_move, this);
+    // Remove the card from the hand
+    m_hand.erase(m_hand.begin() + index);
+}
