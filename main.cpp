@@ -39,14 +39,14 @@ int main(int, char **)
     std::cout << player << '\n';
 
     // sell card from board
-    player.giveCardFromBoard(choice, &shop, &player);
+    player.giveCardFromBoard(choice, &shop);
 
     std::cout << player << '\n';
 
     // Create a Card AlleyCat
-    std::unique_ptr<Card> alleycat = std::unique_ptr<Card>(new AlleyCat());
+    std::shared_ptr<Card> alleycat = std::shared_ptr<Card>(new AlleyCat());
     // Create a Card DeckSwabbie
-    std::unique_ptr<Card> deckswabbie = std::unique_ptr<Card>(new DeckSwabbie());
+    std::shared_ptr<Card> deckswabbie = std::shared_ptr<Card>(new DeckSwabbie());
 
     // Add the card to the deck of the player
     player.addCardToHand(alleycat);

@@ -24,3 +24,14 @@ std::vector<std::weak_ptr<Card>> Board::getCards()
     }
     return cards;
 }
+
+// Get the real cards shared_ptr
+std::vector<std::shared_ptr<Card>> Board::getRealCards()
+{
+    std::vector<std::shared_ptr<Card>> cards;
+    for (auto card : m_cards)
+    {
+        cards.push_back(card);
+    }
+    return cards;
+}

@@ -80,7 +80,7 @@ void Shop::putCardBack()
     m_choices.clear();
 }
 
-void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
+void Shop::sellCard(std::shared_ptr<Card> &card, Player *player)
 {
     // Add a gold to the player
     player->setGolds(player->getGolds() + 1);
