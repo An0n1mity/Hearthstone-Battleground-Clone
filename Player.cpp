@@ -14,25 +14,18 @@ std::ostream &operator<<(std::ostream &os, Player &player)
         }
     }
     std::shared_ptr<Board> board = player.m_board.lock();
-    std::vector<std::shared_ptr<Card>> boardCard;
-    for(auto &card : board->getPlayerCards(&player))
-    {   
-        boardCard.push_back(card.lock());
-    }
-    if (boardCard.size() > 0)
+    if (board != nullptr)
     {
-        os << "\nPlayer board: " << '\n';
-        for (auto &card : boardCard)
+        os << "Player board: " << '\n';
+        for (auto &card : board->getPlayerCardsView(&player))
         {
-            os << "- ";
-            card->printName();
-            os << '\n';
+            card->print();
         }
     }
     return os;
 }
 
-void Player::addCardToHand(std::shared_ptr<Card> &card)
+void Player::addCardToHand(std::unique_ptr<Card> &card)
 {
     // Set the owner of the card
     card->setOwner(this);
@@ -46,7 +39,7 @@ void Player::moveCardFromHandToBoard(int index)
         return;
 
     // Move the card from the hand to the board
-    std::shared_ptr<Card> card_to_move = std::move(m_hand[index]);
+    std::unique_ptr<Card> card_to_move = std::move(m_hand[index]);
     // Link the card to the board
     card_to_move->linkBoard(m_board);
     // Apply the effect of the card
@@ -70,7 +63,7 @@ void Player::sellCardFromHand(int index, Shop *shop)
         return;
 
     // Move the card from the hand to the shop
-    std::shared_ptr<Card> card_to_move = std::move(m_hand[index]);
+    std::unique_ptr<Card> card_to_move = std::move(m_hand[index]);
     shop->sellCard(card_to_move, this);
     // Remove the card from the hand
     m_hand.erase(m_hand.begin() + index);
@@ -78,34 +71,13 @@ void Player::sellCardFromHand(int index, Shop *shop)
 
 void Player::giveCardFromBoard(int index, Shop *shop)
 {
-    std::shared_ptr<Board> board = m_board.lock();
-    std::vector<std::shared_ptr<Card>> boardCard;
-
-    for (auto card : board->getCards())
-    {   
-        boardCard.push_back(card.lock());
-    }
     // Sanity check
-    if (index < 0 || index >= boardCard.size() || boardCard.empty())
+    if (index < 0 || index >= m_hand.size() || m_hand.empty())
         return;
 
-    int counter = 0;
-    /*for(int i = 0; i < boardCard.size(); i++)
-    {
-        if (boardCard[i]->getOwner() == this)
-        {
-            counter++;
-        }
-        if (counter == index)
-        {
-            counter = i;
-            break;
-        }
-    }*/
-
-    // pop the card from the board
-    std::shared_ptr<Card> card_to_move = board->popCard(index);
+    // Aquire lock on the board
+    std::shared_ptr<Board> board = m_board.lock();
     // Move the card from the board to the shop
+    std::unique_ptr<Card> card_to_move = board->popCard(index);
     shop->sellCard(card_to_move, this);
-    card_to_move.reset();
 }

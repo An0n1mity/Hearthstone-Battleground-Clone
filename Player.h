@@ -22,7 +22,7 @@ private:
     // Hero of the player
     std::unique_ptr<Hero> m_hero;
     // Player deck the cards on his hand
-    std::vector<std::shared_ptr<Card>> m_hand;
+    std::vector<std::unique_ptr<Card>> m_hand;
     // Link to the board
     std::weak_ptr<Board> m_board;
 
@@ -30,7 +30,7 @@ public:
     Player(std::string name) : m_name(name) {}
     ~Player() {}
     // Add a battler to the deck of the player
-    void addCardToHand(std::shared_ptr<Card> &card);
+    void addCardToHand(std::unique_ptr<Card> &card);
     // Move a battler from the deck to the board
     void moveCardFromHandToBoard(int index);
 
