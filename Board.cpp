@@ -2,36 +2,26 @@
 #include "Minions.h"
 #include <typeinfo>
 
-std::vector<std::weak_ptr<Card>> Board::getPlayerCards(Player *player)
+std::vector<Card *> Board::getPlayerCardsView(Player *player)
 {
-    std::vector<std::weak_ptr<Card>> player_cards;
-    for (auto card : m_cards)
+    std::vector<Card *> player_cards;
+    // Move the cards to the player_cards vector
+    for (auto &card : m_cards)
     {
         if (card->getOwner() == player)
         {
-            player_cards.push_back(card);
+            player_cards.push_back(card.get());
         }
     }
     return player_cards;
 }
 
-std::vector<std::weak_ptr<Card>> Board::getCards()
+std::vector<Card *> Board::getCardsView()
 {
-    std::vector<std::weak_ptr<Card>> cards;
-    for (auto card : m_cards)
+    std::vector<Card *> cards;
+    for (auto &card : m_cards)
     {
-        cards.push_back(card);
-    }
-    return cards;
-}
-
-// Get the real cards shared_ptr
-std::vector<std::shared_ptr<Card>> Board::getRealCards()
-{
-    std::vector<std::shared_ptr<Card>> cards;
-    for (auto card : m_cards)
-    {
-        cards.push_back(card);
+        cards.push_back(card.get());
     }
     return cards;
 }

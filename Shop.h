@@ -12,11 +12,13 @@ class Shop
 {
 private:
     // Shop is managing the cards tp buy
-    std::vector<std::shared_ptr<Card>> m_deck;
+    std::vector<std::unique_ptr<Card>> m_deck;
     // Card presented to the player
-    std::vector<std::shared_ptr<Card>> m_choices;
+    std::vector<std::unique_ptr<Card>> m_choices;
 
 public:
+    static void dummy_destroyer(Card *ptr) {}
+
     Shop()
     {
         createDeck();
@@ -43,7 +45,7 @@ public:
     void displayCards();
     void buyCard(int index, Player &player);
     void putCardBack();
-    void sellCard(std::shared_ptr<Card> &card, Player *player);
+    void sellCard(std::unique_ptr<Card> &card, Player *player);
     // Give gold to the player
     void giveGold(Player &player, unsigned int golds);
     void reDrawCards(Player &player);

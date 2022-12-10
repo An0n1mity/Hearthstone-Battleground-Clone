@@ -44,9 +44,9 @@ int main(int, char **)
     std::cout << player << '\n';
 
     // Create a Card AlleyCat
-    std::shared_ptr<Card> alleycat = std::shared_ptr<Card>(new AlleyCat());
+    std::unique_ptr<Card> alleycat = std::unique_ptr<Card>(new AlleyCat());
     // Create a Card DeckSwabbie
-    std::shared_ptr<Card> deckswabbie = std::shared_ptr<Card>(new DeckSwabbie());
+    std::unique_ptr<Card> deckswabbie = std::unique_ptr<Card>(new DeckSwabbie());
 
     // Add the card to the deck of the player
     player.addCardToHand(alleycat);
@@ -59,23 +59,18 @@ int main(int, char **)
     player2.moveCardFromHandToBoard(0);
 
     // Get the cards of the player on the board
-    std::vector<std::weak_ptr<Card>> player_cards = board->getPlayerCards(&player);
+    std::vector<Card *> player_cards = board->getPlayerCardsView(&player);
     for (auto &card : player_cards)
     {
-        // Convert to a shared pointer
-        std::shared_ptr<Card> card_ptr = card.lock();
         // Print the card
-        card_ptr->print();
+        card->print();
     }
 
-    std::vector<std::weak_ptr<Card>> player2_cards = board->getPlayerCards(&player2);
+    std::vector<Card *> player2_cards = board->getPlayerCardsView(&player2);
     for (auto &card : player2_cards)
     {
-
-        // Convert to a shared pointer
-        std::shared_ptr<Card> card_ptr = card.lock();
         // Print the card
-        card_ptr->print();
+        card->print();
     }
 
     // Print the card on the board
