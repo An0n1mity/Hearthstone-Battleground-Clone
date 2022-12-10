@@ -17,8 +17,6 @@ private:
     std::vector<std::unique_ptr<Card>> m_choices;
 
 public:
-    static void dummy_destroyer(Card *ptr) {}
-
     Shop()
     {
         createDeck();
@@ -42,11 +40,11 @@ public:
     void shuffleDeck();
     // Draw 3 cards from the deck
     void drawCards(Player &player);
-    void displayCards();
+    void displayCards() const;
     void buyCard(int index, Player &player);
     void putCardBack();
     void sellCard(std::unique_ptr<Card> &card, Player *player);
     // Give gold to the player
-    void giveGold(Player &player, unsigned int golds);
+    void giveGold(Player &player, unsigned int golds) const;
     void reDrawCards(Player &player);
 };

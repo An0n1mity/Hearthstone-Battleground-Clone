@@ -1,27 +1,30 @@
 #include "Board.h"
 #include "Minions.h"
 #include <typeinfo>
+#include "Player.h"
 
-std::vector<Card *> Board::getPlayerCardsView(Player *player)
+std::vector<std::reference_wrapper<Card>> Board::getPlayerCardsView(Player &player)
 {
-    std::vector<Card *> player_cards;
-    // Move the cards to the player_cards vector
+    std::vector<std::reference_wrapper<Card>> player_cards;
     for (auto &card : m_cards)
     {
-        if (card->getOwner() == player)
+        // Lock the weak pointer
+        std::experimental::observer_ptr<Player> player_ptr_ = card->getOwner();
+        if (player_ptr_.get() == &player)
         {
-            player_cards.push_back(card.get());
+            player_cards.push_back(std::ref(*card));
         }
     }
     return player_cards;
 }
 
-std::vector<Card *> Board::getCardsView()
+std::vector<std::reference_wrapper<Card>> Board::getCardsView()
 {
-    std::vector<Card *> cards;
+    std::vector<std::reference_wrapper<Card>> cards;
     for (auto &card : m_cards)
     {
-        cards.push_back(card.get());
+        cards.push_back(std::ref(*card));
     }
     return cards;
 }
+

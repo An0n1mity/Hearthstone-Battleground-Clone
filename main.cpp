@@ -1,4 +1,5 @@
 #include <iostream>
+#include <experimental/memory>
 #include "Player.h"
 #include "Shop.h"
 
@@ -8,7 +9,7 @@ int main(int, char **)
     Shop shop = Shop();
 
     // Create a board
-    std::shared_ptr<Board> board = std::shared_ptr<Board>(new Board());
+    std::unique_ptr<Board> board = std::unique_ptr<Board>(new Board());
 
     // Create 2 players
     Player player = Player("Player 1");
@@ -30,8 +31,8 @@ int main(int, char **)
     shop.buyCard(choice, player);
 
     // Link the board to the players
-    player.linkBoard(board);
-    player2.linkBoard(board);
+    player.linkBoard(std::experimental::make_observer(board.get()));
+    player2.linkBoard(std::experimental::make_observer(board.get()));
 
     // add card to board from hand
     player.moveCardFromHandToBoard(choice);
@@ -59,19 +60,8 @@ int main(int, char **)
     player2.moveCardFromHandToBoard(0);
 
     // Get the cards of the player on the board
-    std::vector<Card *> player_cards = board->getPlayerCardsView(&player);
-    for (auto &card : player_cards)
-    {
-        // Print the card
-        card->print();
-    }
-
-    std::vector<Card *> player2_cards = board->getPlayerCardsView(&player2);
-    for (auto &card : player2_cards)
-    {
-        // Print the card
-        card->print();
-    }
+    std::vector<std::reference_wrapper<Card>> player_cards = board->getPlayerCardsView(player);
+    std::vector<std::reference_wrapper<Card>> player2_cards = board->getPlayerCardsView(player2);
 
     // Print the card on the board
     board->printCards();

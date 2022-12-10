@@ -3,20 +3,12 @@
 
 void Shop::createDeck()
 {
-    m_deck.push_back(std::unique_ptr<Minion>(new DeckSwabbie()));
-    m_deck.push_back(std::unique_ptr<Minion>(new DeckSwabbie()));
-    m_deck.push_back(std::unique_ptr<Minion>(new DeckSwabbie()));
-    m_deck.push_back(std::unique_ptr<Minion>(new AlleyCat()));
-    m_deck.push_back(std::unique_ptr<Minion>(new AlleyCat()));
-    m_deck.push_back(std::unique_ptr<Minion>(new AlleyCat()));
-    /*m_deck.push_back(std::unique_ptr<Minion>(new Cave_hydra()));
-    m_deck.push_back(std::unique_ptr<Minion>(new Cave_hydra()));
-    m_deck.push_back(std::unique_ptr<Minion>(new Cave_hydra()));
-    m_deck.push_back(std::unique_ptr<Minion>(new Cave_hydra()));
-    m_deck.push_back(std::unique_ptr<Minion>(new Cave_hydra()));
-    m_deck.push_back(std::unique_ptr<Minion>(new Cave_hydra()));
-    m_deck.push_back(std::unique_ptr<Minion>(new Cave_hydra()));
-    m_deck.push_back(std::unique_ptr<Minion>(new Cave_hydra()));*/
+    m_deck.push_back(std::make_unique<DeckSwabbie>());
+    m_deck.push_back(std::make_unique<DeckSwabbie>());
+    m_deck.push_back(std::make_unique<DeckSwabbie>());
+    m_deck.push_back(std::make_unique<AlleyCat>());
+    m_deck.push_back(std::make_unique<AlleyCat>());
+    m_deck.push_back(std::make_unique<AlleyCat>());
 }
 
 void Shop::shuffleDeck()
@@ -24,7 +16,7 @@ void Shop::shuffleDeck()
     std::random_shuffle(m_deck.begin(), m_deck.end());
 }
 
-void Shop::displayCards()
+void Shop::displayCards() const
 {
     std::cout << "draw cards : \n";
     for (int i = 0; i < m_choices.size(); i++)
@@ -60,7 +52,7 @@ void Shop::buyCard(int index, Player &player)
     if (player.getGolds() >= 3)
     {
         giveGold(player, -3);
-        m_choices[index]->setOwner(&player);
+        // m_choices[index]->setOwner(&player);
         player.addCardToHand(m_choices[index]);
         m_choices.erase(m_choices.begin() + index);
     }
@@ -84,12 +76,12 @@ void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
 {
     // Add a gold to the player
     player->setGolds(player->getGolds() + 1);
-    card->setOwner(nullptr);
-    // Add the card to the shop
+    // card->setOwner(nullptr);
+    //  Add the card to the shop
     m_deck.push_back(std::move(card));
 }
 
-void Shop::giveGold(Player &player, unsigned int golds)
+void Shop::giveGold(Player &player, unsigned int golds) const
 {
     player.m_golds += golds;
 }
