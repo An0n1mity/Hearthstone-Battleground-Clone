@@ -25,14 +25,27 @@ private:
     std::vector<std::unique_ptr<Card>> m_hand;
     // Link to the board
     std::experimental::observer_ptr<Board> m_board;
+    // Identifier to know if the player is the first or the second
+    int m_id;
 
 public:
-    Player(std::string name) : m_name(name) {}
+    // Update id of the player
+    void setId()
+    {
+        static int id = 0;
+        m_id = id++;
+    }
+    // Get id of the player
+    int getId() const { return m_id; }
+    Player(std::string name) : m_name(name)
+    {
+        setId();
+    }
     ~Player() {}
     // Add a battler to the deck of the player
     void addCardToHand(std::unique_ptr<Card> &card);
     // Move a battler from the deck to the board
-    void moveCardFromHandToBoard(int index);
+    void moveCardFromHandToBoardLeft(int index);
 
     void linkBoard(std::experimental::observer_ptr<Board> board);
     // Get board
@@ -54,10 +67,10 @@ public:
     friend void Shop::giveGold(Player &player, unsigned int golds) const;
 
     // Give a card to the shop
-    void sellCardFromHand(int index, Shop *shop);
+    void sellCardFromHand(int index, Shop &shop);
 
     // give a card from the board to shop
-    void giveCardFromBoard(int index, Shop *shop);
+    void giveCardFromBoard(int index, Shop &shop);
 };
 
 #endif

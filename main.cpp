@@ -25,30 +25,27 @@ int main(int, char **)
     shop.buyCard(choice, player);
 
     // Sell the card to the shop
-    player.sellCardFromHand(choice, &shop);
+    player.sellCardFromHand(choice, shop);
 
-    shop.reDrawCards(player);
-    shop.buyCard(choice, player);
+    // shop.reDrawCards(player);
+    // shop.buyCard(choice, player);
 
     // Link the board to the players
     player.linkBoard(std::experimental::make_observer(board.get()));
     player2.linkBoard(std::experimental::make_observer(board.get()));
 
     // add card to board from hand
-    player.moveCardFromHandToBoard(choice);
-
-    std::cout << player << '\n';
+    player.moveCardFromHandToBoardLeft(choice);
 
     // sell card from board
-    player.giveCardFromBoard(choice, &shop);
-
-    std::cout << player << '\n';
+    player.giveCardFromBoard(choice, shop);
 
     // Create a Card AlleyCat
     std::unique_ptr<Card> alleycat = std::unique_ptr<Card>(new AlleyCat());
+    alleycat->linkPlayer(std::experimental::make_observer(&player));
     // Create a Card DeckSwabbie
     std::unique_ptr<Card> deckswabbie = std::unique_ptr<Card>(new DeckSwabbie());
-
+    deckswabbie->linkPlayer(std::experimental::make_observer(&player2));
     // Add the card to the deck of the player
     player.addCardToHand(alleycat);
     player2.addCardToHand(deckswabbie);
@@ -56,8 +53,8 @@ int main(int, char **)
     std::cout << player << '\n';
     std::cout << player2 << '\n';
 
-    player.moveCardFromHandToBoard(0);
-    player2.moveCardFromHandToBoard(0);
+    player.moveCardFromHandToBoardLeft(0);
+    player2.moveCardFromHandToBoardLeft(0);
 
     // Get the cards of the player on the board
     std::vector<std::reference_wrapper<Card>> player_cards = board->getPlayerCardsView(player);
@@ -65,7 +62,7 @@ int main(int, char **)
 
     // Print the card on the board
     board->printCards();
-    shop.putCardBack();
+    // shop.putCardBack();
 
     return 0;
 }
