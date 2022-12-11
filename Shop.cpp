@@ -1,6 +1,11 @@
 #include "Shop.h"
 #include "Player.h"
 
+void Shop::giveCard(std::unique_ptr<Card> &card, Player &player)
+{
+    player.addCardToHand(card);
+}
+
 void Shop::createDeck()
 {
     m_deck.push_back(std::make_unique<DeckSwabbie>());
@@ -52,8 +57,7 @@ void Shop::buyCard(int index, Player &player)
     if (player.getGolds() >= 3)
     {
         giveGold(player, -3);
-        // m_choices[index]->setOwner(&player);
-        player.addCardToHand(m_choices[index]);
+        giveCard(m_choices[index], player);
         m_choices.erase(m_choices.begin() + index);
     }
     else
@@ -77,7 +81,7 @@ void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
     // Add a gold to the player
     player->setGolds(player->getGolds() + 1);
     // card->setOwner(nullptr);
-    //  Add the card to the shop
+    //   Add the card to the shop
     m_deck.push_back(std::move(card));
 }
 

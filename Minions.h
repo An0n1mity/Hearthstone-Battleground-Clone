@@ -31,7 +31,7 @@ public:
         //  Add the minion to the board
         //  Dynamic cast the minion to a card
         std::unique_ptr<Card> card_ptr = std::move(minion);
-        board->addCard(card_ptr);
+        // board->addCard(card_ptr);
     }
 
     // Get the type of the minion

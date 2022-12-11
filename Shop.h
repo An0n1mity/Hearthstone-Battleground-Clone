@@ -16,6 +16,9 @@ private:
     // Card presented to the player
     std::vector<std::unique_ptr<Card>> m_choices;
 
+    // Give card to the player
+    void giveCard(std::unique_ptr<Card> &card, Player &player);
+
 public:
     Shop()
     {
