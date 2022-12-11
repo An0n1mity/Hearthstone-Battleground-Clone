@@ -12,6 +12,4 @@ set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
 add_test(NAME example_test COMMAND HearthStoneClone)
-
-find_program( MEMORYCHECK_COMMAND valgrind )
-add_test(NAME memory_check COMMAND ${MEMORYCHECK_COMMAND} --leak-check=full --error-exitcode=1 ./HearthStoneClone)
+add_test(NAME memory_check COMMAND valgrind --leak-check=full --error-exitcode=1 ./HearthStoneClone)
