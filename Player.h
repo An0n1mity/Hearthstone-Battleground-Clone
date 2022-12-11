@@ -24,7 +24,7 @@ private:
     // Player deck the cards on his hand
     std::vector<std::unique_ptr<Card>> m_hand;
     // Link to the board
-    std::weak_ptr<Board> m_board;
+    std::experimental::observer_ptr<Board> m_board;
 
 public:
     Player(std::string name) : m_name(name) {}
@@ -34,9 +34,9 @@ public:
     // Move a battler from the deck to the board
     void moveCardFromHandToBoard(int index);
 
-    void linkBoard(std::weak_ptr<Board> board);
+    void linkBoard(std::experimental::observer_ptr<Board> board);
     // Get board
-    std::weak_ptr<Board> getBoard() { return m_board; }
+    std::experimental::observer_ptr<Board> getBoard() { return m_board; }
     // Get the name of the player
     std::string getName() const { return m_name; }
     // Get the golds of the player
@@ -51,13 +51,10 @@ public:
     friend std::ostream &operator<<(std::ostream &os, Player &player);
 
     // Friend function to give gold to the player
-    friend void Shop::giveGold(Player &player, unsigned int golds);
+    friend void Shop::giveGold(Player &player, unsigned int golds) const;
 
     // Give a card to the shop
     void sellCardFromHand(int index, Shop *shop);
-
-    // Allow Game to access private members of Player, because game manages the players
-    friend class Game;
 
     // give a card from the board to shop
     void giveCardFromBoard(int index, Shop *shop);

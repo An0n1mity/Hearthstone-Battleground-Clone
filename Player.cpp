@@ -13,14 +13,15 @@ std::ostream &operator<<(std::ostream &os, Player &player)
             card->print();
         }
     }
-    std::shared_ptr<Board> board = player.m_board.lock();
+    std::experimental::observer_ptr<Board> board = player.m_board;
     if (board != nullptr)
     {
         os << "Player board: " << '\n';
-        for (auto &card : board->getPlayerCardsView(&player))
+        /*std::vector<Card const &> player_cards = board->getPlayerCardsView(&player);
+        for (auto card : board->getPlayerCardsView(&player))
         {
             card->print();
-        }
+        }*/
     }
     return os;
 }
@@ -28,7 +29,7 @@ std::ostream &operator<<(std::ostream &os, Player &player)
 void Player::addCardToHand(std::unique_ptr<Card> &card)
 {
     // Set the owner of the card
-    card->setOwner(this);
+    // card->linkPlayer(std::ref(*this));
     m_hand.push_back(std::move(card));
 }
 
@@ -45,12 +46,12 @@ void Player::moveCardFromHandToBoard(int index)
     // Apply the effect of the card
     card_to_move->applyEffects(Effect::ON_HAND);
     // Aquire lock on the board
-    std::shared_ptr<Board> board = m_board.lock();
+    std::experimental::observer_ptr<Board> board = m_board;
     board->addCard(card_to_move);
     m_hand.erase(m_hand.begin() + index);
 }
 
-void Player::linkBoard(std::weak_ptr<Board> board)
+void Player::linkBoard(std::experimental::observer_ptr<Board> board)
 {
     m_board = board;
 }
@@ -75,8 +76,7 @@ void Player::giveCardFromBoard(int index, Shop *shop)
     if (index < 0 || index >= m_hand.size() || m_hand.empty())
         return;
 
-    // Aquire lock on the board
-    std::shared_ptr<Board> board = m_board.lock();
+    std::experimental::observer_ptr<Board> board = m_board;
     // Move the card from the board to the shop
     std::unique_ptr<Card> card_to_move = board->popCard(index);
     shop->sellCard(card_to_move, this);

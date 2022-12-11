@@ -8,8 +8,10 @@ void Card::print() const
     printName();
     std::cout << "; Card cost: " << m_gold_cost;
     // If owner is not null, print the owner's name
-    if (m_owner)
-        std::cout << "; Owner: " << m_owner->getName() << "}\n";
+    // Aquire the lock on the weak pointer
+    std::experimental::observer_ptr<Player> player_ptr = m_owner;
+    if (player_ptr)
+        std::cout << "; Owner: " << player_ptr->getName() << "}\n";
     else
         std::cout << "; Owner: None}\n";
 }

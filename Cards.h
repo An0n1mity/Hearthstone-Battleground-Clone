@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <experimental/memory>
 
 #include "Effects.h"
 
@@ -16,9 +17,9 @@ class Card
 
 protected:
     // The card's owner
-    Player *m_owner;
+    std::experimental::observer_ptr<Player> m_owner;
     // The card can be linked to a board
-    std::weak_ptr<Board> m_board;
+    std::experimental::observer_ptr<Board> m_board;
     const unsigned int m_gold_cost;
     // The card's effects
     std::vector<std::unique_ptr<Effect>> m_effects;
@@ -29,7 +30,8 @@ public:
     virtual ~Card() {}
     unsigned int getManaCost() const { return m_gold_cost; }
     // Link the card to a board
-    void linkBoard(std::weak_ptr<Board> board) { m_board = board; }
+    void linkBoard(std::experimental::observer_ptr<Board> board) { m_board = board; }
+    void linkPlayer(std::experimental::observer_ptr<Player> player) { m_owner = player; }
     void print() const;
 
     // Apply the effects of the card
@@ -42,12 +44,10 @@ public:
         }
     }
 
-    Player *getOwner() { return m_owner; }
+    std::experimental::observer_ptr<Player> getOwner() const { return m_owner; }
     virtual int getRang() const = 0;
     // Get the board
-    std::weak_ptr<Board> getBoard() { return m_board; }
-
-    void setOwner(Player *owner) { m_owner = owner; }
+    std::experimental::observer_ptr<Board> getBoard() { return m_board; }
 
     virtual void printName() const = 0;
 };
