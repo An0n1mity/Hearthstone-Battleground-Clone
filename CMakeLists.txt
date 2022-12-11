@@ -4,8 +4,11 @@ project(HearthStoneClone VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
+
 add_executable(HearthStoneClone main.cpp Player.cpp game.cpp Minions.cpp Board.cpp MinionsCards.cpp Cards.cpp Shop.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
+
+add_test(NAME example_test COMMAND HearthStoneClone)
