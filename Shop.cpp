@@ -6,6 +6,12 @@ void Shop::giveCard(std::unique_ptr<Card> &card, Player &player)
     player.addCardToHand(card);
 }
 
+unsigned int Shop::calculateGold(unsigned int turns) const
+{
+    // Cap it to 10 golds
+    return turns > 10 ? 10 : turns + 3;
+}
+
 void Shop::createDeck()
 {
     m_deck.push_back(std::make_unique<DeckSwabbie>());
@@ -33,8 +39,9 @@ void Shop::displayCards() const
     std::cout << "Choisissez une carte (Entre 1 et " << m_choices.size() << ") and if you don't want to buy a card enter n : ";
 }
 
-void Shop::drawCards(Player &player)
+std::vector<std::reference_wrapper<Card>> Shop::drawCards(Player &player)
 {
+    std::vector<std::reference_wrapper<Card>> cards;
     shuffleDeck();
     int count = 0;
     for (int i = 0; i < m_deck.size(); i++)
@@ -42,12 +49,14 @@ void Shop::drawCards(Player &player)
         if (m_deck[i]->getRang() <= player.getLevel())
         {
             m_choices.push_back(std::move(m_deck[i]));
+            cards.push_back(std::ref(*m_choices.back()));
             m_deck.erase(m_deck.begin() + i);
             if (++count == 3)
                 break;
         }
     }
     displayCards();
+    return cards;
 }
 
 void Shop::buyCard(int index, Player &player)
@@ -85,9 +94,9 @@ void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
     m_deck.push_back(std::move(card));
 }
 
-void Shop::giveGold(Player &player, unsigned int golds) const
+void Shop::giveGold(Player &player, unsigned int turns) const
 {
-    player.m_golds += golds;
+    player.m_golds += calculateGold(turns);
 }
 
 void Shop::reDrawCards(Player &player)

@@ -66,6 +66,9 @@ public:
     // Friend function to give gold to the player
     friend void Shop::giveGold(Player &player, unsigned int golds) const;
 
+    // Buy a card from the shop
+    void buyCardFromShop(std::vector<std::reference_wrapper<Card>> &cards, int index, Shop &shop);
+
     // Give a card to the shop
     void sellCardFromHand(int index, Shop &shop);
 

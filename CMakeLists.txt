@@ -5,7 +5,7 @@ include(CTest)
 enable_testing()
 
 
-add_executable(HearthStoneClone main.cpp Player.cpp game.cpp Minions.cpp Board.cpp MinionsCards.cpp Cards.cpp Shop.cpp)
+add_executable(HearthStoneClone main.cpp Player.cpp game.cpp Minions.cpp Board.cpp MinionsCards.cpp Cards.cpp Shop.cpp GameLogicManager.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

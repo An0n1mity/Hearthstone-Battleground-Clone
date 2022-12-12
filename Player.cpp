@@ -47,6 +47,16 @@ void Player::linkBoard(std::experimental::observer_ptr<Board> board)
     m_board = board;
 }
 
+void Player::buyCardFromShop(std::vector<std::reference_wrapper<Card>> &cards, int index, Shop &shop)
+{
+    // Sanity check
+    if (index < 0 || index >= cards.size() || cards.empty())
+        return;
+
+    // Move the card from the shop to the hand
+    shop.buyCard(index, *this);
+}
+
 // Give a card to the shop
 void Player::sellCardFromHand(int index, Shop &shop)
 {
