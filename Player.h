@@ -79,6 +79,9 @@ public:
 
     // Add card to the choices of the player
     void addCardToChoices(Card &card);
+
+    // Select a card from the choices
+    void selectCardFromChoices(int index, Shop &shop);
 };
 
 #endif

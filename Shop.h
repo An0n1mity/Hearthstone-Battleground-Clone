@@ -45,8 +45,9 @@ public:
     void shuffleDeck();
     // Draw 3 cards from the deck
     void giveChoice(Player &player);
+    void giveCardToPlayer(Player &player, Card &card);
     void displayCards() const;
-    void buyCard(int index, Player &player);
+    void buyCard(Player &player, Card &card);
     void putCardBack();
     void sellCard(std::unique_ptr<Card> &card, Player *player);
     // Give gold to the player

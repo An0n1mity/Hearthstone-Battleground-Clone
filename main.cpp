@@ -22,7 +22,6 @@ int main(int, char **)
 
     // Player 1 buy a card
     int choice = 0;
-    shop.buyCard(choice, player);
 
     // Sell the card to the shop
     player.sellCardFromHand(choice, shop);

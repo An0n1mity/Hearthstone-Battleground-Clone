@@ -54,19 +54,16 @@ void Shop::giveChoice(Player &player)
     }
 }
 
-void Shop::buyCard(int index, Player &player)
+void Shop::buyCard(Player &player, Card &card)
 {
-    if (index < 0 || index >= m_choices.size() || m_choices.empty())
-        return;
-    if (player.getGolds() >= 3)
+    // Get index of the card in the deck
+    int index = 0;
+    for (auto &c : m_deck)
     {
-        giveGold(player, -3);
-        giveCard(m_choices[index], player);
-        m_choices.erase(m_choices.begin() + index);
-    }
-    else
-    {
-        std::cout << "You don't have enough golds to buy this card\n";
+        if (c->getId() == card.getId())
+            break;
+
+        index++;
     }
 }
 
@@ -92,4 +89,24 @@ void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
 void Shop::giveGold(Player &player, unsigned int turns) const
 {
     player.m_golds += calculateGold(turns);
+}
+
+void Shop::giveCardToPlayer(Player &player, Card &card)
+{
+    // Get index of the card in the deck
+    int index = 0;
+    for (auto &c : m_deck)
+    {
+        if (c->getId() == card.getId())
+            break;
+
+        index++;
+    }
+
+    // Get the card
+    std::unique_ptr<Card> cardToGive = std::move(m_deck[index]);
+    // Remove the card from the deck
+    m_deck.erase(m_deck.begin() + index);
+    // Give the card to the player
+    giveCard(cardToGive, player);
 }

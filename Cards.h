@@ -16,6 +16,8 @@ class Card
 {
 
 protected:
+    // Id
+    int m_id;
     // The card's owner
     std::experimental::observer_ptr<Player> m_owner;
     // The card can be linked to a board
@@ -26,9 +28,14 @@ protected:
     virtual void printType() const = 0;
 
 public:
-    Card(unsigned int gold_cost, std::vector<std::unique_ptr<Effect>> effects = {}) : m_gold_cost(gold_cost), m_effects(std::move(effects)) {}
+    Card(unsigned int gold_cost, std::vector<std::unique_ptr<Effect>> effects = {}) : m_gold_cost(gold_cost), m_effects(std::move(effects))
+    {
+        static int id = 0;
+        m_id = id++;
+    }
     virtual ~Card() {}
     unsigned int getManaCost() const { return m_gold_cost; }
+    int getId() const { return m_id; }
     // Link the card to a board
     void linkBoard(std::experimental::observer_ptr<Board> board) { m_board = board; }
     void linkPlayer(std::experimental::observer_ptr<Player> player) { m_owner = player; }
