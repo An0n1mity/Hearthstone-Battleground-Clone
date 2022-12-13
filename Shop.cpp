@@ -3,6 +3,11 @@
 
 void Shop::giveCard(std::unique_ptr<Card> &card, Player &player)
 {
+    // Remove the gold cost of the card from the player
+    unsigned int player_gold = player.getGolds();
+    player.setGolds(player_gold - card->getGoldCost());
+
+    card->linkPlayer(std::experimental::make_observer(&player));
     player.addCardToHand(card);
 }
 

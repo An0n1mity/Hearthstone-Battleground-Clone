@@ -34,7 +34,7 @@ public:
         m_id = id++;
     }
     virtual ~Card() {}
-    unsigned int getManaCost() const { return m_gold_cost; }
+    unsigned int getGoldCost() const { return m_gold_cost; }
     int getId() const { return m_id; }
     // Link the card to a board
     void linkBoard(std::experimental::observer_ptr<Board> board) { m_board = board; }

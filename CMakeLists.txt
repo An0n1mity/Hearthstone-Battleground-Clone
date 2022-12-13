@@ -6,10 +6,11 @@ enable_testing()
 
 
 add_executable(HearthStoneClone main.cpp Player.cpp game.cpp Minions.cpp Board.cpp MinionsCards.cpp Cards.cpp Shop.cpp GameLogicManager.cpp)
+add_executable(shop Player.cpp Shop.cpp Cards.cpp MinionsCards.cpp Board.cpp UnitTest/shop_test.cpp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
-add_test(NAME example_test COMMAND HearthStoneClone)
+add_test(NAME example_test COMMAND valgrind --leak-check=full --error-exitcode=1 ./shop)
 add_test(NAME memory_check COMMAND valgrind --leak-check=full --error-exitcode=1 ./HearthStoneClone)

@@ -82,6 +82,9 @@ public:
 
     // Select a card from the choices
     void selectCardFromChoices(int index, Shop &shop);
+
+    // Print the choices of the player
+    void printChoices() const;
 };
 
 #endif
