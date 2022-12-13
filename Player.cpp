@@ -82,3 +82,8 @@ void Player::giveCardFromBoard(int index, Shop &shop)
     std::unique_ptr<Card> card_to_move = board->popCard(index, *this);
     shop.sellCard(card_to_move, this);
 }
+
+void Player::addCardToChoices(Card &card)
+{
+    m_choices.push_back(card);
+}

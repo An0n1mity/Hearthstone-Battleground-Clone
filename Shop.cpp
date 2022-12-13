@@ -39,24 +39,19 @@ void Shop::displayCards() const
     std::cout << "Choisissez une carte (Entre 1 et " << m_choices.size() << ") and if you don't want to buy a card enter n : ";
 }
 
-std::vector<std::reference_wrapper<Card>> Shop::drawCards(Player &player)
+void Shop::giveChoice(Player &player)
 {
-    std::vector<std::reference_wrapper<Card>> cards;
     shuffleDeck();
     int count = 0;
     for (int i = 0; i < m_deck.size(); i++)
     {
         if (m_deck[i]->getRang() <= player.getLevel())
         {
-            m_choices.push_back(std::move(m_deck[i]));
-            cards.push_back(std::ref(*m_choices.back()));
-            m_deck.erase(m_deck.begin() + i);
+            player.addCardToChoices(*m_deck[i]);
             if (++count == 3)
                 break;
         }
     }
-    displayCards();
-    return cards;
 }
 
 void Shop::buyCard(int index, Player &player)
@@ -97,13 +92,4 @@ void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
 void Shop::giveGold(Player &player, unsigned int turns) const
 {
     player.m_golds += calculateGold(turns);
-}
-
-void Shop::reDrawCards(Player &player)
-{
-    if(player.getGolds() > 1){
-        player.setGolds(player.getGolds() - 1);
-        putCardBack();
-        drawCards(player);
-    }
 }

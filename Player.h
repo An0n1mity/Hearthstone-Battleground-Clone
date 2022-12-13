@@ -23,6 +23,8 @@ private:
     std::unique_ptr<Hero> m_hero;
     // Player deck the cards on his hand
     std::vector<std::unique_ptr<Card>> m_hand;
+    // Shop cards proposed to the player
+    std::vector<std::reference_wrapper<Card>> m_choices;
     // Link to the board
     std::experimental::observer_ptr<Board> m_board;
     // Identifier to know if the player is the first or the second
@@ -74,6 +76,9 @@ public:
 
     // give a card from the board to shop
     void giveCardFromBoard(int index, Shop &shop);
+
+    // Add card to the choices of the player
+    void addCardToChoices(Card &card);
 };
 
 #endif

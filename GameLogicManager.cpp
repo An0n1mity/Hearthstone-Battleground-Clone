@@ -23,6 +23,6 @@ void GameLogicManager::recruitementPhase()
     m_shop->giveGold(*m_player2, m_turn);
 
     // Draw 3 cards from the shop
-    std::vector<std::reference_wrapper<Card>> cards = m_shop->drawCards(*m_player1);
-    std::vector<std::reference_wrapper<Card>> cards2 = m_shop->drawCards(*m_player2);
+    m_shop->giveChoice(*m_player1);
+    m_shop->giveChoice(*m_player2);
 }

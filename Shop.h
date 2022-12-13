@@ -44,7 +44,7 @@ public:
     // Shuffle the deck of cards
     void shuffleDeck();
     // Draw 3 cards from the deck
-    std::vector<std::reference_wrapper<Card>> drawCards(Player &player);
+    void giveChoice(Player &player);
     void displayCards() const;
     void buyCard(int index, Player &player);
     void putCardBack();
