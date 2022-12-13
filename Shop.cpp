@@ -3,7 +3,18 @@
 
 void Shop::giveCard(std::unique_ptr<Card> &card, Player &player)
 {
+    // Remove the gold cost of the card from the player
+    unsigned int player_gold = player.getGolds();
+    player.setGolds(player_gold - card->getGoldCost());
+
+    card->linkPlayer(std::experimental::make_observer(&player));
     player.addCardToHand(card);
+}
+
+unsigned int Shop::calculateGold(unsigned int turns) const
+{
+    // Cap it to 10 golds
+    return turns > 10 ? 10 : turns + 3;
 }
 
 void Shop::createDeck()
@@ -33,7 +44,7 @@ void Shop::displayCards() const
     std::cout << "Choisissez une carte (Entre 1 et " << m_choices.size() << ") and if you don't want to buy a card enter n : ";
 }
 
-void Shop::drawCards(Player &player)
+void Shop::giveChoice(Player &player)
 {
     shuffleDeck();
     int count = 0;
@@ -41,28 +52,23 @@ void Shop::drawCards(Player &player)
     {
         if (m_deck[i]->getRang() <= player.getLevel())
         {
-            m_choices.push_back(std::move(m_deck[i]));
-            m_deck.erase(m_deck.begin() + i);
+            player.addCardToChoices(*m_deck[i]);
             if (++count == 3)
                 break;
         }
     }
-    displayCards();
 }
 
-void Shop::buyCard(int index, Player &player)
+void Shop::buyCard(Player &player, Card &card)
 {
-    if (index < 0 || index >= m_choices.size() || m_choices.empty())
-        return;
-    if (player.getGolds() >= 3)
+    // Get index of the card in the deck
+    int index = 0;
+    for (auto &c : m_deck)
     {
-        giveGold(player, -3);
-        giveCard(m_choices[index], player);
-        m_choices.erase(m_choices.begin() + index);
-    }
-    else
-    {
-        std::cout << "You don't have enough golds to buy this card\n";
+        if (c->getId() == card.getId())
+            break;
+
+        index++;
     }
 }
 
@@ -85,16 +91,27 @@ void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
     m_deck.push_back(std::move(card));
 }
 
-void Shop::giveGold(Player &player, unsigned int golds) const
+void Shop::giveGold(Player &player, unsigned int turns) const
 {
-    player.m_golds += golds;
+    player.m_golds += calculateGold(turns);
 }
 
-void Shop::reDrawCards(Player &player)
+void Shop::giveCardToPlayer(Player &player, Card &card)
 {
-    if(player.getGolds() > 1){
-        player.setGolds(player.getGolds() - 1);
-        putCardBack();
-        drawCards(player);
+    // Get index of the card in the deck
+    int index = 0;
+    for (auto &c : m_deck)
+    {
+        if (c->getId() == card.getId())
+            break;
+
+        index++;
     }
+
+    // Get the card
+    std::unique_ptr<Card> cardToGive = std::move(m_deck[index]);
+    // Remove the card from the deck
+    m_deck.erase(m_deck.begin() + index);
+    // Give the card to the player
+    giveCard(cardToGive, player);
 }

@@ -18,11 +18,10 @@ int main(int, char **)
     // Give gold to the players
     shop.giveGold(player, 10);
     // Draw 3 cards from the shop
-    shop.drawCards(player);
+    shop.giveChoice(player);
 
     // Player 1 buy a card
     int choice = 0;
-    shop.buyCard(choice, player);
 
     // Sell the card to the shop
     player.sellCardFromHand(choice, shop);

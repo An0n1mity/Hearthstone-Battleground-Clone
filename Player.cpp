@@ -7,6 +7,7 @@ std::ostream &operator<<(std::ostream &os, Player &player)
     os << "Player golds: " << player.m_golds << '\n';
 
     os << "Player hero: " << '\n';
+    player.printChoices();
     if (player.m_hand.size() > 0)
     {
         os << "Player deck: " << '\n';
@@ -71,4 +72,30 @@ void Player::giveCardFromBoard(int index, Shop &shop)
     // Move the card from the board to the shop
     std::unique_ptr<Card> card_to_move = board->popCard(index, *this);
     shop.sellCard(card_to_move, this);
+}
+
+void Player::addCardToChoices(Card &card)
+{
+    m_choices.push_back(card);
+}
+
+void Player::selectCardFromChoices(int index, Shop &shop)
+{
+    // Sanity check
+    if (index < 0 || index >= m_choices.size() || m_choices.empty())
+        return;
+
+    shop.giveCardToPlayer(*this, m_choices[index]);
+    // Remove the card from the choices
+    m_choices.erase(m_choices.begin() + index);
+}
+
+void Player::printChoices() const
+{
+    std::cout << "Choices: " << '\n';
+    for (auto card_ref : m_choices)
+    {
+        Card &card = card_ref.get();
+        card.print();
+    }
 }
