@@ -21,4 +21,3 @@ include(CPack)
 
 add_test(NAME example_test COMMAND valgrind --leak-check=full --error-exitcode=1 ./shop)
 add_test(NAME memory_board_graphic COMMAND valgrind --leak-check=full --error-exitcode=1 ./board_graphic)
-add_test(NAME memory_check COMMAND valgrind --leak-check=full --error-exitcode=1 ./HearthStoneClone)
