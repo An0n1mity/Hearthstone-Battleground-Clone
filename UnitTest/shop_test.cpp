@@ -15,10 +15,15 @@ int main()
     shop.giveChoice(player);
 
     std::cout << player << '\n';
-    // Give gold to the player
     // Player select a card
     int choice = 0;
     player.selectCardFromChoices(choice, shop);
+    std::cout << player << '\n';
+
+    // Player sell a card from his hand
+    int card = 0;
+    player.sellCardFromHand(card, shop);
+
     std::cout << player << '\n';
 
     return 0;

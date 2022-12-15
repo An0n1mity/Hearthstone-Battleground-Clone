@@ -57,6 +57,8 @@ public:
     std::experimental::observer_ptr<Board> getBoard() { return m_board; }
 
     virtual void printName() const = 0;
+    // get name of the card
+    virtual std::string getName() const = 0;
 };
 
 #endif

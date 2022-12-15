@@ -1,5 +1,6 @@
 #include <iostream>
 #include <experimental/memory>
+#include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Shop.h"
 
