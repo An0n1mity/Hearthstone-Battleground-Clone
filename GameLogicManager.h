@@ -23,13 +23,12 @@ public:
         createBoard();
         createShop();
     }
-    ~GameLogicManager();
 
     void createPlayers();
     void createBoard();
     void createShop();
 
-    void startGame();
+    //void startGame();
     void recruitementPhase();
     void battlePhase();
     void endPhase();

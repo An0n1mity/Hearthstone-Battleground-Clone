@@ -3,6 +3,7 @@
 
 void Shop::giveCard(std::unique_ptr<Card> &card, Player &player)
 {
+    std::cout << "Give card to player" << std::endl;
     // Remove the gold cost of the card from the player
     unsigned int player_gold = player.getGolds();
     player.setGolds(player_gold - card->getGoldCost());

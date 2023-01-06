@@ -2,7 +2,7 @@
 #include <experimental/memory>
 #include "Player.h"
 #include "Shop.h"
-
+    
 int main(int, char **)
 {
     // Create a shop
@@ -58,10 +58,8 @@ int main(int, char **)
     // Get the cards of the player on the board
     std::vector<std::reference_wrapper<Card>> player_cards = board->getPlayerCardsView(player);
     std::vector<std::reference_wrapper<Card>> player2_cards = board->getPlayerCardsView(player2);
-
     // Print the card on the board
     board->printCards();
     // shop.putCardBack();
-
     return 0;
 }
