@@ -28,6 +28,11 @@ public:
     void createBoard();
     void createShop();
 
+    Board &getBoard() const { return *m_board; }
+    Shop &getShop() const { return *m_shop; }
+    Player &getPlayer1() const { return *m_player1; }
+    Player &getPlayer2() const { return *m_player2; }
+
     //void startGame();
     void recruitementPhase();
     void battlePhase();

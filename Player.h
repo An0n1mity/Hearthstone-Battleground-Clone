@@ -79,10 +79,12 @@ public:
 
     // Add card to the choices of the player
     void addCardToChoices(Card &card);
-
+    // Get a view on the choices of the player 
+    std::vector<std::reference_wrapper<Card>> getChoicesView() const { return m_choices; }
     // Select a card from the choices
     void selectCardFromChoices(int index, Shop &shop);
-
+    // Reset the choices of the player
+    void resetChoices();
     // Print the choices of the player
     void printChoices() const;
 };

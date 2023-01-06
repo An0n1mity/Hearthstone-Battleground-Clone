@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/shop.dir/Player.cpp.o CMakeFiles/shop.dir/Shop.cpp.o CMakeFiles/shop.dir/Cards.cpp.o CMakeFiles/shop.dir/MinionsCards.cpp.o CMakeFiles/shop.dir/Board.cpp.o CMakeFiles/shop.dir/UnitTest/shop_test.cpp.o -o shop 

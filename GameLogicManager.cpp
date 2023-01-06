@@ -36,15 +36,6 @@ void GameLogicManager::recruitementPhase()
     m_shop->giveChoice(*m_player1);
     m_shop->giveChoice(*m_player2);
 
-    // Player 1 buy a card
-    int choice = 0;
-    Shop *shop = m_shop.get();
-    m_player1->selectCardFromChoices(choice, *shop);
-    m_player2->selectCardFromChoices(choice, *shop);
-
-    // Put card on the board
-    m_player1->moveCardFromHandToBoardLeft(choice);
-    m_player2->moveCardFromHandToBoardLeft(choice);
 }
 
 void GameLogicManager::battlePhase()
@@ -69,9 +60,9 @@ void GameLogicManager::battlePhase()
         Minion *minion = dynamic_cast<Minion *>(&card.get());
         Minion *minion2 = dynamic_cast<Minion *>(&player2_cards[card_to_attack].get());
         // Attack the card
-        std::cout << player.getName() << " attacks with " << minion->getName()
-	<< minion2->getName() << "of" << player2.getName() << std::endl;
-	std::cout << "Before attack: " << minion2->getHealth() << std::endl;
+        std::cout << player.getName() << " attacks with " << minion->getName() << " "
+                  << minion2->getName() << " of " << player2.getName() << std::endl;
+        std::cout << "Before attack: " << minion2->getHealth() << std::endl;
         minion->attackEnemy(*minion2);
 	std::cout << "After attack: " << minion2->getHealth() << std::endl;
     }

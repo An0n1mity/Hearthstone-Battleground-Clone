@@ -47,6 +47,7 @@ public:
     void giveChoice(Player &player);
     void giveCardToPlayer(Player &player, Card &card);
     void displayCards() const;
+    std::vector<std::reference_wrapper<const Card>> getChoicesView() const;
     void buyCard(Player &player, Card &card);
     void putCardBack();
     void sellCard(std::unique_ptr<Card> &card, Player *player);

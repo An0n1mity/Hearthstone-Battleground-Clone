@@ -19,8 +19,10 @@ public:
         UNTIL_DEATH,
         // Activate when the card is dead
         ON_DEATH,
+	// Activate while the card is not damaged
+	UNTIL_DAMAGE,
         // Activate when the card is damaged
-        UNTIL_DAMAGE,
+        ON_DAMAGE
     };
     Effect(enum ActivationPhase_e activation_phase, void (*effect_function)(Card *), Card *card = nullptr) : m_activation_phase(activation_phase), m_effect_function(effect_function), m_card(card) {}
     virtual ~Effect() {}
@@ -49,7 +51,7 @@ public:
 class Taunt : public Effect
 {
 public:
-    Taunt(void (*effect_function)(Card *), Card *card) : Effect(UNTIL_DEATH, effect_function, card) {}
+    Taunt(void (*effect_function)(Card *), Card *card) : Effect(ON_DAMAGE, effect_function, card) {}
     virtual ~Taunt() {}
 };
 
