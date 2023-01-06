@@ -83,6 +83,9 @@ public:
     // Select a card from the choices
     void selectCardFromChoices(int index, Shop &shop);
 
+    // Clear the choices of the player
+    void resetChoices();
+
     // Print the choices of the player
     void printChoices() const;
 };

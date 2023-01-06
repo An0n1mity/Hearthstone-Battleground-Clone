@@ -44,6 +44,5 @@ int main(int argc, char const *argv[])
         window.clear();
         board.draw(window);
         window.display();
-        return 0;
     }
 }

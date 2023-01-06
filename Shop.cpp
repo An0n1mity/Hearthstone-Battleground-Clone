@@ -1,20 +1,10 @@
 #include "Shop.h"
 #include "Player.h"
 
-void Shop::giveCard(std::unique_ptr<Card> &card, Player &player)
-{
-    // Remove the gold cost of the card from the player
-    unsigned int player_gold = player.getGolds();
-    player.setGolds(player_gold - card->getGoldCost());
-
-    card->linkPlayer(std::experimental::make_observer(&player));
-    player.addCardToHand(card);
-}
-
 unsigned int Shop::calculateGold(unsigned int turns) const
 {
     // Cap it to 10 golds
-    return turns > 10 ? 10 : turns + 3;
+    return turns > 10 ? 10 : turns ++;
 }
 
 void Shop::createDeck()
@@ -32,18 +22,6 @@ void Shop::shuffleDeck()
     std::random_shuffle(m_deck.begin(), m_deck.end());
 }
 
-void Shop::displayCards() const
-{
-    std::cout << "draw cards : \n";
-    for (int i = 0; i < m_choices.size(); i++)
-    {
-        std::cout << "Carte " << i + 1 << " : ";
-        m_choices[i]->printName();
-        std::cout << "\n";
-    }
-    std::cout << "Choisissez une carte (Entre 1 et " << m_choices.size() << ") and if you don't want to buy a card enter n : ";
-}
-
 void Shop::giveChoice(Player &player)
 {
     shuffleDeck();
@@ -57,29 +35,6 @@ void Shop::giveChoice(Player &player)
                 break;
         }
     }
-}
-
-void Shop::buyCard(Player &player, Card &card)
-{
-    // Get index of the card in the deck
-    int index = 0;
-    for (auto &c : m_deck)
-    {
-        if (c->getId() == card.getId())
-            break;
-
-        index++;
-    }
-}
-
-void Shop::putCardBack()
-{
-    int size = m_choices.size();
-    for (int i = 0; i < size; i++)
-    {
-        m_deck.push_back(std::move(m_choices[i]));
-    }
-    m_choices.clear();
 }
 
 void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
@@ -112,6 +67,9 @@ void Shop::giveCardToPlayer(Player &player, Card &card)
     std::unique_ptr<Card> cardToGive = std::move(m_deck[index]);
     // Remove the card from the deck
     m_deck.erase(m_deck.begin() + index);
-    // Give the card to the player
-    giveCard(cardToGive, player);
+    // Remove the gold cost of the card from the player
+    player.setGolds(player.getGolds() - cardToGive->getGoldCost());
+
+    cardToGive->linkPlayer(std::experimental::make_observer(&player));
+    player.addCardToHand(cardToGive);
 }

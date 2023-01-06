@@ -90,6 +90,15 @@ void Player::selectCardFromChoices(int index, Shop &shop)
     m_choices.erase(m_choices.begin() + index);
 }
 
+void Player::resetChoices()
+{
+    // Remove cards from the choices
+    while (m_choices.size() > 0)
+    {
+        m_choices.erase(m_choices.begin());
+    }
+}
+
 void Player::printChoices() const
 {
     std::cout << "Choices: " << '\n';
