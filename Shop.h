@@ -28,15 +28,6 @@ public:
         shuffleDeck();
     }
     ~Shop() {
-        for (auto &card : m_deck)
-        {
-            card->printName();
-        }
-        for (auto &card : m_choices)
-        {
-            card->printName();
-        }
-        
         m_deck.clear();
         m_choices.clear();
     }

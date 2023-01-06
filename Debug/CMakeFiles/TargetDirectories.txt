@@ -29,7 +29,7 @@
 /home/an0n1mity/Desktop/Hearthstone-Battleground-Clone/Debug/CMakeFiles/HearthStoneClone.dir
 /home/an0n1mity/Desktop/Hearthstone-Battleground-Clone/Debug/CMakeFiles/shop.dir
 /home/an0n1mity/Desktop/Hearthstone-Battleground-Clone/Debug/CMakeFiles/game_logic_manager.dir
-/home/an0n1mity/Desktop/Hearthstone-Battleground-Clone/Debug/CMakeFiles/cli.dir
+/home/an0n1mity/Desktop/Hearthstone-Battleground-Clone/Debug/CMakeFiles/shop_buy_test.dir
 /home/an0n1mity/Desktop/Hearthstone-Battleground-Clone/Debug/CMakeFiles/package.dir
 /home/an0n1mity/Desktop/Hearthstone-Battleground-Clone/Debug/CMakeFiles/package_source.dir
 /home/an0n1mity/Desktop/Hearthstone-Battleground-Clone/Debug/CMakeFiles/test.dir

@@ -65,8 +65,10 @@ void Shop::giveChoice(Player &player)
     int count = 0;
     for (int i = 0; i < m_deck.size(); i++)
     {
-        if (m_deck[i]->getRang() <= player.getLevel())
+        if (m_deck[i]->getRang() <= player.getLevel() && m_deck[i]->getGoldCost() <= player.getGolds())
         {
+	    std::cout << "Gold cost : " << m_deck[i]->getGoldCost() << '\n';
+	    std::cout << "Player golds : " << player.getGolds() << '\n';
             player.addCardToChoices(*m_deck[i]);
             if (++count == 3)
                 break;

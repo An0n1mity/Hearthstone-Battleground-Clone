@@ -11,6 +11,7 @@ class CLI
 	SELL,
 	MOVE,
 	END,
+	EXIT,
 	INVALID
     };
     struct cli_input
@@ -28,6 +29,8 @@ class CLI
 	void drawCards(std::vector<std::reference_wrapper<Card>> &cards);
 	// Draw the shop cards choices for the player 
 	void drawChoices(const Player& player);
+	// Draw the hand of the player 
+	void drawHand(const Player& player);
 	// Get the input from the Player
 	cli_input getInput(const Player& player);
 };

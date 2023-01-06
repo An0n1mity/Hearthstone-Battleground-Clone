@@ -81,6 +81,8 @@ public:
     void addCardToChoices(Card &card);
     // Get a view on the choices of the player 
     std::vector<std::reference_wrapper<Card>> getChoicesView() const { return m_choices; }
+    // Get a view on the hand of the player
+    std::vector<std::reference_wrapper<Card>> getHandView() const; 
     // Select a card from the choices
     void selectCardFromChoices(int index, Shop &shop);
     // Reset the choices of the player

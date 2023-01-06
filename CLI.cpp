@@ -43,6 +43,13 @@ void CLI::drawChoices(const Player &player)
     drawCards(choices);
 }
 
+void CLI::drawHand(const Player &player)
+{
+	std::cout << "Hand: " << std::endl;
+	std::vector<std::reference_wrapper<Card>> hand = player.getHandView();
+	drawCards(hand);
+}
+
 std::string CLI::cardToString(const Card &card)
 {
     const Minion *minion = dynamic_cast<const Minion *>(&card);
@@ -123,41 +130,36 @@ CLI::cli_input CLI::getInput(const Player& player)
 	std::cout << "CHOICES" << std::endl;
 	std::cout << "1 BUY" << std::endl;
 	std::cout << "2 SELL" << std::endl;
-	std::cout << "Enter your choice: ";
-	std::cin >> input;
-	if (input == "1")
-	{
-	    // Get the player card choices 
-	    std::vector<std::reference_wrapper<Card>> choices = player.getChoicesView();
-	    while(true)
-	    {
-		std::cout << "CARD TO BUY : ";
-		std::cin >> input;
-		int input_i = std::stoi(input);
+	std::cout << "3 EXIT" << std::endl;
+	
+	while(true){ 
+	    std::cout << "Enter your choice: ";
+	    std::cin >> input;
 
-		if(input_i >= 0 && input_i < choices.size())
-		    return {BUY, input_i};
-		
+	    if (input == "1")
+	    {
+		// Get the player card choices 
+		std::vector<std::reference_wrapper<Card>> choices = player.getChoicesView();
+		while(true)
+		{
+		    std::cout << "CARD TO BUY : ";
+		    std::cin >> input;
+		    int input_i = std::stoi(input);
+
+		    if(input_i > 0 && input_i <= choices.size())
+			return {BUY, input_i-1};
+		    
+		}
 	    }
-	}
-	else if (input == "2")
-	{
-	    std::cout << "CARD TO SELL : ";
-	    std::cin >> input;
-	    return {SELL, std::stoi(input)};
-	}
-	else if (input == "move")
-	{
-	    std::cout << "CARD TO MOVE : ";
-	    std::cin >> input;
-	    return {MOVE, std::stoi(input)};
-	}
-	else if (input == "end")
-	{
-	    return {END, 0};
-	}
-	else
-	{
-	    return {INVALID, 0};
+	    else if (input == "2")
+	    {
+		std::cout << "CARD TO SELL : ";
+		std::cin >> input;
+		return {SELL, std::stoi(input)};
+	    }
+	    else if (input == "3")
+	    {
+		return {EXIT, std::stoi(input)};
+	    }
 	}
 }

@@ -95,6 +95,8 @@ void Player::selectCardFromChoices(int index, Shop &shop)
     shop.giveCardToPlayer(*this, m_choices[index]);
     // Remove the card from the choices
     m_choices.erase(m_choices.begin() + index);
+    // Clear the choices 
+    m_choices.clear();
 }
 
 void Player::resetChoices()
@@ -110,4 +112,14 @@ void Player::printChoices() const
         Card &card = card_ref.get();
         card.print();
     }
+}
+
+std::vector<std::reference_wrapper<Card>> Player::getHandView() const
+{
+	std::vector<std::reference_wrapper<Card>> hand_view;
+	for (auto &card : m_hand)
+	{
+		hand_view.push_back(std::ref(*card));
+	}
+	return hand_view;
 }

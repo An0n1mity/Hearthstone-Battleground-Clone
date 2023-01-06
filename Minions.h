@@ -18,7 +18,7 @@ protected:
     std::string m_effect_description;
 
 public:
-    Minion(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Card(0, std::move(effects)), m_rank(rank), m_health_points(health_points), m_attack_points(attack_points) {}
+    Minion(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Card(3, std::move(effects)), m_rank(rank), m_health_points(health_points), m_attack_points(attack_points) {}
     virtual ~Minion() {}
     void attackEnemy(Minion &enemy);
     unsigned int getHealth() const { return m_health_points; }
