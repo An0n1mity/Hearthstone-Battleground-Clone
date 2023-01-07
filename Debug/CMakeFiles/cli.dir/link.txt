@@ -1,1 +1,0 @@
-/usr/bin/g++ -g -rdynamic CMakeFiles/cli.dir/Player.cpp.o CMakeFiles/cli.dir/Board.cpp.o CMakeFiles/cli.dir/Minions.cpp.o CMakeFiles/cli.dir/Cards.cpp.o CMakeFiles/cli.dir/Shop.cpp.o CMakeFiles/cli.dir/MinionsCards.cpp.o CMakeFiles/cli.dir/GameLogicManager.cpp.o CMakeFiles/cli.dir/CLI.cpp.o CMakeFiles/cli.dir/UnitTest/CLI_test.cpp.o -o cli 
