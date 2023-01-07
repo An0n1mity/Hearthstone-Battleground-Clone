@@ -600,6 +600,7 @@ CLI.o: CLI.cpp.o
 
 # target to build an object file
 CLI.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/CLI.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/CLI.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/CLI.cpp.o
 .PHONY : CLI.cpp.o
@@ -609,6 +610,7 @@ CLI.i: CLI.cpp.i
 
 # target to preprocess a source file
 CLI.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/CLI.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/CLI.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/CLI.cpp.i
 .PHONY : CLI.cpp.i
@@ -618,6 +620,7 @@ CLI.s: CLI.cpp.s
 
 # target to generate assembly for a file
 CLI.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/CLI.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/CLI.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/CLI.cpp.s
 .PHONY : CLI.cpp.s

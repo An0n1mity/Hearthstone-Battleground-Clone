@@ -10,7 +10,7 @@ class CLI
 	BUY,
 	SELL,
 	PLAY,
-	END,
+	BATTLE,
 	EXIT,
 	INVALID
     };
@@ -33,4 +33,6 @@ class CLI
 	void drawHand(const Player& player);
 	// Get the input from the Player
 	cli_input getInput(const Player& player);
+	// Draw players stats 
+	void drawStats(const Player& player);
 };

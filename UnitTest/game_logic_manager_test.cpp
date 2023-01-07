@@ -4,11 +4,10 @@ int main(int, char **)
 {
 	// Create a game logic manager
 	GameLogicManager game = GameLogicManager();
-
-	for (size_t i = 0; i < 3; i++)
+	while(true)
 	{
-		game.recruitementPhase();
-		game.battlePhase();
+	    game.recruitementPhase();
+	    game.battlePhase();
 	}
 	return 0;
 }
