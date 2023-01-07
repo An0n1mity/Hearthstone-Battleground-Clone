@@ -16,7 +16,13 @@ std::ostream &operator<<(std::ostream &os, Player &player)
             card->print();
         }
     }
-
+    if (player.m_board.get()->getPlayerCardsView(player).size() > 0){
+        os << "Player board: " << '\n';
+        for (auto &card : player.m_board.get()->getPlayerCardsView(player))
+        {
+            card.get().print();
+        }
+    }
     return os;
 }
 
@@ -82,7 +88,7 @@ void Player::addCardToChoices(Card &card)
 void Player::selectCardFromChoices(int index, Shop &shop)
 {
     // Sanity check
-    if (index < 0 || index >= m_choices.size() || m_choices.empty())
+    if (index < 0 || index >= m_choices.size() || m_choices.empty() || m_hand.size() > 6)
         return;
 
     shop.giveCardToPlayer(*this, m_choices[index]);

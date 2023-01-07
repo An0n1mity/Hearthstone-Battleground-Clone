@@ -12,7 +12,7 @@ public:
         Minion::summonMinion<AlleyCat>(card->getBoard(), card);
     }
 
-    AlleyCat() : Beast(1, 1, 1)
+    AlleyCat() : Beast(1, 1, 1, 1)
     {
         // Create a battle cry effect that have a pointer to the function Summon1_1Cat
         Effect *battlecry = new Battlecry(Summon1_1Cat, this);
@@ -27,7 +27,7 @@ public:
 class DeckSwabbie : public Pirate
 {
 public:
-    DeckSwabbie() : Pirate(1, 2, 2) {}
+    DeckSwabbie() : Pirate(1, 1, 2, 2) {}
     virtual ~DeckSwabbie() {}
     virtual void printName() const override { std::cout << "DeckSwabbie"; }
     virtual std::string getName() const override { return "DeckSwabbie"; }

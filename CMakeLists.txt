@@ -9,7 +9,7 @@ enable_testing()
 find_package(SFML COMPONENTS system graphics REQUIRED)
 
 add_executable(HearthStoneClone main.cpp Player.cpp game.cpp Minions.cpp Board.cpp MinionsCards.cpp Cards.cpp Shop.cpp GameLogicManager.cpp)
-add_executable(shop Player.cpp Shop.cpp Cards.cpp MinionsCards.cpp Board.cpp UnitTest/shop_test.cpp)
+add_executable(shop Bot.cpp Player.cpp Shop.cpp Cards.cpp MinionsCards.cpp Board.cpp UnitTest/shop_test.cpp)
 add_executable(board_graphic Graphic.cpp BoardGraphic.cpp CardGraphic.cpp Cards.cpp Minions.cpp MinionsCards.cpp UnitTest/board_graphic_test.cpp)
 
 target_link_libraries(HearthStoneClone sfml-graphics)

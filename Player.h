@@ -12,7 +12,7 @@
 
 class Player
 {
-private:
+protected:
     // Player name
     std::string m_name;
     // Player golds

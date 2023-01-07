@@ -37,6 +37,24 @@ void Shop::giveChoice(Player &player)
     }
 }
 
+void Shop::giveAnotherChoice(Player &player)
+{
+    shuffleDeck();
+    if (player.getGolds() < 1)
+        return;
+    player.resetChoices();
+    int count = 0;
+    for (int i = 0; i < m_deck.size(); i++)
+    {
+        if (m_deck[i]->getRang() <= player.getLevel())
+        {
+            player.addCardToChoices(*m_deck[i]);
+            if (++count == 3)
+                break;
+        }
+    }
+}
+
 void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
 {
     // Add a gold to the player
