@@ -86,7 +86,7 @@ void Shop::giveCardToPlayer(Player &player, Card &card)
     // Remove the card from the deck
     m_deck.erase(m_deck.begin() + index);
     // Remove the gold cost of the card from the player
-    player.setGolds(player.getGolds() - cardToGive->getGoldCost());
+    player.setGolds(player.getGolds() - 3);
 
     cardToGive->linkPlayer(std::experimental::make_observer(&player));
     player.addCardToHand(cardToGive);

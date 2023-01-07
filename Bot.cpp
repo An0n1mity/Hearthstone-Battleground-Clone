@@ -10,10 +10,13 @@ void Bot::playTurn(Shop &shop)
     {
         // Draw a card
         if(m_choices.size() > 0 || choice >= 0){
-            if(m_choices[choice].get().getGoldCost() <= m_golds){
+            if(m_golds >= 3){
                 selectCardFromChoices(choice, shop);
+                choice --;
             }
-            choice --;
+            else{
+                break;
+            }
         }
         else{
             choice = 2;
