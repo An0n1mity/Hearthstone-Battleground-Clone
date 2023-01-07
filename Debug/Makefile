@@ -524,19 +524,6 @@ HearthStoneClone/fast:
 .PHONY : HearthStoneClone/fast
 
 #=============================================================================
-# Target rules for targets named shop
-
-# Build rule for target.
-shop: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 shop
-.PHONY : shop
-
-# fast build rule for target.
-shop/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/build
-.PHONY : shop/fast
-
-#=============================================================================
 # Target rules for targets named game_logic_manager
 
 # Build rule for target.
@@ -550,17 +537,30 @@ game_logic_manager/fast:
 .PHONY : game_logic_manager/fast
 
 #=============================================================================
-# Target rules for targets named shop_buy_test
+# Target rules for targets named shop_test
 
 # Build rule for target.
-shop_buy_test: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 shop_buy_test
-.PHONY : shop_buy_test
+shop_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 shop_test
+.PHONY : shop_test
 
 # fast build rule for target.
-shop_buy_test/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/build
-.PHONY : shop_buy_test/fast
+shop_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/build
+.PHONY : shop_test/fast
+
+#=============================================================================
+# Target rules for targets named board_test
+
+# Build rule for target.
+board_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 board_test
+.PHONY : board_test
+
+# fast build rule for target.
+board_test/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/build
+.PHONY : board_test/fast
 
 Board.o: Board.cpp.o
 .PHONY : Board.o
@@ -568,9 +568,9 @@ Board.o: Board.cpp.o
 # target to build an object file
 Board.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Board.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Board.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Board.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Board.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Board.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Board.cpp.o
 .PHONY : Board.cpp.o
 
 Board.i: Board.cpp.i
@@ -579,9 +579,9 @@ Board.i: Board.cpp.i
 # target to preprocess a source file
 Board.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Board.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Board.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Board.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Board.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Board.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Board.cpp.i
 .PHONY : Board.cpp.i
 
 Board.s: Board.cpp.s
@@ -590,9 +590,9 @@ Board.s: Board.cpp.s
 # target to generate assembly for a file
 Board.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Board.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Board.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Board.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Board.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Board.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Board.cpp.s
 .PHONY : Board.cpp.s
 
 CLI.o: CLI.cpp.o
@@ -600,7 +600,8 @@ CLI.o: CLI.cpp.o
 
 # target to build an object file
 CLI.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/CLI.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/CLI.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/CLI.cpp.o
 .PHONY : CLI.cpp.o
 
 CLI.i: CLI.cpp.i
@@ -608,7 +609,8 @@ CLI.i: CLI.cpp.i
 
 # target to preprocess a source file
 CLI.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/CLI.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/CLI.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/CLI.cpp.i
 .PHONY : CLI.cpp.i
 
 CLI.s: CLI.cpp.s
@@ -616,7 +618,8 @@ CLI.s: CLI.cpp.s
 
 # target to generate assembly for a file
 CLI.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/CLI.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/CLI.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/CLI.cpp.s
 .PHONY : CLI.cpp.s
 
 Cards.o: Cards.cpp.o
@@ -625,9 +628,9 @@ Cards.o: Cards.cpp.o
 # target to build an object file
 Cards.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Cards.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Cards.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Cards.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Cards.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Cards.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Cards.cpp.o
 .PHONY : Cards.cpp.o
 
 Cards.i: Cards.cpp.i
@@ -636,9 +639,9 @@ Cards.i: Cards.cpp.i
 # target to preprocess a source file
 Cards.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Cards.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Cards.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Cards.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Cards.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Cards.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Cards.cpp.i
 .PHONY : Cards.cpp.i
 
 Cards.s: Cards.cpp.s
@@ -647,9 +650,9 @@ Cards.s: Cards.cpp.s
 # target to generate assembly for a file
 Cards.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Cards.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Cards.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Cards.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Cards.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Cards.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Cards.cpp.s
 .PHONY : Cards.cpp.s
 
 GameLogicManager.o: GameLogicManager.cpp.o
@@ -659,7 +662,8 @@ GameLogicManager.o: GameLogicManager.cpp.o
 GameLogicManager.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/GameLogicManager.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/GameLogicManager.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/GameLogicManager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/GameLogicManager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/GameLogicManager.cpp.o
 .PHONY : GameLogicManager.cpp.o
 
 GameLogicManager.i: GameLogicManager.cpp.i
@@ -669,7 +673,8 @@ GameLogicManager.i: GameLogicManager.cpp.i
 GameLogicManager.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/GameLogicManager.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/GameLogicManager.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/GameLogicManager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/GameLogicManager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/GameLogicManager.cpp.i
 .PHONY : GameLogicManager.cpp.i
 
 GameLogicManager.s: GameLogicManager.cpp.s
@@ -679,7 +684,8 @@ GameLogicManager.s: GameLogicManager.cpp.s
 GameLogicManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/GameLogicManager.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/GameLogicManager.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/GameLogicManager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/GameLogicManager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/GameLogicManager.cpp.s
 .PHONY : GameLogicManager.cpp.s
 
 Minions.o: Minions.cpp.o
@@ -689,7 +695,8 @@ Minions.o: Minions.cpp.o
 Minions.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Minions.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Minions.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Minions.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Minions.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Minions.cpp.o
 .PHONY : Minions.cpp.o
 
 Minions.i: Minions.cpp.i
@@ -699,7 +706,8 @@ Minions.i: Minions.cpp.i
 Minions.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Minions.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Minions.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Minions.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Minions.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Minions.cpp.i
 .PHONY : Minions.cpp.i
 
 Minions.s: Minions.cpp.s
@@ -709,7 +717,8 @@ Minions.s: Minions.cpp.s
 Minions.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Minions.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Minions.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Minions.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Minions.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Minions.cpp.s
 .PHONY : Minions.cpp.s
 
 MinionsCards.o: MinionsCards.cpp.o
@@ -718,9 +727,9 @@ MinionsCards.o: MinionsCards.cpp.o
 # target to build an object file
 MinionsCards.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/MinionsCards.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/MinionsCards.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/MinionsCards.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/MinionsCards.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/MinionsCards.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/MinionsCards.cpp.o
 .PHONY : MinionsCards.cpp.o
 
 MinionsCards.i: MinionsCards.cpp.i
@@ -729,9 +738,9 @@ MinionsCards.i: MinionsCards.cpp.i
 # target to preprocess a source file
 MinionsCards.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/MinionsCards.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/MinionsCards.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/MinionsCards.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/MinionsCards.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/MinionsCards.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/MinionsCards.cpp.i
 .PHONY : MinionsCards.cpp.i
 
 MinionsCards.s: MinionsCards.cpp.s
@@ -740,9 +749,9 @@ MinionsCards.s: MinionsCards.cpp.s
 # target to generate assembly for a file
 MinionsCards.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/MinionsCards.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/MinionsCards.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/MinionsCards.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/MinionsCards.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/MinionsCards.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/MinionsCards.cpp.s
 .PHONY : MinionsCards.cpp.s
 
 Player.o: Player.cpp.o
@@ -751,9 +760,9 @@ Player.o: Player.cpp.o
 # target to build an object file
 Player.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Player.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Player.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Player.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Player.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Player.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Player.cpp.o
 .PHONY : Player.cpp.o
 
 Player.i: Player.cpp.i
@@ -762,9 +771,9 @@ Player.i: Player.cpp.i
 # target to preprocess a source file
 Player.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Player.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Player.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Player.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Player.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Player.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Player.cpp.i
 .PHONY : Player.cpp.i
 
 Player.s: Player.cpp.s
@@ -773,9 +782,9 @@ Player.s: Player.cpp.s
 # target to generate assembly for a file
 Player.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Player.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Player.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Player.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Player.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Player.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Player.cpp.s
 .PHONY : Player.cpp.s
 
 Shop.o: Shop.cpp.o
@@ -784,9 +793,9 @@ Shop.o: Shop.cpp.o
 # target to build an object file
 Shop.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Shop.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Shop.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Shop.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Shop.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Shop.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Shop.cpp.o
 .PHONY : Shop.cpp.o
 
 Shop.i: Shop.cpp.i
@@ -795,9 +804,9 @@ Shop.i: Shop.cpp.i
 # target to preprocess a source file
 Shop.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Shop.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Shop.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Shop.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Shop.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Shop.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Shop.cpp.i
 .PHONY : Shop.cpp.i
 
 Shop.s: Shop.cpp.s
@@ -806,10 +815,34 @@ Shop.s: Shop.cpp.s
 # target to generate assembly for a file
 Shop.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/HearthStoneClone.dir/build.make CMakeFiles/HearthStoneClone.dir/Shop.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/Shop.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/Shop.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/Shop.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/Shop.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/Shop.cpp.s
 .PHONY : Shop.cpp.s
+
+UnitTest/board_test.o: UnitTest/board_test.cpp.o
+.PHONY : UnitTest/board_test.o
+
+# target to build an object file
+UnitTest/board_test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/UnitTest/board_test.cpp.o
+.PHONY : UnitTest/board_test.cpp.o
+
+UnitTest/board_test.i: UnitTest/board_test.cpp.i
+.PHONY : UnitTest/board_test.i
+
+# target to preprocess a source file
+UnitTest/board_test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/UnitTest/board_test.cpp.i
+.PHONY : UnitTest/board_test.cpp.i
+
+UnitTest/board_test.s: UnitTest/board_test.cpp.s
+.PHONY : UnitTest/board_test.s
+
+# target to generate assembly for a file
+UnitTest/board_test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/board_test.dir/build.make CMakeFiles/board_test.dir/UnitTest/board_test.cpp.s
+.PHONY : UnitTest/board_test.cpp.s
 
 UnitTest/game_logic_manager_test.o: UnitTest/game_logic_manager_test.cpp.o
 .PHONY : UnitTest/game_logic_manager_test.o
@@ -835,36 +868,12 @@ UnitTest/game_logic_manager_test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game_logic_manager.dir/build.make CMakeFiles/game_logic_manager.dir/UnitTest/game_logic_manager_test.cpp.s
 .PHONY : UnitTest/game_logic_manager_test.cpp.s
 
-UnitTest/shop_buy_test.o: UnitTest/shop_buy_test.cpp.o
-.PHONY : UnitTest/shop_buy_test.o
-
-# target to build an object file
-UnitTest/shop_buy_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/UnitTest/shop_buy_test.cpp.o
-.PHONY : UnitTest/shop_buy_test.cpp.o
-
-UnitTest/shop_buy_test.i: UnitTest/shop_buy_test.cpp.i
-.PHONY : UnitTest/shop_buy_test.i
-
-# target to preprocess a source file
-UnitTest/shop_buy_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/UnitTest/shop_buy_test.cpp.i
-.PHONY : UnitTest/shop_buy_test.cpp.i
-
-UnitTest/shop_buy_test.s: UnitTest/shop_buy_test.cpp.s
-.PHONY : UnitTest/shop_buy_test.s
-
-# target to generate assembly for a file
-UnitTest/shop_buy_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_buy_test.dir/build.make CMakeFiles/shop_buy_test.dir/UnitTest/shop_buy_test.cpp.s
-.PHONY : UnitTest/shop_buy_test.cpp.s
-
 UnitTest/shop_test.o: UnitTest/shop_test.cpp.o
 .PHONY : UnitTest/shop_test.o
 
 # target to build an object file
 UnitTest/shop_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/UnitTest/shop_test.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/UnitTest/shop_test.cpp.o
 .PHONY : UnitTest/shop_test.cpp.o
 
 UnitTest/shop_test.i: UnitTest/shop_test.cpp.i
@@ -872,7 +881,7 @@ UnitTest/shop_test.i: UnitTest/shop_test.cpp.i
 
 # target to preprocess a source file
 UnitTest/shop_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/UnitTest/shop_test.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/UnitTest/shop_test.cpp.i
 .PHONY : UnitTest/shop_test.cpp.i
 
 UnitTest/shop_test.s: UnitTest/shop_test.cpp.s
@@ -880,7 +889,7 @@ UnitTest/shop_test.s: UnitTest/shop_test.cpp.s
 
 # target to generate assembly for a file
 UnitTest/shop_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop.dir/build.make CMakeFiles/shop.dir/UnitTest/shop_test.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/shop_test.dir/build.make CMakeFiles/shop_test.dir/UnitTest/shop_test.cpp.s
 .PHONY : UnitTest/shop_test.cpp.s
 
 game.o: game.cpp.o
@@ -971,9 +980,9 @@ help:
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
 	@echo "... HearthStoneClone"
+	@echo "... board_test"
 	@echo "... game_logic_manager"
-	@echo "... shop"
-	@echo "... shop_buy_test"
+	@echo "... shop_test"
 	@echo "... Board.o"
 	@echo "... Board.i"
 	@echo "... Board.s"
@@ -998,12 +1007,12 @@ help:
 	@echo "... Shop.o"
 	@echo "... Shop.i"
 	@echo "... Shop.s"
+	@echo "... UnitTest/board_test.o"
+	@echo "... UnitTest/board_test.i"
+	@echo "... UnitTest/board_test.s"
 	@echo "... UnitTest/game_logic_manager_test.o"
 	@echo "... UnitTest/game_logic_manager_test.i"
 	@echo "... UnitTest/game_logic_manager_test.s"
-	@echo "... UnitTest/shop_buy_test.o"
-	@echo "... UnitTest/shop_buy_test.i"
-	@echo "... UnitTest/shop_buy_test.s"
 	@echo "... UnitTest/shop_test.o"
 	@echo "... UnitTest/shop_test.i"
 	@echo "... UnitTest/shop_test.s"

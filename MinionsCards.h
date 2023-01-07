@@ -14,6 +14,7 @@ public:
 
     AlleyCat() : Beast(1, 1, 1)
     {
+	
 	// Effect description 
 	m_effect_description = "Battlecry: Summon a 1/1 Cat";
         // Create a battle cry effect that have a pointer to the function Summon1_1Cat

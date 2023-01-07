@@ -34,6 +34,8 @@ void CLI::drawBoard(const Board &board, const Player &player, const Player &bot)
 
     std::cout << "Bot cards: " << std::endl;
     drawCards(bot_cards);
+    std::cout << "Player cards: " << std::endl;
+    drawCards(player_cards);
 }
 
 void CLI::drawChoices(const Player &player)
@@ -130,8 +132,9 @@ CLI::cli_input CLI::getInput(const Player& player)
 	std::cout << "CHOICES" << std::endl;
 	std::cout << "1 BUY" << std::endl;
 	std::cout << "2 SELL" << std::endl;
-	std::cout << "3 EXIT" << std::endl;
-	
+	std::cout << "3 PLAY CARD" << std::endl;
+	std::cout << "4 EXIT" << std::endl;
+
 	while(true){ 
 	    std::cout << "Enter your choice: ";
 	    std::cin >> input;
@@ -140,6 +143,11 @@ CLI::cli_input CLI::getInput(const Player& player)
 	    {
 		// Get the player card choices 
 		std::vector<std::reference_wrapper<Card>> choices = player.getChoicesView();
+		if (choices.size() == 0)
+		{
+		    std::cout << "No cards to buy" << std::endl;
+		    continue;
+		}
 		while(true)
 		{
 		    std::cout << "CARD TO BUY : ";
@@ -153,11 +161,41 @@ CLI::cli_input CLI::getInput(const Player& player)
 	    }
 	    else if (input == "2")
 	    {
-		std::cout << "CARD TO SELL : ";
-		std::cin >> input;
-		return {SELL, std::stoi(input)};
+		// Get the player hand 
+		std::vector<std::reference_wrapper<Card>> hand = player.getHandView();
+		if (hand.size() == 0)
+		{
+		    std::cout << "No cards to sell" << std::endl;
+		    continue;
+		}
+		while(true){
+		    std::cout << "CARD TO SELL : ";
+		    std::cin >> input;
+		    int input_i = std::stoi(input);
+
+		    if(input_i > 0 && input_i <= hand.size()) 
+			return {SELL, input_i-1};
+		}
 	    }
 	    else if (input == "3")
+	    {
+		// Get the player hand 
+		std::vector<std::reference_wrapper<Card>> hand = player.getHandView();
+		if (hand.size() == 0)
+		{
+		    std::cout << "No cards to play" << std::endl;
+		    continue;
+		}
+		while(true){
+		    std::cout << "CARD TO PLAY : ";
+		    std::cin >> input;
+		    int input_i = std::stoi(input);
+
+		    if(input_i > 0 && input_i <= hand.size())
+			return {PLAY, input_i-1};
+		}
+	    }
+	    else if (input == "4")
 	    {
 		return {EXIT, std::stoi(input)};
 	    }

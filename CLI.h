@@ -9,7 +9,7 @@ class CLI
     {
 	BUY,
 	SELL,
-	MOVE,
+	PLAY,
 	END,
 	EXIT,
 	INVALID
