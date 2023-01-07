@@ -9,7 +9,7 @@ void GameLogicManager::createPlayers()
     std::cout << "[GAMELOGICMANAGER DEBUG]: Called from " << __FILE__ << " at line " << __LINE__ << " GameLogicManager::createPlayers" << std::endl;
 #endif
     m_player1 = std::make_unique<Player>("Player 1");
-    m_player2 = std::make_unique<Player>("Player 2");
+    m_bot = std::make_unique<Bot>("Bot");
 }
 
 // Create the board that will manage the cards
@@ -21,7 +21,7 @@ void GameLogicManager::createBoard()
     m_board = std::make_unique<Board>();
     std::experimental::observer_ptr<Board> board_ptr = std::experimental::make_observer(m_board.get());
     m_player1->linkBoard(board_ptr);
-    m_player2->linkBoard(board_ptr);
+    m_bot->linkBoard(board_ptr);
 }
 
 // Create the shop where players will buy and sell cards
@@ -49,38 +49,46 @@ void GameLogicManager::recruitementPhase()
 #endif
     // Give gold to the players based on the turn
     m_shop->giveGold(*m_player1, m_turn);
-    m_shop->giveGold(*m_player2, m_turn);
+    m_shop->giveGold(*m_bot, m_turn);
 
     // Draw 3 cards from the shop
     m_shop->giveChoice(*m_player1);
-    m_shop->giveChoice(*m_player2);
 
-        // Get the input from the players 
+    // Get the input from the players 
     CLI::cli_input input;
     do{
 	// Draw the board 
-	m_cli->drawBoard(*m_board, *m_player1, *m_player2);
+	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
 	// Draw the choices 
 	m_cli->drawChoices(*m_player1);
 	// Draw the hand 
 	m_cli->drawHand(*m_player1);
 	// Draw the player stats 
+    m_cli->drawStats(*m_bot);
 	m_cli->drawStats(*m_player1);
-	m_cli->drawStats(*m_player2);
 	input = m_cli->getInput(*m_player1);
 	switch (input.choice)
 	{
 	    case CLI::BUY:
-		m_player1->selectCardFromChoices(input.card, *m_shop);
-		break;
+            m_player1->selectCardFromChoices(input.card, *m_shop);
+            break;
 	    case CLI::SELL:
-		m_player1->sellCardFromHand(input.card, *m_shop);
-		break;
+            m_player1->sellCardFromHand(input.card, *m_shop);
+            break;
 	    case CLI::PLAY:
-		m_player1->moveCardFromHandToBoardLeft(input.card);
-		break;
+            m_player1->moveCardFromHandToBoardLeft(input.card);
+            break;
+        case CLI::EXIT:
+            exit(0);
+            break;
 	}
     }while(input.choice != CLI::BATTLE);
+    m_player1->resetChoices();
+    // bot phase
+    m_shop->giveChoice(*m_bot);
+    m_bot->playTurn(*m_shop);
+    m_cli->drawHand(*m_bot);
+    m_bot->resetChoices();
 }
 
 void GameLogicManager::battlePhase()
@@ -89,9 +97,9 @@ void GameLogicManager::battlePhase()
     // Randomly choose a player to start
     int player_to_start = rand() % 2;
     // Select the player that will start
-    Player &player = (player_to_start == 0) ? *m_player1 : *m_player2;
+    Player &player = (player_to_start == 0) ? *m_player1 : *m_bot;
     // Select the player that will wait
-    Player &player2 = (player_to_start == 0) ? *m_player2 : *m_player1;
+    Player &player2 = (player_to_start == 0) ? *m_bot : *m_player1;
 
     // Get player cards on board
     std::vector<std::reference_wrapper<Card>> player_cards = m_board->getPlayerCardsView(player);
