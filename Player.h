@@ -19,6 +19,8 @@ private:
     unsigned int m_golds = 0;
     // Player level
     unsigned int m_level = 1;
+    // Payer HP
+    unsigned int m_hp = 30;
     // Hero of the player
     std::unique_ptr<Hero> m_hero;
     // Player deck the cards on his hand
@@ -56,8 +58,12 @@ public:
     std::string getName() const { return m_name; }
     // Get the golds of the player
     unsigned int getGolds() const { return m_golds; }
+    // Get the health points of the player
+    unsigned int getHealth() const { return m_hp; }
     // Set the golds of the player
     void setGolds(unsigned int golds) { m_golds = golds; }
+    // Set hp of the player 
+    void setHealth(unsigned int hp) { m_hp = hp; }
     // Get level of player
     unsigned int getLevel() const { return m_level; }
     // Set level of player
@@ -79,10 +85,14 @@ public:
 
     // Add card to the choices of the player
     void addCardToChoices(Card &card);
-
+    // Get a view on the choices of the player 
+    std::vector<std::reference_wrapper<Card>> getChoicesView() const { return m_choices; }
+    // Get a view on the hand of the player
+    std::vector<std::reference_wrapper<Card>> getHandView() const; 
     // Select a card from the choices
     void selectCardFromChoices(int index, Shop &shop);
-
+    // Reset the choices of the player
+    void resetChoices();
     // Print the choices of the player
     void printChoices() const;
 };

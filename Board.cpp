@@ -3,7 +3,7 @@
 #include <typeinfo>
 #include "Player.h"
 
-std::vector<std::reference_wrapper<Card>> Board::getPlayerCardsView(Player &player)
+std::vector<std::reference_wrapper<Card>> Board::getPlayerCardsView(const Player &player) const
 {
     std::vector<std::reference_wrapper<Card>> player_cards;
     // Check if the card is owned by the player id

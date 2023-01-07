@@ -1,8 +1,14 @@
 #include "Shop.h"
 #include "Player.h"
 
+
+#define SHOP_DEBUG 1
+
 void Shop::giveCard(std::unique_ptr<Card> &card, Player &player)
 {
+#if SHOP_DEBUG
+    std::cout << "[SHOP DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Shop::giveCard " << '\n';
+#endif
     // Remove the gold cost of the card from the player
     unsigned int player_gold = player.getGolds();
     player.setGolds(player_gold - card->getGoldCost());
@@ -19,6 +25,9 @@ unsigned int Shop::calculateGold(unsigned int turns) const
 
 void Shop::createDeck()
 {
+#if SHOP_DEBUG
+    std::cout << "[SHOP DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Shop::createDeck " << '\n';
+#endif
     m_deck.push_back(std::make_unique<DeckSwabbie>());
     m_deck.push_back(std::make_unique<DeckSwabbie>());
     m_deck.push_back(std::make_unique<DeckSwabbie>());
@@ -29,6 +38,9 @@ void Shop::createDeck()
 
 void Shop::shuffleDeck()
 {
+#if SHOP_DEBUG
+    std::cout << "[SHOP DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Shop::shuffleDeck" << '\n';
+#endif
     std::random_shuffle(m_deck.begin(), m_deck.end());
 }
 
@@ -46,12 +58,17 @@ void Shop::displayCards() const
 
 void Shop::giveChoice(Player &player)
 {
+#if SHOP_DEBUG
+    std::cout << "[SHOP DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Shop::giveChoice " << '\n';
+#endif
     shuffleDeck();
     int count = 0;
     for (int i = 0; i < m_deck.size(); i++)
     {
-        if (m_deck[i]->getRang() <= player.getLevel())
+        if (m_deck[i]->getRang() <= player.getLevel() && m_deck[i]->getGoldCost() <= player.getGolds())
         {
+	    std::cout << "Gold cost : " << m_deck[i]->getGoldCost() << '\n';
+	    std::cout << "Player golds : " << player.getGolds() << '\n';
             player.addCardToChoices(*m_deck[i]);
             if (++count == 3)
                 break;
@@ -93,11 +110,17 @@ void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
 
 void Shop::giveGold(Player &player, unsigned int turns) const
 {
+#if SHOP_DEBUG
+    std::cout << "[SHOP DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Shop::giveGold " << '\n';
+#endif
     player.m_golds += calculateGold(turns);
 }
 
 void Shop::giveCardToPlayer(Player &player, Card &card)
 {
+#if SHOP_DEBUG
+    std::cout << "[SHOP DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Shop::giveCardToPlayer " << '\n';
+#endif
     // Get index of the card in the deck
     int index = 0;
     for (auto &c : m_deck)
@@ -108,10 +131,23 @@ void Shop::giveCardToPlayer(Player &player, Card &card)
         index++;
     }
 
+    if (index >= m_deck.size())
+        throw std::runtime_error("Card not found in the deck");
     // Get the card
-    std::unique_ptr<Card> cardToGive = std::move(m_deck[index]);
+    std::unique_ptr<Card>
+        cardToGive = std::move(m_deck[index]);
     // Remove the card from the deck
     m_deck.erase(m_deck.begin() + index);
     // Give the card to the player
     giveCard(cardToGive, player);
+}
+
+std::vector<std::reference_wrapper<const Card>> Shop::getChoicesView() const
+{
+	std::vector<std::reference_wrapper<const Card>> choices;
+	for (auto &c : m_choices)
+	{
+		choices.push_back(std::cref(*c));
+	}
+	return choices;
 }

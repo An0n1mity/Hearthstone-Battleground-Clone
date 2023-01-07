@@ -19,10 +19,9 @@ public:
     Board(){};
     ~Board()
     {
-        std::cout << "Board destructor" << std::endl;
     };
     // Get a view of the cards of a certain player
-    std::vector<std::reference_wrapper<Card>> getPlayerCardsView(Player &player);
+    std::vector<std::reference_wrapper<Card>> getPlayerCardsView(const Player &player) const;
 
     // Get Cards of the board
     std::vector<std::reference_wrapper<Card>> getCardsView();

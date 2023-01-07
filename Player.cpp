@@ -1,4 +1,5 @@
 #include "Player.h"
+#define PLAYER_DEBUG 1
 
 std::ostream &operator<<(std::ostream &os, Player &player)
 {
@@ -29,6 +30,9 @@ void Player::addCardToHand(std::unique_ptr<Card> &card)
 
 void Player::moveCardFromHandToBoardLeft(int index)
 {
+#if PLAYER_DEBUG
+    std::cout << "[PLAYER DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Player::moveCardFromHandToBoardLeft " << '\n';
+#endif
     // Sanity check
     if (index < 0 || index >= m_hand.size() || m_hand.empty())
         return;
@@ -81,13 +85,23 @@ void Player::addCardToChoices(Card &card)
 
 void Player::selectCardFromChoices(int index, Shop &shop)
 {
+#if PLAYER_DEBUG
+    std::cout << "[PLAYER DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Player::selectCardFromChoices " << '\n';
+#endif
     // Sanity check
     if (index < 0 || index >= m_choices.size() || m_choices.empty())
         return;
-
+    std::cout << "ID: " << m_choices[index].get().getId() << '\n';
     shop.giveCardToPlayer(*this, m_choices[index]);
     // Remove the card from the choices
     m_choices.erase(m_choices.begin() + index);
+    // Clear the choices 
+    m_choices.clear();
+}
+
+void Player::resetChoices()
+{
+	m_choices.clear();
 }
 
 void Player::printChoices() const
@@ -98,4 +112,14 @@ void Player::printChoices() const
         Card &card = card_ref.get();
         card.print();
     }
+}
+
+std::vector<std::reference_wrapper<Card>> Player::getHandView() const
+{
+	std::vector<std::reference_wrapper<Card>> hand_view;
+	for (auto &card : m_hand)
+	{
+		hand_view.push_back(std::ref(*card));
+	}
+	return hand_view;
 }
