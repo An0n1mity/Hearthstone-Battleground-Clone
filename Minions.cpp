@@ -12,6 +12,9 @@ void Minion::attackEnemy(Minion &enemy)
 	// Activate the effect of the minion on attack
 	enemy.applyEffects(Effect::ON_DAMAGE);
 
+	// Activate the effect of the minion on attack
+	applyEffects(Effect::ON_ATTACK);
+
 	// Update the state of the minion
 	m_state = ATTACKING;
 	enemy.m_state = DEFENDING;

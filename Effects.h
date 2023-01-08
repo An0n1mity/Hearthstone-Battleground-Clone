@@ -22,7 +22,9 @@ public:
 	    // Activate while the card is not damaged
 	    UNTIL_DAMAGE,
         // Activate when the card is damaged
-        ON_DAMAGE
+        ON_DAMAGE,
+        // Activate when the card attack
+        ON_ATTACK
     };
     Effect(enum ActivationPhase_e activation_phase, void (*effect_function)(Card *), Card *card = nullptr) : m_activation_phase(activation_phase), m_effect_function(effect_function), m_card(card) {}
     virtual ~Effect() {}
@@ -67,6 +69,13 @@ class DivineShield : public Effect
 public:
     DivineShield(void (*effect_function)(Card *), Card *card) : Effect(UNTIL_DAMAGE, effect_function, card) {}
     virtual ~DivineShield() {}
+};
+
+class Attack : public Effect
+{
+public:
+    Attack(void (*effect_function)(Card *), Card *card) : Effect(ON_ATTACK, effect_function, card) {}
+    virtual ~Attack() {}
 };
 
 #endif

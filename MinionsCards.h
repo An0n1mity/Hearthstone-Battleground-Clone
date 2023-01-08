@@ -52,15 +52,21 @@ public:
     static void giveFriendlyBeast(Card *card)
     {
         std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
-        int card_to_give = rand() % player_cards.size();
-        Card * cardToGive = &(player_cards[card_to_give].get());
-        Minion* minion = dynamic_cast<Minion*>(cardToGive);
-        minion.buffAttackPoint(cardToGive, 1);
-        minion.buffHealthPoint(cardToGive, 1);
+        if (player_cards.size() > 0){
+            int card_to_give = rand() % player_cards.size();
+            Card * cardToGive = &(player_cards[card_to_give].get());
+            Minion* minion = dynamic_cast<Minion*>(cardToGive);
+            minion->buffAttackPoint(cardToGive, minion->getHealth() + 1);
+            minion->buffHealthPoint(cardToGive, minion->getHealth() + 1);
+        } 
     }
     Leapfrogger() : Beast(2, 3, 3){
-	// Effect description 
-	m_effect_description = "Deathrattle: Give a friendly beast +1/+1 and this Deathrattle";
+        // Effect description 
+        m_effect_description = "Deathrattle: Give a friendly beast +1/+1 and this Deathrattle";
+        // Create a battle cry effect that have a pointer to the function giveFriendlyBeast
+        Effect *deathrattle = new Deathrattle(giveFriendlyBeast, this);
+        // Add the effect to the vector of effects
+        m_effects.push_back(std::unique_ptr<Effect>(deathrattle));
     }
     virtual ~Leapfrogger() {}
     virtual void printName() const override { std::cout << "Leapfrogger"; }
@@ -84,9 +90,25 @@ class HoundMaster : public Beast
 {
 
 public:
+    static void giveFriendlyBeast(Card *card)
+    {
+        std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
+        if (player_cards.size() > 0){
+            int card_to_give = rand() % player_cards.size();
+            Card * cardToGive = &(player_cards[card_to_give].get());
+            Minion* minion = dynamic_cast<Minion*>(cardToGive);
+            minion->buffAttackPoint(cardToGive, minion->getHealth() + 1);
+            minion->buffHealthPoint(cardToGive, minion->getHealth() + 1);
+        }     
+    }
+
     HoundMaster() : Beast(3, 3, 4){
-	// Effect description 
-	m_effect_description = "Battlecry: Give a friendly Beast +2/+2 and Taunt";
+        // Effect description 
+        m_effect_description = "Battlecry: Give a friendly Beast +2/+2 and Taunt";
+        // Create a battle cry effect that have a pointer to the function giveFriendlyBeast
+        Effect *battlecry = new Battlecry(giveFriendlyBeast, this);
+        // Add the effect to the vector of effects
+        m_effects.push_back(std::unique_ptr<Effect>(battlecry));
     }
     virtual ~HoundMaster() {}
     virtual void printName() const override { std::cout << "HoundMaster"; }
@@ -97,9 +119,33 @@ class Monstrous_macow : public Beast
 {
 
 public:
+    static void triggerDeathRattle(Card *card)
+    {
+        std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
+        std::vector<std::reference_wrapper<Card>> cards_with_Deathrattle;
+        for (auto &card : player_cards)
+        {
+            std::vector<std::unique_ptr<Effect>> effects = card.get().getEffects();
+            for (auto &effect : effects)
+            {
+                if (effect->getActivationPhase() == Effect::ON_DEATH)
+                {
+                    cards_with_Deathrattle.push_back(card);
+                }
+            }
+        }
+        int card_to_active = rand() % cards_with_Deathrattle.size();
+        Card * cardToActive = &(cards_with_Deathrattle[card_to_active].get());
+        cardToActive->applyEffects(Effect::ON_DEATH);
+    }
+
     Monstrous_macow() : Beast(3, 3, 5){
-	// Effect description 
-	m_effect_description = "After this attacks, trigger another friendly minion's Deathrattle";
+        // Effect description 
+        m_effect_description = "After this attacks, trigger another friendly minion's Deathrattle";
+        // Create a battle cry effect that have a pointer to the function triggerDeathRattle
+        Effect *attack = new Attack(triggerDeathRattle, this);
+        // Add the effect to the vector of effects
+        m_effects.push_back(std::unique_ptr<Effect>(attack));
     }
     virtual ~Monstrous_macow() {}
     virtual void printName() const override { std::cout << "Monstrous Macow"; }
@@ -108,11 +154,19 @@ public:
 
 class Cave_Hydra : public Beast
 {
+    static void attackNeighbors(Card *card)
+    {
+        // ddazdad
+    }
 
 public:
     Cave_Hydra() : Beast(4, 4, 2){
-	// Effect description 
-	m_effect_description = "Also damages the minions next to whomever this attacks";
+	    // Effect description 
+	    m_effect_description = "Also damages the minions next to whomever this attacks";
+        // Create a battle cry effect that have a pointer to the function attackNeighbors
+        Effect *attack = new Attack(attackNeighbors, this);
+        // Add the effect to the vector of effects
+        m_effects.push_back(std::unique_ptr<Effect>(attack));
     }
     virtual ~Cave_Hydra() {}
     virtual void printName() const override { std::cout << "Cave Hydra"; }
@@ -245,9 +299,25 @@ public:
 class Southsea_Captain : public Pirate
 {
 public:
+    static void boostOtherPirates(Card *card){
+        std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
+        for (auto &card : player_cards)
+        {
+            Minion *minion = dynamic_cast<Minion *>(&card.get());
+            if (minion->getType() == "Pirate")
+            {
+                minion->buffAttackPoint(&(card.get()), minion->getAttack() + 1);
+                minion->buffHealthPoint(&(card.get()), minion->getHealth() + 1);
+            }
+        }
+    }
     Southsea_Captain() : Pirate(2, 3, 3) {
-	// Effect description 
-	m_effect_description = "Your other Pirates have +1/+1";
+        // Effect description 
+        m_effect_description = "Your other Pirates have +1/+1";
+        // Create a battle cry effect that have a pointer to the function boostOtherPirates
+        Effect *battlecry = new Battlecry(boostOtherPirates, this);
+        // Add the effect to the vector of effects
+        m_effects.push_back(std::unique_ptr<Effect>(battlecry));
     }
     virtual ~Southsea_Captain() {}
     virtual void printName() const override { std::cout << "Southsea Captain"; }
@@ -271,7 +341,7 @@ class Southsea_Strongarm : public Pirate
 public:
     Southsea_Strongarm() : Pirate(3, 3, 4) {
 	// Effect description 
-	m_effect_description = "Battlecry: Give Give a friendly Pirate +1/+1. Repeat for each Pirate you bought this turn";
+	m_effect_description = "Battlecry: Give a friendly Pirate +1/+1. Repeat for each Pirate you bought this turn";
     }
     virtual ~Southsea_Strongarm() {}
     virtual void printName() const override { std::cout << "Southsea Strongarm"; }
@@ -311,7 +381,7 @@ class DozyWhelp : public Dragon
 public:
     static void Gain1AttackPoint(Card *card)
     {
-	Minion::buffAttackPoint(card, 1);
+	    Minion::buffAttackPoint(card, 1);
     }
     DozyWhelp() : Dragon(1, 3, 0)
     {
