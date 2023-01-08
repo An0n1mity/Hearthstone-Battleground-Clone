@@ -1,6 +1,7 @@
 #include "GameLogicManager.h"
 #define GAMELOGICMANAGER_DEBUG
-
+#include <chrono>
+#include <thread>
 
 // Create the two players that will battle
 void GameLogicManager::createPlayers()
@@ -42,7 +43,7 @@ void GameLogicManager::createCLI()
 	m_cli = std::make_unique<CLI>();
 }
 
-void GameLogicManager::recruitementPhase()
+CLI::cli_input GameLogicManager::recruitementPhase()
 {
 #ifdef GAMELOGICMANAGER_DEBUG
     std::cout << "[GAMELOGICMANAGER DEBUG]: Called from " << __FILE__ << " at line " << __LINE__ << " GameLogicManager::recruitementPhase" << std::endl;
@@ -57,6 +58,8 @@ void GameLogicManager::recruitementPhase()
     // Get the input from the players 
     CLI::cli_input input;
     do{
+	// Clear 
+	m_cli->clear();
 	// Draw the board 
 	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
 	// Draw the choices 
@@ -79,8 +82,8 @@ void GameLogicManager::recruitementPhase()
             m_player1->moveCardFromHandToBoardLeft(input.card);
             break;
         case CLI::EXIT:
-            exit(0);
-            break;
+	    std::cout << "Exiting..." << std::endl;
+	    return {CLI::EXIT, 0};
 	}
     }while(input.choice != CLI::BATTLE);
     m_player1->resetChoices();
@@ -89,11 +92,16 @@ void GameLogicManager::recruitementPhase()
     m_bot->playTurn(*m_shop);
     m_cli->drawHand(*m_bot);
     m_bot->resetChoices();
+    return input;
 }
 
 void GameLogicManager::battlePhase()
 {
-    std::cout << "Battle phase..." << std::endl;
+#ifdef GAMELOGICMANAGER_DEBUG
+    std::cout << "[GAMELOGICMANAGER DEBUG]: Called from " << __FILE__ << " at line " << __LINE__ << " GameLogicManager::battlePhase" << std::endl;
+#endif 
+    m_cli->drawBoard(*m_board, *m_player1, *m_bot);
+    std::this_thread::sleep_for(std::chrono::seconds(3));
     // Randomly choose a player to start
     int player_to_start = rand() % 2;
     // Select the player that will start
@@ -121,11 +129,13 @@ void GameLogicManager::battlePhase()
         Minion *minion = dynamic_cast<Minion *>(&card.get());
         Minion *minion2 = dynamic_cast<Minion *>(&player2_cards[card_to_attack].get());
         // Attack the card
-        std::cout << player.getName() << " attacks with " << minion->getName() << " "
-                  << minion2->getName() << " of " << player2.getName() << std::endl;
-        std::cout << "Before attack: " << minion2->getHealth() << std::endl;
         minion->attackEnemy(*minion2);
-	std::cout << "After attack: " << minion2->getHealth() << std::endl;
+        // Update if some cards died
+        player2_cards = m_board->getPlayerCardsView(player2);
+
+	m_cli->clear();
+	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
+	std::this_thread::sleep_for(std::chrono::seconds(3));
     }
 
     // For each card of the defending player
@@ -145,5 +155,11 @@ void GameLogicManager::battlePhase()
         Minion *minion2 = dynamic_cast<Minion *>(&player_cards[card_to_attack].get());
         // Attack the card
         minion->attackEnemy(*minion2);
+        // Update if some cards died
+        player_cards = m_board->getPlayerCardsView(player);
+
+	m_cli->clear();
+	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
+	std::this_thread::sleep_for(std::chrono::seconds(3));
     }
 }

@@ -37,7 +37,7 @@ public:
     void setId()
     {
         static int id = 0;
-        m_id = id++;
+        m_id = ++id;
     }
     // Get id of the player
     int getId() const { return m_id; }

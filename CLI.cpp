@@ -1,7 +1,7 @@
 #include "CLI.h"
 #include <string>
 
-void CLI::clearScreen()
+void CLI::clear()
 {
     // Clear the screen
     std::cout << "\033[2J\033[1;1H";

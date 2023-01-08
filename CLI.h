@@ -20,7 +20,7 @@ class CLI
 	int card;
     };	
 	// Refresh the terminal
-	void clearScreen();
+	void clear();
 	// Draw the player and bot cards on the board
 	void drawBoard(const Board &board, const Player &player, const Player &bot);
 	// Convert the card to a string

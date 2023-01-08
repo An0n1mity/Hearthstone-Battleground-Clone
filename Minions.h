@@ -37,6 +37,7 @@ public:
         // Update owner and board
         std::experimental::observer_ptr<Player> player = card->getOwner();
         minion->linkPlayer(player);
+        minion->linkBoard(board);
         //  Add the minion to the board
         board->addCardLeft(minion);
     }
