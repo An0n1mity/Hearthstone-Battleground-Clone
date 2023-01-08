@@ -1,4 +1,5 @@
 #include "Shop.h"
+#include "MinionsCards.h"
 #include "Player.h"
 
 unsigned int Shop::calculateGold(unsigned int turns) const
@@ -15,18 +16,9 @@ void Shop::createDeck()
     m_deck.push_back(std::make_unique<AlleyCat>());
     m_deck.push_back(std::make_unique<AlleyCat>());
     m_deck.push_back(std::make_unique<AlleyCat>());
-    m_deck.push_back(std::make_unique<DeckSwabbie>());
-    m_deck.push_back(std::make_unique<DeckSwabbie>());
-    m_deck.push_back(std::make_unique<DeckSwabbie>());
-    m_deck.push_back(std::make_unique<AlleyCat>());
-    m_deck.push_back(std::make_unique<AlleyCat>());
-    m_deck.push_back(std::make_unique<AlleyCat>());
-    m_deck.push_back(std::make_unique<DeckSwabbie>());
-    m_deck.push_back(std::make_unique<DeckSwabbie>());
-    m_deck.push_back(std::make_unique<DeckSwabbie>());
-    m_deck.push_back(std::make_unique<AlleyCat>());
-    m_deck.push_back(std::make_unique<AlleyCat>());
-    m_deck.push_back(std::make_unique<AlleyCat>());
+    m_deck.push_back(std::make_unique<DozyWhelp>());
+    m_deck.push_back(std::make_unique<DozyWhelp>());
+    m_deck.push_back(std::make_unique<DozyWhelp>());
 }
 
 void Shop::shuffleDeck()

@@ -66,6 +66,19 @@ public:
     virtual std::string getType() const = 0;
     // Get the rank of the minion
     virtual int getRang() const { return m_rank; }
+    // Return a bool if the minion has an effect of type 
+    bool hasEffect(std::string effect_type)const{
+		for (auto &effect : m_effects)
+		{
+		    if (effect_type == "TAUNT")
+		    {
+			// Check if the effect is of type T
+			if (dynamic_cast<Taunt *>(effect.get()))
+			    return true;
+		    }
+		}
+		return false;
+	}
 };
 
 #endif

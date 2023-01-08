@@ -46,8 +46,10 @@ public:
     {
 	Minion::buffAttackPoint(card, 1);
     }
-    DozyWhelp() : Dragon(1, 0, 3) {
-	Effect* taunt = new Taunt(Gain1AttackPoint, this);
+    DozyWhelp() : Dragon(1, 3, 0)
+    {
+	Effect *taunt = new Taunt(Gain1AttackPoint, this);
+	m_effect_description = "Taunt: Whenether attacked, gain +1 Attack";
 	m_effects.push_back(std::unique_ptr<Effect>(taunt));
     }
     virtual ~DozyWhelp() {}

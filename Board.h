@@ -24,6 +24,8 @@ public:
     };
     // Get a view of the cards of a certain player
     std::vector<std::reference_wrapper<Card>> getPlayerCardsView(const Player &player) const;
+    // Get a view of the cards with taunt effect of a certain player
+    std::vector<std::reference_wrapper<Card>> getPlayerCardsViewWithTaunt(const Player &player) const;
     // Get the number of cards of the player 
     int getNumberOfCards(const Player &player) const;
 
@@ -60,6 +62,7 @@ public:
     void addCardRight(std::unique_ptr<Card> &card);
     void destroyCard(Card &card);
     void destroyCards();
+    int getCardIndex(Card &card) const;
     std::unique_ptr<Card> popCard(int index, Player &player);
 
     // Print the cards on the board

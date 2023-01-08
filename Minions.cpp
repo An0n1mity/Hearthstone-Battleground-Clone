@@ -7,10 +7,10 @@ void Minion::attackEnemy(Minion &enemy)
 #if MINIONS_DEBUG
     std::cout << "[MINIONS DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Minion::attackEnemy " << '\n';
 #endif
-	// Activate the effect of the minion on attack 
-	enemy.applyEffects(Effect::ON_DAMAGE);
 	enemy.m_health_points -= m_attack_points;
 	m_health_points -= enemy.m_attack_points;
+	// Activate the effect of the minion on attack
+	enemy.applyEffects(Effect::ON_DAMAGE);
 
 	// Update the state of the minion
 	m_state = ATTACKING;

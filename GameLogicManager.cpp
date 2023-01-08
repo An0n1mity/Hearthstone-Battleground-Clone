@@ -1,4 +1,5 @@
 #include "GameLogicManager.h"
+#include "Minions.h"
 #define GAMELOGICMANAGER_DEBUG
 #include <chrono>
 #include <thread>
@@ -130,10 +131,13 @@ void GameLogicManager::battlePhase()
     // For each card of the attacking player
     for (auto card : player_cards)
     {
+	// If the minion has no atack point 
+	Minion* minion = dynamic_cast<Minion*>(&card.get());
+	if (minion->getAttack() == 0)
+	    continue;
 	// If the enemy has no cards on board, attack the enemy directly 
 	if (player2_cards.size() == 0)
 	{
-	    Minion* minion = dynamic_cast<Minion*>(&card.get());
 	    minion->attackEnemy(*defender);
 
 	    m_cli->clear();
@@ -144,28 +148,38 @@ void GameLogicManager::battlePhase()
 	    minion->setState(Minion::State::IDLING);
 	    continue;
 	}
-        // Select a random card of the defending player
-        int card_to_attack = rand() % player2_cards.size();
-        // Dynamic cast to minion
-        Minion *minion = dynamic_cast<Minion *>(&card.get());
-        Minion *minion2 = dynamic_cast<Minion *>(&player2_cards[card_to_attack].get());
-        // Attack the card if the minion is alive 
+    // Get enemy cards with taunt
+    std::vector<std::reference_wrapper<Card>> taunt_cards = m_board->getPlayerCardsViewWithTaunt(*defender);
+    // Select a random card of the defending player
+    int card_to_attack = rand() % player2_cards.size();
+    // Dynamic cast to minion
+    // If the enemy has taunt cards, attack a random taunt card
+    if (taunt_cards.size() > 0)
+    {
+	card_to_attack = rand() % taunt_cards.size();
+        // Get index of the taunt card
+        card_to_attack = m_board->getCardIndex(taunt_cards[card_to_attack].get());
 
-	m_cli->clear();
-	if (minion->getHealth() > 0){
-	    minion->attackEnemy(*minion2);
-	    std::cout << minion->getName() << " attacks " << minion2->getName() << std::endl;
-	}
-	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
-	std::this_thread::sleep_for(std::chrono::seconds(3));
+    }
+    Minion *minion2 = dynamic_cast<Minion *>(&player2_cards[card_to_attack].get());
+    // Attack the card if the minion is alive
 
-	minion->setState(Minion::State::IDLING);
-	minion2->setState(Minion::State::IDLING);
+    m_cli->clear();
+    if (minion->getHealth() > 0)
+    {
+        minion->attackEnemy(*minion2);
+        std::cout << minion->getName() << " attacks " << minion2->getName() << std::endl;
+    }
+    m_cli->drawBoard(*m_board, *m_player1, *m_bot);
+    std::this_thread::sleep_for(std::chrono::seconds(3));
 
-	m_board->destroyCards();
-	player2_cards = m_board->getPlayerCardsView(*defender);
+    minion->setState(Minion::State::IDLING);
+    minion2->setState(Minion::State::IDLING);
 
-	m_cli->clear();
+    m_board->destroyCards();
+    player2_cards = m_board->getPlayerCardsView(*defender);
+
+    m_cli->clear();
 	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
 	std::this_thread::sleep_for(std::chrono::seconds(3));
     }
@@ -173,10 +187,13 @@ void GameLogicManager::battlePhase()
     // For each card of the defending player
     for (auto card : player2_cards)
     {
+	// If the minion has no atack point
+	Minion* minion = dynamic_cast<Minion*>(&card.get());
+	if (minion->getAttack() == 0)
+	    continue;
 	// If the enemy has no cards on board, attack the enemy directly 
 	if (player_cards.size() == 0)
 	{
-	    Minion* minion = dynamic_cast<Minion*>(&card.get());
 	    minion->attackEnemy(*attacker);
 
 	    m_cli->clear();
@@ -187,30 +204,39 @@ void GameLogicManager::battlePhase()
 	    minion->setState(Minion::State::IDLING);
 	    continue;
 	}
-        // Select a random card of the attacking player
-        int card_to_attack = rand() % player_cards.size();
+    // Get enemy cards with taunt
+    std::vector<std::reference_wrapper<Card>> taunt_cards = m_board->getPlayerCardsViewWithTaunt(*attacker);
+    // Select a random card of the attacking player
+    int card_to_attack = rand() % player_cards.size();
+    // If the enemy has taunt cards, attack a random taunt card
+    if (taunt_cards.size() > 0)
+    {
+        card_to_attack = rand() % taunt_cards.size();
+        // Get index of the taunt card
+        card_to_attack = m_board->getCardIndex(taunt_cards[card_to_attack].get());
+    }
         // Dynamic cast to minion
-        Minion *minion = dynamic_cast<Minion *>(&card.get());
         Minion *minion2 = dynamic_cast<Minion *>(&player_cards[card_to_attack].get());
         // Attack the card
 
-	m_cli->clear();
-	if (minion->getHealth() > 0){
-	    minion->attackEnemy(*minion2);
-	    std::cout << minion->getName() << " attacks " << minion2->getName() << std::endl;
-	}
+        m_cli->clear();
+        if (minion->getHealth() > 0)
+        {
+        minion->attackEnemy(*minion2);
+        std::cout << minion->getName() << " attacks " << minion2->getName() << std::endl;
+        }
 
-	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
-	std::this_thread::sleep_for(std::chrono::seconds(3));
+        m_cli->drawBoard(*m_board, *m_player1, *m_bot);
+        std::this_thread::sleep_for(std::chrono::seconds(3));
 
-	minion->setState(Minion::State::IDLING);
-	minion2->setState(Minion::State::IDLING);
+        minion->setState(Minion::State::IDLING);
+        minion2->setState(Minion::State::IDLING);
 
-	m_board->destroyCards();
-	player_cards = m_board->getPlayerCardsView(*attacker);
+        m_board->destroyCards();
+        player_cards = m_board->getPlayerCardsView(*attacker);
 
-	m_cli->clear();
-	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
-	std::this_thread::sleep_for(std::chrono::seconds(3));
+        m_cli->clear();
+        m_cli->drawBoard(*m_board, *m_player1, *m_bot);
+        std::this_thread::sleep_for(std::chrono::seconds(3));
     }
 }

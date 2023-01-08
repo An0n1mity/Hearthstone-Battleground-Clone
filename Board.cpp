@@ -25,6 +25,38 @@ std::vector<std::reference_wrapper<Card>> Board::getPlayerCardsView(const Player
     return player_cards;
 }
 
+std::vector<std::reference_wrapper<Card>> Board::getPlayerCardsViewWithTaunt(const Player &player) const
+{
+    std::vector<std::reference_wrapper<Card>> player_cards;
+    // Check if the card is owned by the player id
+    if (player.getId() == 1)
+    {
+        for (auto &card : m_player1_cards)
+        {
+            // Dynamic cast
+            Minion *minion_ptr = dynamic_cast<Minion *>(card.get());
+            if (minion_ptr->hasEffect("TAUNT"))
+            {
+                player_cards.push_back(std::ref(*card));
+            }
+        }
+    }
+    else if (player.getId() == 2)
+    {
+        for (auto &card : m_player2_cards)
+        {
+            // Dynamic cast
+            Minion *minion_ptr = dynamic_cast<Minion *>(card.get());
+            if (minion_ptr->hasEffect("TAUNT"))
+            {
+                player_cards.push_back(std::ref(*card));
+            }
+        }
+    }
+
+    return player_cards;
+}
+
 std::vector<std::reference_wrapper<Card>> Board::getCardsView()
 {
     std::vector<std::reference_wrapper<Card>> cards;
@@ -71,34 +103,6 @@ void Board::addCardRight(std::unique_ptr<Card> &card)
     {
         // Add the card to the right of the board
         m_player2_cards.push_back(std::move(card));
-    }
-}
-
-void Board::destroyCard(Card &card)
-{
-    // Check the player id of the card
-    std::experimental::observer_ptr<Player> player_ptr = card.getOwner();
-    // If the player id is 1
-    if (player_ptr->getId() == 1)
-    {
-        auto it = std::find_if(m_player1_cards.begin(), m_player1_cards.end(), [&card](const std::unique_ptr<Card> &card_ptr)
-                               { return card_ptr.get() == &card; });
-        // Get index
-        int index = std::distance(m_player1_cards.begin(), it);
-        m_destroyed_cards.push_back(std::move(*it));
-        m_player1_cards.erase(m_player1_cards.begin() + index);
-    }
-    // If the player id is 2
-    else if (player_ptr->getId() == 2)
-    {
-        auto it = std::find_if(m_player2_cards.begin(), m_player2_cards.end(), [&](std::unique_ptr<Card> &card_)
-                               { return card_.get() == &card; });
-        // Get index
-        int index = std::distance(m_player2_cards.begin(), it);
-        // Add the card to the right of the board
-        m_destroyed_cards.push_back(std::move(*it));
-        // Remove the card from the board
-        m_player2_cards.erase(m_player2_cards.begin() + index);
     }
 }
 
@@ -152,4 +156,29 @@ int Board::getNumberOfCards(const Player &player) const
 		return m_player2_cards.size();
 	}
 	return 0;
+}
+
+int Board::getCardIndex(Card &card) const
+{
+    // Check the player id of the card
+    std::experimental::observer_ptr<Player> player_ptr = card.getOwner();
+    // If the player id is 1
+    if (player_ptr->getId() == 1)
+    {
+        auto it = std::find_if(m_player1_cards.begin(), m_player1_cards.end(), [&card](const std::unique_ptr<Card> &card_)
+                               { return card_.get() == &card; });
+        // Get index
+        int index = std::distance(m_player1_cards.begin(), it);
+        return index;
+    }
+    // If the player id is 2
+    else if (player_ptr->getId() == 2)
+    {
+        auto it = std::find_if(m_player2_cards.begin(), m_player2_cards.end(), [&card](const std::unique_ptr<Card> &card_)
+                               { return card_.get() == &card; });
+        // Get index
+        int index = std::distance(m_player2_cards.begin(), it);
+        return index;
+    }
+    return -1;
 }
