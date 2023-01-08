@@ -38,7 +38,7 @@ git clone https://github.com/An0n1mity/Hearthstone-Battleground-Clone
 #### Build from sources
 ```
 g++ -o hearthstone-battle-ground-cli *.c++ (Linux)
-x86_64-w64-mingw32-g++-posix -std=c++2a -lwinpthread ../*.cpp (Windows)
+x86_64-w64-mingw32-g++-posix -o hearthstone-battle-ground-cli -std=c++2a -lwinpthread *.cpp (Windows)
 ```
 #### Run the binary
 ```
