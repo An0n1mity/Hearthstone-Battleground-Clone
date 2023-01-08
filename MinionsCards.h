@@ -155,7 +155,7 @@ public:
 
     Monstrous_macow() : Beast(3, 3, 5){
         // Effect description 
-        m_effect_description = "After this attacks, trigger another friendly minion's Deathrattle";
+        m_effect_description = "After attacks, trigger friendly minion's Deathrattle";
         // Create a battle cry effect that have a pointer to the function triggerDeathRattle
         Effect *attack = new Attack(triggerDeathRattle, this);
         // Add the effect to the vector of effects

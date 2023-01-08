@@ -5,7 +5,7 @@ void Bot::playTurn(Shop &shop)
     // Bot will play a random card from his hand
     // If he has no card in his hand, he will draw a card
     int choice;
-    if (m_golds >= 5)
+    if (m_golds >= 5 && m_level < 4)
         choice = rand() % 2;
     else
         choice = 0;
