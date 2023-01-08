@@ -1,8 +1,11 @@
-![C++](https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![LICENSE](https://img.shields.io/github/license/an0n1mity/Hearthstone-Battleground-Clone)  
+<p align="center">
+  <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white">
+  <img src="https://img.shields.io/github/license/an0n1mity/Hearthstone-Battleground-Clone">
+</p>
 <p align="center">
   <img src="https://pbs.twimg.com/media/DjIndZsX4AAzV_S?format=jpg&name=900x900" width=10% height=auto/>
 </p>
+
 # Hearthstone-Battleground-Clone-CLI
 A Simple HearthStone Battleground clone to demonstrate OOP concepts 
 
