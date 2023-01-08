@@ -139,12 +139,17 @@ void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
 
 void Shop::giveGold(Player &player, unsigned int turns) const
 {
-    player.m_golds += calculateGold(turns);
+    player.m_golds = calculateGold(turns);
 }
 
 void Shop::giveCardToPlayer(Player &player, Card &card)
 {
     // Get index of the card in the deck
+    if (player.getGolds() < 3){
+        std::cout << "You don't have enough golds to buy card" << std::endl;
+        return;
+    }
+    
     int index = 0;
     for (auto &c : m_deck)
     {

@@ -152,10 +152,11 @@ CLI::cli_input CLI::getInput(const Player& player)
 	std::cout << "CHOICES" << std::endl;
 	std::cout << "1 BUY" << std::endl;
 	std::cout << "2 SELL" << std::endl;
-	std::cout << "3 UPGRADE" << std::endl;
-	std::cout << "4 PLAY CARD" << std::endl;
-	std::cout << "5 BATTLE" << std::endl;
-	std::cout << "6 EXIT" << std::endl;
+	std::cout << "3 NEW CHOICES" << std::endl;
+	std::cout << "4 UPGRADE" << std::endl;
+	std::cout << "5 PLAY CARD" << std::endl;
+	std::cout << "6 BATTLE" << std::endl;
+	std::cout << "7 EXIT" << std::endl;
 
 	while(true){ 
 	    std::cout << "Enter your choice: ";
@@ -199,7 +200,15 @@ CLI::cli_input CLI::getInput(const Player& player)
 			return {SELL, input_i-1};
 		}
 	    }
-	    else if (input == "3")
+		else if (input == "3")
+	    {
+		return {ROLL, 0};
+	    }
+	    else if (input == "4")
+	    {
+		return {UPGRADE, 0};
+	    }
+		else if (input == "5")
 	    {
 		// Get the player hand 
 		std::vector<std::reference_wrapper<Card>> hand = player.getHandView();
@@ -217,12 +226,12 @@ CLI::cli_input CLI::getInput(const Player& player)
 			return {PLAY, input_i-1};
 		}
 	    }
-	    else if (input == "4")
+	    else if (input == "6")
 	    {
 		return {BATTLE, 0};
 	    }
 
-	    else if (input == "5")
+	    else if (input == "7")
 	    {
 		return {EXIT, std::stoi(input)};
 	    }
@@ -232,5 +241,5 @@ CLI::cli_input CLI::getInput(const Player& player)
 
 void CLI::drawStats(const Player &player)
 {
-    std::cout << "PLAYER STATS : " << player.getName() << " " <<  player.getHealth() << " HP" << std::endl;
+    std::cout << "PLAYER STATS : " << player.getName() << " / Level : " << player.getLevel() << " / " <<  player.getHealth() << " HP / " << player.getGolds() << " Golds" <<std::endl;
 }

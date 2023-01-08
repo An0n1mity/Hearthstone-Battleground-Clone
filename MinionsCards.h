@@ -207,9 +207,9 @@ class PirateSummon : public Pirate
 public:
     static void attackImmediately(Card *card)
     {
-        /*std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
+        std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
         std::vector<std::reference_wrapper<Card>> opponent_cards = card->getBoard()->getOtherPlayerCardsView(*(card->getOwner().get()));
-
+/*
         // If the enemy has no cards on board, attack the enemy directly 
         if (opponent_cards.size() == 0)
         {
@@ -221,7 +221,7 @@ public:
             std::this_thread::sleep_for(std::chrono::seconds(3));
 
             minion->setState(Minion::State::IDLING);
-        }
+        }*/
 
         Minion* minion = dynamic_cast<Minion*>(card);
 
@@ -247,7 +247,7 @@ public:
         minion->setState(Minion::State::IDLING);
         minion2->setState(Minion::State::IDLING);
 
-        card->getBoard()->destroyCards();*/
+        card->getBoard()->destroyCards();
     }
     PirateSummon() : Pirate(1, 1, 1) {
 	// Effect description 

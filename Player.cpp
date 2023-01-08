@@ -93,10 +93,6 @@ void Player::selectCardFromChoices(int index, Shop &shop)
         return;
     std::cout << "ID: " << m_choices[index].get().getId() << '\n';
     shop.giveCardToPlayer(*this, m_choices[index]);
-    // Remove the card from the choices
-    m_choices.erase(m_choices.begin() + index);
-    // Clear the choices 
-    m_choices.clear();
 }
 
 void Player::resetChoices()

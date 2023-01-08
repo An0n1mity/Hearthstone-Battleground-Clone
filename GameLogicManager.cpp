@@ -79,6 +79,9 @@ CLI::cli_input GameLogicManager::recruitementPhase()
 	    case CLI::SELL:
             m_player1->sellCardFromHand(input.card, *m_shop);
             break;
+        case CLI::ROLL:
+            m_shop->giveAnotherChoice(*m_player1);
+            break;
         case CLI::UPGRADE:
             m_player1->upgradeLevel();
             break;
@@ -96,6 +99,7 @@ CLI::cli_input GameLogicManager::recruitementPhase()
     m_bot->playTurn(*m_shop);
     m_cli->drawHand(*m_bot);
     m_bot->resetChoices();
+    m_turn++;
     return input;
 }
 
