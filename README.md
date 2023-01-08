@@ -10,7 +10,9 @@
 A Simple HearthStone Battleground clone to demonstrate OOP concepts 
 
 ## Class diagram 📊
-
+<p align="center">
+  <img src="https://github.com/An0n1mity/Hearthstone-Battleground-Clone/" width=10% height=auto/>
+</p>
 ## Design pattern
 The goal of this project was to try learn basic of design pattern for OOP using C++.  
 1. Uses of smart pointers : Better aggregation and composition relationship than with raw pointers.
