@@ -168,9 +168,9 @@ void Board::destroyCards()
         Minion *minion = dynamic_cast<Minion *>(m_player1_cards[i].get());
         if (minion->getHealth() <= 0)
         {
-            minion->applyEffects(Effect::ON_DEATH);
             m_destroyed_cards.push_back(std::move(m_player1_cards[i]));
             m_player1_cards.erase(m_player1_cards.begin() + i);
+            m_destroyed_cards[m_destroyed_cards.size()-1]->applyEffects(Effect::ON_DEATH);
         }
     }
     for (size_t i = 0; i < m_player2_cards.size(); i++)
@@ -179,9 +179,9 @@ void Board::destroyCards()
         Minion *minion = dynamic_cast<Minion *>(m_player2_cards[i].get());
         if (minion->getHealth() <= 0)
         {
-            minion->applyEffects(Effect::ON_DEATH);
             m_destroyed_cards.push_back(std::move(m_player2_cards[i]));
             m_player2_cards.erase(m_player2_cards.begin() + i);
+            m_destroyed_cards[m_destroyed_cards.size()-1]->applyEffects(Effect::ON_DEATH);
         }
     }
 }
