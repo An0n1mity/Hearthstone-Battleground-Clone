@@ -21,6 +21,7 @@ private:
 public:
     GameLogicManager()
     {
+        srand( time( NULL ) );
         createPlayers();
         createBoard();
         createShop();

@@ -34,13 +34,24 @@ void Player::moveCardFromHandToBoardLeft(int index)
     std::cout << "[PLAYER DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Player::moveCardFromHandToBoardLeft " << '\n';
 #endif
     // Sanity check
-    if (index < 0 || index >= m_hand.size() || m_hand.empty())
+    if (index < 0 || index >= m_hand.size() || m_hand.empty() || m_board->getPlayerCardsView(*this).size() >= 4)
         return;
 
     // Move the card from the hand to the board
     std::unique_ptr<Card> card_to_move = std::move(m_hand[index]);
     // Link the card to the board
     card_to_move->linkBoard(m_board);
+    // Check ON_DEATH effects
+    for (auto &effect : card_to_move->getEffects())
+    {
+        if (effect->getActivationPhase() == Effect::ON_DEATH)
+        {
+            for (auto &cards : m_board->getPlayerCardsView(*this))
+            {
+                cards.get().applyEffects(Effect::ON_FRIENDLY_DEATHRATTLE);
+            }
+        }
+    }
     // Apply the effect of the card
     card_to_move->applyEffects(Effect::ON_HAND);
     m_board->addCardLeft(card_to_move);
@@ -93,10 +104,7 @@ void Player::selectCardFromChoices(int index, Shop &shop)
         return;
     std::cout << "ID: " << m_choices[index].get().getId() << '\n';
     shop.giveCardToPlayer(*this, m_choices[index]);
-    // Remove the card from the choices
     m_choices.erase(m_choices.begin() + index);
-    // Clear the choices 
-    m_choices.clear();
 }
 
 void Player::resetChoices()
@@ -122,4 +130,18 @@ std::vector<std::reference_wrapper<Card>> Player::getHandView() const
 		hand_view.push_back(std::ref(*card));
 	}
 	return hand_view;
+}
+
+void Player::upgradeLevel()
+{
+    if(m_golds >= 5){
+        m_golds -= 5;
+        m_level++;
+        for(auto &card : m_board->getPlayerCardsView(*this)){
+            card.get().applyEffects(Effect::ON_UPGRADE);
+        }
+    }
+    else{
+        std::cout << "Not enough golds" << '\n';
+    } 
 }

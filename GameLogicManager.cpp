@@ -79,6 +79,12 @@ CLI::cli_input GameLogicManager::recruitementPhase()
 	    case CLI::SELL:
             m_player1->sellCardFromHand(input.card, *m_shop);
             break;
+        case CLI::ROLL:
+            m_shop->giveAnotherChoice(*m_player1);
+            break;
+        case CLI::UPGRADE:
+            m_player1->upgradeLevel();
+            break;
 	    case CLI::PLAY:
             m_player1->moveCardFromHandToBoardLeft(input.card);
             break;
@@ -93,6 +99,7 @@ CLI::cli_input GameLogicManager::recruitementPhase()
     m_bot->playTurn(*m_shop);
     m_cli->drawHand(*m_bot);
     m_bot->resetChoices();
+    m_turn++;
     return input;
 }
 
@@ -252,6 +259,5 @@ CLI::cli_input GameLogicManager::battlePhase()
         m_cli->drawBoard(*m_board, *m_player1, *m_bot);
         std::this_thread::sleep_for(std::chrono::seconds(3));
     }
-
     return {CLI::CONTINUE, 0};
 }

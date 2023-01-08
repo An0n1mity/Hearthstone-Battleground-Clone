@@ -57,6 +57,9 @@ public:
     // get Effects of the card
     std::vector<std::unique_ptr<Effect>> &getEffects() { return m_effects; }
 
+    // add Effect to the card
+    void addEffect(std::unique_ptr<Effect> effect) { m_effects.push_back(std::move(effect)); }
+    
     std::experimental::observer_ptr<Player> getOwner() const { return m_owner; }
     virtual int getRang() const = 0;
     // Get the board
