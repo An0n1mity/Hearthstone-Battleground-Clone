@@ -35,15 +35,16 @@ The game end when one of the player has lost all of his HP.
 ```
 git clone https://github.com/An0n1mity/Hearthstone-Battleground-Clone
 ```
-#### Build from sources using CMake
+#### Build from sources
 ```
-mkdir build && cd build
-cmake ..
+g++ -o hearthstone-battle-ground-cli *.c++ (Linux)
+x86_64-w64-mingw32-g++-posix -std=c++2a -lwinpthread ../*.cpp (Windows)
 ```
 #### Run the binary
 ```
 ./hearthstone-battle-ground-cli
 ```
+( An executable was already compiled for windows with mingw, you need to launch it from a terminal )
 
 
 
