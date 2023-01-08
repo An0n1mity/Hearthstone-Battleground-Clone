@@ -152,9 +152,10 @@ CLI::cli_input CLI::getInput(const Player& player)
 	std::cout << "CHOICES" << std::endl;
 	std::cout << "1 BUY" << std::endl;
 	std::cout << "2 SELL" << std::endl;
-	std::cout << "3 PLAY CARD" << std::endl;
-	std::cout << "4 BATTLE" << std::endl;
-	std::cout << "5 EXIT" << std::endl;
+	std::cout << "3 UPGRADE" << std::endl;
+	std::cout << "4 PLAY CARD" << std::endl;
+	std::cout << "5 BATTLE" << std::endl;
+	std::cout << "6 EXIT" << std::endl;
 
 	while(true){ 
 	    std::cout << "Enter your choice: ";

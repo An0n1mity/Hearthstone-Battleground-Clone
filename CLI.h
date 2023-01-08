@@ -9,6 +9,7 @@ class CLI
     {
 	BUY,
 	SELL,
+	UPGRADE,
 	PLAY,
 	BATTLE,
 	EXIT,

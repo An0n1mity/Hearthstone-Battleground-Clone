@@ -58,7 +58,7 @@ public:
             Minion* minion = dynamic_cast<Minion*>(cardToGive);
             minion->buffAttackPoint(cardToGive, minion->getHealth() + 1);
             minion->buffHealthPoint(cardToGive, minion->getHealth() + 1);
-        } 
+        }
     }
     Leapfrogger() : Beast(2, 3, 3){
         // Effect description 
@@ -99,7 +99,7 @@ public:
             Minion* minion = dynamic_cast<Minion*>(cardToGive);
             minion->buffAttackPoint(cardToGive, minion->getHealth() + 1);
             minion->buffHealthPoint(cardToGive, minion->getHealth() + 1);
-        }     
+        }
     }
 
     HoundMaster() : Beast(3, 3, 4){
@@ -125,8 +125,7 @@ public:
         std::vector<std::reference_wrapper<Card>> cards_with_Deathrattle;
         for (auto &card : player_cards)
         {
-            std::vector<std::unique_ptr<Effect>> effects = card.get().getEffects();
-            for (auto &effect : effects)
+            for (auto &effect : card.get().getEffects())
             {
                 if (effect->getActivationPhase() == Effect::ON_DEATH)
                 {
@@ -202,37 +201,17 @@ public:
     virtual const std::string getName() const override { return "DeckSwabbie"; }
 };
 
-class Scallywag : public Pirate
-{
-public:
-    static void summonPirate(Card *card)
-    {
-        Minion::summonMinion<Pirate>(card->getBoard(), card);
-    }
-    Scallywag() : Pirate(1, 1, 3) {
-	// Effect description 
-	m_effect_description = "Deathrattle: Summon a 1/1 Pirate. It attacks immediately";
-    // Create a battle cry effect that have a pointer to the function Summon1_1Cat
-    Effect *deathrattle = new Deathrattle(summonPirate, this);
-    // Add the effect to the vector of effects
-    m_effects.push_back(std::unique_ptr<Effect>(deathrattle));
-    }
-    virtual ~Scallywag() {}
-    virtual void printName() const override { std::cout << "Scallywag"; }
-    virtual const std::string getName() const override { return "Scallywag"; }
-};
-
 // Summon of Scallywag
 class PirateSummon : public Pirate
 {
 public:
     static void attackImmediately(Card *card)
     {
-        std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
+        /*std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
         std::vector<std::reference_wrapper<Card>> opponent_cards = card->getBoard()->getOtherPlayerCardsView(*(card->getOwner().get()));
 
         // If the enemy has no cards on board, attack the enemy directly 
-        /*if (opponent_cards.size() == 0)
+        if (opponent_cards.size() == 0)
         {
             minion->attackEnemy(*(card->getOwner().get()));
 
@@ -242,7 +221,7 @@ public:
             std::this_thread::sleep_for(std::chrono::seconds(3));
 
             minion->setState(Minion::State::IDLING);
-        }*/
+        }
 
         Minion* minion = dynamic_cast<Minion*>(card);
 
@@ -268,7 +247,7 @@ public:
         minion->setState(Minion::State::IDLING);
         minion2->setState(Minion::State::IDLING);
 
-        card->getBoard()->destroyCards();
+        card->getBoard()->destroyCards();*/
     }
     PirateSummon() : Pirate(1, 1, 1) {
 	// Effect description 
@@ -281,6 +260,26 @@ public:
     virtual ~PirateSummon() {}
     virtual void printName() const override { std::cout << "Pirate"; }
     virtual const std::string getName() const override { return "Pirate"; }
+};
+
+class Scallywag : public Pirate
+{
+public:
+    static void summonPirate(Card *card)
+    {
+        Minion::summonMinion<PirateSummon>(card->getBoard(), card);
+    }
+    Scallywag() : Pirate(1, 1, 3) {
+	// Effect description 
+	m_effect_description = "Deathrattle: Summon a 1/1 Pirate. It attacks immediately";
+    // Create a battle cry effect that have a pointer to the function Summon1_1Cat
+    Effect *deathrattle = new Deathrattle(summonPirate, this);
+    // Add the effect to the vector of effects
+    m_effects.push_back(std::unique_ptr<Effect>(deathrattle));
+    }
+    virtual ~Scallywag() {}
+    virtual void printName() const override { std::cout << "Scallywag"; }
+    virtual const std::string getName() const override { return "Scallywag"; }
 };
 
 class Freedealing_Gambler : public Pirate

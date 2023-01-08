@@ -74,6 +74,9 @@ public:
     // Friend function to give gold to the player
     friend void Shop::giveGold(Player &player, unsigned int golds) const;
 
+    // Upgrade level of the player
+    void upgradeLevel();
+
     // Buy a card from the shop
     void buyCardFromShop(std::vector<std::reference_wrapper<Card>> &cards, int index, Shop &shop);
 

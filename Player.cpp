@@ -123,3 +123,14 @@ std::vector<std::reference_wrapper<Card>> Player::getHandView() const
 	}
 	return hand_view;
 }
+
+void Player::upgradeLevel()
+{
+    if(m_golds >= 5){
+        m_golds -= 5;
+        m_level++;
+    }
+    else{
+        std::cout << "Not enough golds" << '\n';
+    } 
+}

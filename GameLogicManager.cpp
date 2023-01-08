@@ -79,6 +79,9 @@ CLI::cli_input GameLogicManager::recruitementPhase()
 	    case CLI::SELL:
             m_player1->sellCardFromHand(input.card, *m_shop);
             break;
+        case CLI::UPGRADE:
+            m_player1->upgradeLevel();
+            break;
 	    case CLI::PLAY:
             m_player1->moveCardFromHandToBoardLeft(input.card);
             break;
