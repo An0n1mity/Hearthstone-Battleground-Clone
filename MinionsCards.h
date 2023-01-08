@@ -49,6 +49,15 @@ class Leapfrogger : public Beast
 {
 
 public:
+    static void giveFriendlyBeast(Card *card)
+    {
+        std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
+        int card_to_give = rand() % player_cards.size();
+        Card * cardToGive = &(player_cards[card_to_give].get());
+        Minion* minion = dynamic_cast<Minion*>(cardToGive);
+        minion.buffAttackPoint(cardToGive, 1);
+        minion.buffHealthPoint(cardToGive, 1);
+    }
     Leapfrogger() : Beast(2, 3, 3){
 	// Effect description 
 	m_effect_description = "Deathrattle: Give a friendly beast +1/+1 and this Deathrattle";
@@ -142,9 +151,17 @@ public:
 class Scallywag : public Pirate
 {
 public:
+    static void summonPirate(Card *card)
+    {
+        Minion::summonMinion<Pirate>(card->getBoard(), card);
+    }
     Scallywag() : Pirate(1, 1, 3) {
 	// Effect description 
 	m_effect_description = "Deathrattle: Summon a 1/1 Pirate. It attacks immediately";
+    // Create a battle cry effect that have a pointer to the function Summon1_1Cat
+    Effect *deathrattle = new Deathrattle(summonPirate, this);
+    // Add the effect to the vector of effects
+    m_effects.push_back(std::unique_ptr<Effect>(deathrattle));
     }
     virtual ~Scallywag() {}
     virtual void printName() const override { std::cout << "Scallywag"; }
@@ -155,9 +172,57 @@ public:
 class PirateSummon : public Pirate
 {
 public:
+    static void attackImmediately(Card *card)
+    {
+        std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
+        std::vector<std::reference_wrapper<Card>> opponent_cards = card->getBoard()->getOtherPlayerCardsView(*(card->getOwner().get()));
+
+        // If the enemy has no cards on board, attack the enemy directly 
+        /*if (opponent_cards.size() == 0)
+        {
+            minion->attackEnemy(*(card->getOwner().get()));
+
+            //m_cli->clear();
+            //m_cli->drawBoard(*m_board, *m_player1, *m_bot);
+            std::cout << minion->getName() << " attacks " << defender->getName() << std::endl;
+            std::this_thread::sleep_for(std::chrono::seconds(3));
+
+            minion->setState(Minion::State::IDLING);
+        }*/
+
+        Minion* minion = dynamic_cast<Minion*>(card);
+
+        std::vector<std::reference_wrapper<Card>> taunt_cards = card->getBoard()->getOtherPlayerCardsViewWithTaunt(*(card->getOwner().get()));
+
+        int card_to_attack = rand() % opponent_cards.size();
+
+        if (taunt_cards.size() > 0)
+        {
+            card_to_attack = rand() % taunt_cards.size();
+            // Get index of the taunt card
+            card_to_attack = card->getBoard()->getCardIndex(taunt_cards[card_to_attack].get());
+        }
+        Minion *minion2 = dynamic_cast<Minion *>(&opponent_cards[card_to_attack].get());
+        // Attack the card if the minion is alive
+
+        if (minion->getHealth() > 0)
+        {
+            minion->attackEnemy(*minion2);
+            std::cout << minion->getName() << " attacks " << minion2->getName() << std::endl;
+        }
+
+        minion->setState(Minion::State::IDLING);
+        minion2->setState(Minion::State::IDLING);
+
+        card->getBoard()->destroyCards();
+    }
     PirateSummon() : Pirate(1, 1, 1) {
 	// Effect description 
 	m_effect_description = "Battlecry: Attack immediately";
+    // Create a battle cry effect that have a pointer to the function Summon1_1Cat
+    Effect *battlecry = new Battlecry(attackImmediately, this);
+    // Add the effect to the vector of effects
+    m_effects.push_back(std::unique_ptr<Effect>(battlecry));
     }
     virtual ~PirateSummon() {}
     virtual void printName() const override { std::cout << "Pirate"; }

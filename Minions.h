@@ -62,6 +62,16 @@ public:
 		minion->m_attack_points += buff;
     }
 
+    // Buff the health points of a minion
+    static void buffHealthPoint(Card *card, unsigned int buff)
+    {
+#if MINIONS_DEBUG
+	std::cout << "[MINIONS DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Minion::buffAttackPoint " << '\n';
+#endif
+		Minion *minion = dynamic_cast<Minion *>(card);
+		minion->m_health_points += buff;
+    }
+
     // Get the type of the minion
     virtual std::string getType() const = 0;
     // Get the rank of the minion

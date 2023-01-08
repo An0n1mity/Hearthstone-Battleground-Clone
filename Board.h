@@ -24,8 +24,12 @@ public:
     };
     // Get a view of the cards of a certain player
     std::vector<std::reference_wrapper<Card>> getPlayerCardsView(const Player &player) const;
+    // Get a view of the cards of an other player
+    std::vector<std::reference_wrapper<Card>> getOtherPlayerCardsView(const Player &player) const;
     // Get a view of the cards with taunt effect of a certain player
     std::vector<std::reference_wrapper<Card>> getPlayerCardsViewWithTaunt(const Player &player) const;
+    // Get a view of the cards with taunt effect of an other player
+    std::vector<std::reference_wrapper<Card>> getOtherPlayerCardsViewWithTaunt(const Player &player) const;
     // Get the number of cards of the player 
     int getNumberOfCards(const Player &player) const;
 

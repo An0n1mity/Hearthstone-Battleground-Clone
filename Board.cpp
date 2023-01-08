@@ -25,6 +25,28 @@ std::vector<std::reference_wrapper<Card>> Board::getPlayerCardsView(const Player
     return player_cards;
 }
 
+std::vector<std::reference_wrapper<Card>> Board::getOtherPlayerCardsView(const Player &player) const
+{
+    std::vector<std::reference_wrapper<Card>> player_cards;
+    // Check if the card is owned by the player id
+    if (player.getId() == 1)
+    {
+        for (auto &card : m_player2_cards)
+        {
+            player_cards.push_back(std::ref(*card));
+        }
+    }
+    else if (player.getId() == 2)
+    {
+        for (auto &card : m_player1_cards)
+        {
+            player_cards.push_back(std::ref(*card));
+        }
+    }
+
+    return player_cards;
+}
+
 std::vector<std::reference_wrapper<Card>> Board::getPlayerCardsViewWithTaunt(const Player &player) const
 {
     std::vector<std::reference_wrapper<Card>> player_cards;
@@ -44,6 +66,38 @@ std::vector<std::reference_wrapper<Card>> Board::getPlayerCardsViewWithTaunt(con
     else if (player.getId() == 2)
     {
         for (auto &card : m_player2_cards)
+        {
+            // Dynamic cast
+            Minion *minion_ptr = dynamic_cast<Minion *>(card.get());
+            if (minion_ptr->hasEffect("TAUNT"))
+            {
+                player_cards.push_back(std::ref(*card));
+            }
+        }
+    }
+
+    return player_cards;
+}
+
+std::vector<std::reference_wrapper<Card>> Board::getOtherPlayerCardsViewWithTaunt(const Player &player) const
+{
+    std::vector<std::reference_wrapper<Card>> player_cards;
+    // Check if the card is owned by the player id
+    if (player.getId() == 1)
+    {
+        for (auto &card : m_player2_cards)
+        {
+            // Dynamic cast
+            Minion *minion_ptr = dynamic_cast<Minion *>(card.get());
+            if (minion_ptr->hasEffect("TAUNT"))
+            {
+                player_cards.push_back(std::ref(*card));
+            }
+        }
+    }
+    else if (player.getId() == 2)
+    {
+        for (auto &card : m_player1_cards)
         {
             // Dynamic cast
             Minion *minion_ptr = dynamic_cast<Minion *>(card.get());
