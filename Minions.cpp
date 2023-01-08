@@ -9,18 +9,8 @@ void Minion::attackEnemy(Minion &enemy)
 #endif
 	// Activate the effect of the minion on attack 
 	enemy.applyEffects(Effect::ON_DAMAGE);
-	// Check if the enemy is dead
-	int enemy_health = enemy.getHealth();
-	int attack_points = m_attack_points;
-	if (enemy_health - attack_points <= 0){
-		enemy.m_health_points = 0;
-		// Destroy the minion 
-		// Dynamic cast 
-		Card* card = dynamic_cast<Card*>(&enemy);
-		getBoard()->destroyCard(*card);
-	}
-	else
-		enemy.m_health_points -= m_attack_points;
+	enemy.m_health_points -= m_attack_points;
+	m_health_points -= enemy.m_attack_points;
 }
 
 void Minion::attackEnemy(Player &enemy)

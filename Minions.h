@@ -12,7 +12,7 @@ protected:
     // Minions have a rank
     const unsigned int m_rank;
     // Minions have health and attack points
-    unsigned int m_health_points;
+    int m_health_points;
     unsigned int m_attack_points;
     // Minion have a description for the effects 
     std::string m_effect_description;
@@ -22,7 +22,7 @@ public:
     virtual ~Minion() {}
     void attackEnemy(Minion &enemy);
     void attackEnemy(Player &enemy);
-    unsigned int getHealth() const { return m_health_points; }
+    int getHealth() const { return m_health_points; }
     unsigned int getAttack() const { return m_attack_points; }
     std::string getEffectDescription() const { return m_effect_description; }
     // Summon a minion of a type T on the board

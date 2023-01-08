@@ -102,6 +102,29 @@ void Board::destroyCard(Card &card)
     }
 }
 
+void Board::destroyCards()
+{
+    for (size_t i = 0; i < m_player1_cards.size(); i++)
+    {
+        // Dynamic cast to minion
+        Minion *minion = dynamic_cast<Minion *>(m_player1_cards[i].get());
+        if (minion->getHealth() <= 0)
+        {
+            m_destroyed_cards.push_back(std::move(m_player1_cards[i]));
+            m_player1_cards.erase(m_player1_cards.begin() + i);
+        }
+    }
+    for (size_t i = 0; i < m_player2_cards.size(); i++)
+    {
+        // Dynamic cast to minion
+        Minion *minion = dynamic_cast<Minion *>(m_player2_cards[i].get());
+        if (minion->getHealth() <= 0)
+        {
+            m_destroyed_cards.push_back(std::move(m_player2_cards[i]));
+            m_player2_cards.erase(m_player2_cards.begin() + i);
+        }
+    }
+}
 std::unique_ptr<Card> Board::popCard(int index, Player &player)
 {
     std::unique_ptr<Card> card;
@@ -116,4 +139,17 @@ std::unique_ptr<Card> Board::popCard(int index, Player &player)
         m_player2_cards.erase(m_player2_cards.begin() + index);
     }
     return card;
+}
+
+int Board::getNumberOfCards(const Player &player) const
+{
+	if (player.getId() == 0)
+	{
+		return m_player1_cards.size();
+	}
+	else if (player.getId() == 1)
+	{
+		return m_player2_cards.size();
+	}
+	return 0;
 }
