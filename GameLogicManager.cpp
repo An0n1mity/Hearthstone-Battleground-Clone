@@ -89,8 +89,8 @@ CLI::cli_input GameLogicManager::recruitementPhase()
             m_player1->moveCardFromHandToBoardLeft(input.card);
             break;
         case CLI::EXIT:
-	    std::cout << "Exiting..." << std::endl;
-	    return {CLI::EXIT, 0};
+            std::cout << "Exiting..." << std::endl;
+            return {CLI::EXIT, 0};
 	}
     }while(input.choice != CLI::BATTLE);
     m_player1->resetChoices();
@@ -259,5 +259,18 @@ CLI::cli_input GameLogicManager::battlePhase()
         m_cli->drawBoard(*m_board, *m_player1, *m_bot);
         std::this_thread::sleep_for(std::chrono::seconds(3));
     }
-    return {CLI::CONTINUE, 0};
+
+    if (m_player1->getHealth() == 0){
+        std::cout << "You Lose !!!" << std::endl;
+        std::cout << "Exiting..." << std::endl;
+	    return {CLI::EXIT, 0};
+    }
+    else if (m_bot->getHealth() == 0){
+        std::cout << "You Win !!!" << std::endl;
+        std::cout << "Exiting..." << std::endl;
+	    return {CLI::EXIT, 0};
+    }
+    else
+        return {CLI::CONTINUE, 0};
+
 }
