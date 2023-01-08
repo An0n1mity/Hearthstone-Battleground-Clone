@@ -39,6 +39,6 @@ public:
 
     //void startGame();
     CLI::cli_input recruitementPhase();
-    void battlePhase();
+    CLI::cli_input battlePhase();
     void endPhase();
 };

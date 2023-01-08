@@ -125,14 +125,14 @@ public:
         std::vector<std::reference_wrapper<Card>> cards_with_Deathrattle;
         for (auto &card : player_cards)
         {
-            std::vector<std::unique_ptr<Effect>> effects = card.get().getEffects();
+            /*std::vector<std::unique_ptr<Effect>> effects = card.get().getEffects();
             for (auto &effect : effects)
             {
                 if (effect->getActivationPhase() == Effect::ON_DEATH)
                 {
                     cards_with_Deathrattle.push_back(card);
                 }
-            }
+            }*/
         }
         int card_to_active = rand() % cards_with_Deathrattle.size();
         Card * cardToActive = &(cards_with_Deathrattle[card_to_active].get());
@@ -207,7 +207,7 @@ class Scallywag : public Pirate
 public:
     static void summonPirate(Card *card)
     {
-        Minion::summonMinion<Pirate>(card->getBoard(), card);
+        Minion::summonMinion<Scallywag>(card->getBoard(), card);
     }
     Scallywag() : Pirate(1, 1, 3) {
 	// Effect description 

@@ -10,7 +10,7 @@ void GameLogicManager::createPlayers()
 #ifdef GAMELOGICMANAGER_DEBUG
     std::cout << "[GAMELOGICMANAGER DEBUG]: Called from " << __FILE__ << " at line " << __LINE__ << " GameLogicManager::createPlayers" << std::endl;
 #endif
-    m_player1 = std::make_unique<Player>("Player 1");
+    m_player1 = std::make_unique<Player>("Player");
     m_bot = std::make_unique<Bot>("Bot");
 }
 
@@ -96,7 +96,7 @@ CLI::cli_input GameLogicManager::recruitementPhase()
     return input;
 }
 
-void GameLogicManager::battlePhase()
+CLI::cli_input GameLogicManager::battlePhase()
 {
 #ifdef GAMELOGICMANAGER_DEBUG
     std::cout << "[GAMELOGICMANAGER DEBUG]: Called from " << __FILE__ << " at line " << __LINE__ << " GameLogicManager::battlePhase" << std::endl;
@@ -146,6 +146,12 @@ void GameLogicManager::battlePhase()
 	    std::this_thread::sleep_for(std::chrono::seconds(3));
 
 	    minion->setState(Minion::State::IDLING);
+	    // Check if player is dead 
+	    if (defender->getHealth() <= 0)
+	    {
+		std::cout << attacker->getName() << " WINS !" << std::endl;
+		return {CLI::EXIT, 0};
+	    }
 	    continue;
 	}
     // Get enemy cards with taunt
@@ -202,6 +208,13 @@ void GameLogicManager::battlePhase()
 	    std::this_thread::sleep_for(std::chrono::seconds(3));
 
 	    minion->setState(Minion::State::IDLING);
+
+	    // Check if player is dead
+	    if (attacker->getHealth() <= 0)
+	    {
+		std::cout << defender->getName() << " WINS !" << std::endl;
+		return {CLI::EXIT, 0};
+	    }
 	    continue;
 	}
     // Get enemy cards with taunt
@@ -239,4 +252,6 @@ void GameLogicManager::battlePhase()
         m_cli->drawBoard(*m_board, *m_player1, *m_bot);
         std::this_thread::sleep_for(std::chrono::seconds(3));
     }
+
+    return {CLI::CONTINUE, 0};
 }
