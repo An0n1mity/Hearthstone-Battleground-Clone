@@ -93,6 +93,7 @@ void Player::selectCardFromChoices(int index, Shop &shop)
         return;
     std::cout << "ID: " << m_choices[index].get().getId() << '\n';
     shop.giveCardToPlayer(*this, m_choices[index]);
+    m_choices.erase(m_choices.begin() + index);
 }
 
 void Player::resetChoices()
@@ -125,6 +126,9 @@ void Player::upgradeLevel()
     if(m_golds >= 5){
         m_golds -= 5;
         m_level++;
+        for(auto &card : m_board->getPlayerCardsView(*this)){
+            card.get().applyEffects(Effect::ON_UPGRADE);
+        }
     }
     else{
         std::cout << "Not enough golds" << '\n';

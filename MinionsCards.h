@@ -58,6 +58,7 @@ public:
             Minion* minion = dynamic_cast<Minion*>(cardToGive);
             minion->buffAttackPoint(cardToGive, minion->getHealth() + 1);
             minion->buffHealthPoint(cardToGive, minion->getHealth() + 1);
+            minion->addEffect(std::unique_ptr<Effect>(new Deathrattle(giveFriendlyBeast, cardToGive)));
         }
     }
     Leapfrogger() : Beast(2, 3, 3){
@@ -77,9 +78,19 @@ class Rabid_Saurolisk : public Beast
 {
 
 public:
+    static void friendlyDeathrattle(Card *card)
+    {
+        Minion* minion = dynamic_cast<Minion*>(card);
+        minion->buffAttackPoint(card, minion->getAttack() + 1);
+        minion->buffHealthPoint(card, minion->getHealth() + 2);
+    }
     Rabid_Saurolisk() : Beast(2, 2, 3){
-	// Effect description 
-	m_effect_description = "After you play a minion with Deathrattle, gain +1/+2";
+        // Effect description 
+        m_effect_description = "After you play a minion with Deathrattle, gain +1/+2";
+        // Create a battle cry effect that have a pointer to the function friendlyDeathrattle
+        Effect *friendly = new FriendlyDeathrattle(friendlyDeathrattle, this);
+        // Add the effect to the vector of effects
+        m_effects.push_back(std::unique_ptr<Effect>(friendly));
     }
     virtual ~Rabid_Saurolisk() {}
     virtual void printName() const override { std::cout << "Rabid Saurolisk"; }
@@ -300,13 +311,13 @@ class Southsea_Captain : public Pirate
 public:
     static void boostOtherPirates(Card *card){
         std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
-        for (auto &card : player_cards)
+        for (auto &cards : player_cards)
         {
-            Minion *minion = dynamic_cast<Minion *>(&card.get());
-            if (minion->getType() == "Pirate")
+            Minion *minion = dynamic_cast<Minion *>(&cards.get());
+            if (minion->getType() == "Pirate" and &(cards.get()) != card)
             {
-                minion->buffAttackPoint(&(card.get()), minion->getAttack() + 1);
-                minion->buffHealthPoint(&(card.get()), minion->getHealth() + 1);
+                minion->buffAttackPoint(&(cards.get()), minion->getAttack() + 1);
+                minion->buffHealthPoint(&(cards.get()), minion->getHealth() + 1);
             }
         }
     }
@@ -396,9 +407,27 @@ public:
 class Evolving_Chromawing : public Dragon
 {
 public:
+    static void upgradeTavern(Card *card){
+        std::vector<std::reference_wrapper<Card>> player_cards = card->getBoard()->getPlayerCardsView(*(card->getOwner().get()));
+        int atk = 0;
+        for (auto &card : player_cards)
+        {
+            Minion *minion = dynamic_cast<Minion *>(&card.get());
+            if (minion->getType() == "Dragon")
+            {
+                atk += minion->getAttack();
+            }
+        }
+        Minion* minion = dynamic_cast<Minion*>(card);
+        minion->buffAttackPoint(card, minion->getAttack() + atk);
+    }
     Evolving_Chromawing() : Dragon(1, 4, 1)
     {
-	m_effect_description = "After you upgrade your Tavern Tier, gain +1 Attack for each friendly Dragon";
+	    m_effect_description = "After you upgrade your Tavern Tier, gain +1 Attack for each friendly Dragon";
+        // Create a battle cry effect that have a pointer to the function upgradeTavern
+        Effect *upgrade = new Upgrade(upgradeTavern, this);
+        // Add the effect to the vector of effects
+        m_effects.push_back(std::unique_ptr<Effect>(upgrade));
     }
     virtual ~Evolving_Chromawing() {}
     virtual void printName() const override { std::cout << "Evolving Chromawing"; }

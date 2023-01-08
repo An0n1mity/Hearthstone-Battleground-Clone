@@ -24,7 +24,13 @@ public:
         // Activate when the card is damaged
         ON_DAMAGE,
         // Activate when the card attack
-        ON_ATTACK
+        ON_ATTACK,
+        // Activate when the shop is upgrade
+        ON_UPGRADE,
+        // Activate when the card gain attaque
+        ON_GAIN_ATTACK,
+        // Activate when an other card is played and is a Deathrattle
+        ON_FRIENDLY_DEATHRATTLE
     };
     Effect(enum ActivationPhase_e activation_phase, void (*effect_function)(Card *), Card *card = nullptr) : m_activation_phase(activation_phase), m_effect_function(effect_function), m_card(card) {}
     virtual ~Effect() {}
@@ -76,6 +82,27 @@ class Attack : public Effect
 public:
     Attack(void (*effect_function)(Card *), Card *card) : Effect(ON_ATTACK, effect_function, card) {}
     virtual ~Attack() {}
+};
+
+class Upgrade : public Effect
+{
+public:
+    Upgrade(void (*effect_function)(Card *), Card *card) : Effect(ON_UPGRADE, effect_function, card) {}
+    virtual ~Upgrade() {}
+};
+
+class GainAttack : public Effect
+{   
+public:
+    GainAttack(void (*effect_function)(Card *), Card *card) : Effect(ON_GAIN_ATTACK, effect_function, card) {}
+    virtual ~GainAttack() {}
+};
+
+class FriendlyDeathrattle : public Effect
+{   
+public:
+    FriendlyDeathrattle(void (*effect_function)(Card *), Card *card) : Effect(ON_FRIENDLY_DEATHRATTLE, effect_function, card) {}
+    virtual ~FriendlyDeathrattle() {}
 };
 
 #endif
