@@ -34,7 +34,7 @@ void Player::moveCardFromHandToBoardLeft(int index)
     std::cout << "[PLAYER DEBUG]: Called from " << __FILE__ << " line " << __LINE__ << " Player::moveCardFromHandToBoardLeft " << '\n';
 #endif
     // Sanity check
-    if (index < 0 || index >= m_hand.size() || m_hand.empty())
+    if (index < 0 || index >= m_hand.size() || m_hand.empty() || m_board->getPlayerCardsView(*this).size() >= 4)
         return;
 
     // Move the card from the hand to the board

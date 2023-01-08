@@ -246,4 +246,9 @@ void GameLogicManager::battlePhase()
         m_cli->drawBoard(*m_board, *m_player1, *m_bot);
         std::this_thread::sleep_for(std::chrono::seconds(3));
     }
+
+    if (m_player1->getHealth() == 0)
+        std::cout << "You Win !!!" << std::endl;
+    else if (m_bot->getHealth() == 0)
+        std::cout << "You Lose !!!" << std::endl;
 }

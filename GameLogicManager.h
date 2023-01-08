@@ -16,7 +16,7 @@ private:
     std::unique_ptr<CLI> m_cli;
 
     // Number of turns
-    size_t m_turn = 10;
+    size_t m_turn = 3;
 
 public:
     GameLogicManager()
