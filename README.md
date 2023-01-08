@@ -20,7 +20,7 @@ The game end when one of the player has lost all of his HP.
 * **BATTLECRY** : Activate when card is played.
 * **TAUNT** : Force the card to be attacked by the opponent. Activate on damage.
 
-### Building the project 
+### Building the project 🔨
 #### Clone the repo
 ```
 git clone https://github.com/An0n1mity/Hearthstone-Battleground-Clone
