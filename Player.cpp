@@ -41,6 +41,17 @@ void Player::moveCardFromHandToBoardLeft(int index)
     std::unique_ptr<Card> card_to_move = std::move(m_hand[index]);
     // Link the card to the board
     card_to_move->linkBoard(m_board);
+    // Check ON_DEATH effects
+    for (auto &effect : card_to_move->getEffects())
+    {
+        if (effect->getActivationPhase() == Effect::ON_DEATH)
+        {
+            for (auto &cards : m_board->getPlayerCardsView(*this))
+            {
+                cards.get().applyEffects(Effect::ON_FRIENDLY_DEATHRATTLE);
+            }
+        }
+    }
     // Apply the effect of the card
     card_to_move->applyEffects(Effect::ON_HAND);
     m_board->addCardLeft(card_to_move);

@@ -131,32 +131,12 @@ void Board::addCardLeft(std::unique_ptr<Card> &card)
     // If the player id is 1
     if (player_ptr->getId() == 1)
     {
-        for (auto &effect : card->getEffects())
-        {
-            if (effect->getActivationPhase() == Effect::ON_DEATH)
-            {
-                for (auto &cards : m_player1_cards)
-                {
-                    card->applyEffects(Effect::ON_FRIENDLY_DEATHRATTLE);
-                }
-            }
-        }
         // Add the card to the left of the board
         m_player1_cards.insert(m_player1_cards.begin(), std::move(card));
     }
     // If the player id is 2
     else if (player_ptr->getId() == 2)
     {
-        for (auto &effect : card->getEffects())
-        {
-            if (effect->getActivationPhase() == Effect::ON_DEATH)
-            {
-                for (auto &cards : m_player1_cards)
-                {
-                    card->applyEffects(Effect::ON_FRIENDLY_DEATHRATTLE);
-                }
-            }
-        }
         // Add the card to the left of the board
         m_player2_cards.insert(m_player2_cards.begin(), std::move(card));
     }
@@ -169,32 +149,12 @@ void Board::addCardRight(std::unique_ptr<Card> &card)
     // If the player id is 1
     if (player_ptr->getId() == 1)
     {
-        for (auto &effect : card->getEffects())
-        {
-            if (effect->getActivationPhase() == Effect::ON_DEATH)
-            {
-                for (auto &cards : m_player1_cards)
-                {
-                    card->applyEffects(Effect::ON_FRIENDLY_DEATHRATTLE);
-                }
-            }
-        }
         // Add the card to the right of the board
         m_player1_cards.push_back(std::move(card));
     }
     // If the player id is 2
     else if (player_ptr->getId() == 2)
     {
-        for (auto &effect : card->getEffects())
-        {
-            if (effect->getActivationPhase() == Effect::ON_DEATH)
-            {
-                for (auto &cards : m_player1_cards)
-                {
-                    card->applyEffects(Effect::ON_FRIENDLY_DEATHRATTLE);
-                }
-            }
-        }
         // Add the card to the right of the board
         m_player2_cards.push_back(std::move(card));
     }
@@ -208,6 +168,7 @@ void Board::destroyCards()
         Minion *minion = dynamic_cast<Minion *>(m_player1_cards[i].get());
         if (minion->getHealth() <= 0)
         {
+            minion->applyEffects(Effect::ON_DEATH);
             m_destroyed_cards.push_back(std::move(m_player1_cards[i]));
             m_player1_cards.erase(m_player1_cards.begin() + i);
         }
@@ -218,6 +179,7 @@ void Board::destroyCards()
         Minion *minion = dynamic_cast<Minion *>(m_player2_cards[i].get());
         if (minion->getHealth() <= 0)
         {
+            minion->applyEffects(Effect::ON_DEATH);
             m_destroyed_cards.push_back(std::move(m_player2_cards[i]));
             m_player2_cards.erase(m_player2_cards.begin() + i);
         }
