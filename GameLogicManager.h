@@ -38,7 +38,7 @@ public:
     Player &getPlayer2() const { return *m_bot; }
 
     //void startGame();
-    void recruitementPhase();
+    CLI::cli_input recruitementPhase();
     void battlePhase();
     void endPhase();
 };

@@ -23,6 +23,7 @@ protected:
     // The card can be linked to a board
     std::experimental::observer_ptr<Board> m_board;
     const unsigned int m_gold_cost = 3;
+    unsigned int m_gold_sell = 1;
     // The card's effects
     std::vector<std::unique_ptr<Effect>> m_effects;
     virtual void printType() const = 0;
@@ -35,6 +36,8 @@ public:
     }
     virtual ~Card() {}
     unsigned int getGoldCost() const { return m_gold_cost; }
+    unsigned int getGoldSell() const { return m_gold_sell; }
+    void setGoldSell(unsigned int gold_sell) { m_gold_sell = gold_sell; }
     int getId() const { return m_id; }
     // Link the card to a board
     void linkBoard(std::experimental::observer_ptr<Board> board) { m_board = board; }
@@ -50,6 +53,9 @@ public:
                 effect->activate();
         }
     }
+
+    // get Effects of the card
+    std::vector<std::unique_ptr<Effect>> &getEffects() { return m_effects; }
 
     std::experimental::observer_ptr<Player> getOwner() const { return m_owner; }
     virtual int getRang() const = 0;

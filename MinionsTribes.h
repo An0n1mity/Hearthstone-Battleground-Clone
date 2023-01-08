@@ -75,12 +75,12 @@ public:
     virtual std::string getType() const override { return "Quilboar"; }
 };
 
-class Menagerie : public Minion
+class Naga : public Minion
 {
 public:
-    Menagerie(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
-    virtual ~Menagerie() {}
-    virtual void printType() const override { std::cout << "Menagerie"; }
-    virtual std::string getType() const override { return "Menagerie"; }
+    Naga(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Minion(rank, health_points, attack_points, std::move(effects)) {}
+    virtual ~Naga() {}
+    virtual void printType() const override { std::cout << "Naga"; }
+    virtual std::string getType() const override { return "Naga"; }
 };
 #endif

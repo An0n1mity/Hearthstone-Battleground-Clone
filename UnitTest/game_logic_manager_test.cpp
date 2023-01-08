@@ -6,7 +6,9 @@ int main(int, char **)
 	GameLogicManager game = GameLogicManager();
 	while(true)
 	{
-	    game.recruitementPhase();
+	    CLI::cli_input input = game.recruitementPhase();
+	    if(input.choice == CLI::EXIT)
+		break;
 	    game.battlePhase();
 	}
 	return 0;
