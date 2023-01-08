@@ -8,8 +8,10 @@ int main(int, char **)
 	{
 	    CLI::cli_input input = game.recruitementPhase();
 	    if(input.choice == CLI::EXIT)
-		break;
-	    game.battlePhase();
+			break;
+	    input = game.battlePhase();
+		if(input.choice == CLI::EXIT)
+			break;
 	}
 	return 0;
 }

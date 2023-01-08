@@ -14,6 +14,7 @@ class CLI
 	PLAY,
 	BATTLE,
 	EXIT,
+	CONTINUE,
 	INVALID
     };
     struct cli_input
