@@ -14,10 +14,10 @@ A Simple HearthStone Battleground clone to demonstrate OOP concepts
   <img src="https://github.com/An0n1mity/Hearthstone-Battleground-Clone/blob/main/image.png" width=100% height=auto/>
 </p>
 ## Design pattern
-The goal of this project was to try learn basic of design pattern for OOP using C++.  
-1. Uses of smart pointers : Better aggregation and composition relationship than with raw pointers.
-2. Abstract classes : Polymorphism, Interfaces, Generics.
-3. Factory pattern : Create cards in a flexible and modular way.
+The goal of this project was to try learn basic of design pattern for OOP using C++.    
+1. Uses of smart pointers : Better aggregation and composition relationship than with raw pointers.  
+2. Abstract classes : Polymorphism, Interfaces, Generics.  
+3. Factory pattern : Create cards in a flexible and modular way.  
 
 ## Gameplay 🎮
 Turn based game consisting of two phases : *recruitement* and *battle*.  
