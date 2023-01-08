@@ -1,6 +1,6 @@
 #include "GameLogicManager.h"
 #include "Minions.h"
-#define GAMELOGICMANAGER_DEBUG
+//#define GAMELOGICMANAGER_DEBUG
 #include <chrono>
 #include <thread>
 

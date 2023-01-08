@@ -1,5 +1,5 @@
 #include "Player.h"
-#define PLAYER_DEBUG 1
+//#define PLAYER_DEBUG 1
 
 std::ostream &operator<<(std::ostream &os, Player &player)
 {

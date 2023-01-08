@@ -146,7 +146,7 @@ public:
                 {
                     cards_with_Deathrattle.push_back(card);
                 }
-            }*/
+            }
         }
         int card_to_active = rand() % cards_with_Deathrattle.size();
         Card * cardToActive = &(cards_with_Deathrattle[card_to_active].get());

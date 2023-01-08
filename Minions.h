@@ -2,7 +2,7 @@
 #define MINIONS_H
 
 #include "Cards.h"
-#define MINIONS_DEBUG 1
+//#define MINIONS_DEBUG 1
 
 // Minion is a type of card
 class Minion : public Card
