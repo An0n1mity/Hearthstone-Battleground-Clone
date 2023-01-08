@@ -10,15 +10,83 @@ unsigned int Shop::calculateGold(unsigned int turns) const
 
 void Shop::createDeck()
 {
-    m_deck.push_back(std::make_unique<DeckSwabbie>());
-    m_deck.push_back(std::make_unique<DeckSwabbie>());
-    m_deck.push_back(std::make_unique<DeckSwabbie>());
+    // Beasts
     m_deck.push_back(std::make_unique<AlleyCat>());
     m_deck.push_back(std::make_unique<AlleyCat>());
     m_deck.push_back(std::make_unique<AlleyCat>());
+    m_deck.push_back(std::make_unique<AlleyCat>());
+    m_deck.push_back(std::make_unique<Scavenging_Hyena>());
+    m_deck.push_back(std::make_unique<Scavenging_Hyena>());
+    m_deck.push_back(std::make_unique<Scavenging_Hyena>());
+    m_deck.push_back(std::make_unique<Scavenging_Hyena>());
+    m_deck.push_back(std::make_unique<Leapfrogger>());
+    m_deck.push_back(std::make_unique<Leapfrogger>());
+    m_deck.push_back(std::make_unique<Leapfrogger>());
+    m_deck.push_back(std::make_unique<Rabid_Saurolisk>());
+    m_deck.push_back(std::make_unique<Rabid_Saurolisk>());
+    m_deck.push_back(std::make_unique<Rabid_Saurolisk>());
+    m_deck.push_back(std::make_unique<HoundMaster>());
+    m_deck.push_back(std::make_unique<HoundMaster>());
+    m_deck.push_back(std::make_unique<HoundMaster>());
+    m_deck.push_back(std::make_unique<Monstrous_macow>());
+    m_deck.push_back(std::make_unique<Monstrous_macow>());
+    m_deck.push_back(std::make_unique<Monstrous_macow>());
+    m_deck.push_back(std::make_unique<Cave_Hydra>());
+    m_deck.push_back(std::make_unique<Cave_Hydra>());
+    m_deck.push_back(std::make_unique<Reanimating_Rattler>());
+    m_deck.push_back(std::make_unique<Reanimating_Rattler>());
+
+    // Pirates
+    m_deck.push_back(std::make_unique<DeckSwabbie>());
+    m_deck.push_back(std::make_unique<DeckSwabbie>());
+    m_deck.push_back(std::make_unique<DeckSwabbie>());
+    m_deck.push_back(std::make_unique<DeckSwabbie>());
+    m_deck.push_back(std::make_unique<Scallywag>());
+    m_deck.push_back(std::make_unique<Scallywag>());
+    m_deck.push_back(std::make_unique<Scallywag>());
+    m_deck.push_back(std::make_unique<Scallywag>());
+    m_deck.push_back(std::make_unique<Freedealing_Gambler>());
+    m_deck.push_back(std::make_unique<Freedealing_Gambler>());
+    m_deck.push_back(std::make_unique<Freedealing_Gambler>());
+    m_deck.push_back(std::make_unique<Southsea_Captain>());
+    m_deck.push_back(std::make_unique<Southsea_Captain>());
+    m_deck.push_back(std::make_unique<Southsea_Captain>());
+    m_deck.push_back(std::make_unique<Salty_Looter>());
+    m_deck.push_back(std::make_unique<Salty_Looter>());
+    m_deck.push_back(std::make_unique<Salty_Looter>());
+    m_deck.push_back(std::make_unique<Southsea_Captain>());
+    m_deck.push_back(std::make_unique<Southsea_Captain>());
+    m_deck.push_back(std::make_unique<Southsea_Captain>());
+    m_deck.push_back(std::make_unique<Peggy_Brittlebone>());
+    m_deck.push_back(std::make_unique<Peggy_Brittlebone>());
+    m_deck.push_back(std::make_unique<Ripsnarl_Captain>());
+    m_deck.push_back(std::make_unique<Ripsnarl_Captain>());
+
+    // Dragons
     m_deck.push_back(std::make_unique<DozyWhelp>());
     m_deck.push_back(std::make_unique<DozyWhelp>());
     m_deck.push_back(std::make_unique<DozyWhelp>());
+    m_deck.push_back(std::make_unique<DozyWhelp>());
+    m_deck.push_back(std::make_unique<Evolving_Chromawing>());
+    m_deck.push_back(std::make_unique<Evolving_Chromawing>());
+    m_deck.push_back(std::make_unique<Evolving_Chromawing>());
+    m_deck.push_back(std::make_unique<Evolving_Chromawing>());
+    m_deck.push_back(std::make_unique<Glyph_Guardian>());
+    m_deck.push_back(std::make_unique<Glyph_Guardian>());
+    m_deck.push_back(std::make_unique<Glyph_Guardian>());
+    m_deck.push_back(std::make_unique<Whelp_Smuggler>());
+    m_deck.push_back(std::make_unique<Whelp_Smuggler>());
+    m_deck.push_back(std::make_unique<Whelp_Smuggler>());
+    m_deck.push_back(std::make_unique<Amber_Guardian>());
+    m_deck.push_back(std::make_unique<Amber_Guardian>());
+    m_deck.push_back(std::make_unique<Amber_Guardian>());
+    m_deck.push_back(std::make_unique<Bronze_Warden>());
+    m_deck.push_back(std::make_unique<Bronze_Warden>());
+    m_deck.push_back(std::make_unique<Bronze_Warden>());
+    m_deck.push_back(std::make_unique<Atramedes>());
+    m_deck.push_back(std::make_unique<Atramedes>());
+    m_deck.push_back(std::make_unique<Drakonid_Enforcer>());
+    m_deck.push_back(std::make_unique<Drakonid_Enforcer>());
 }
 
 void Shop::shuffleDeck()
@@ -63,7 +131,7 @@ void Shop::giveAnotherChoice(Player &player)
 void Shop::sellCard(std::unique_ptr<Card> &card, Player *player)
 {
     // Add a gold to the player
-    player->setGolds(player->getGolds() + 1);
+    player->setGolds(player->getGolds() + card->getGoldSell());
     // card->setOwner(nullptr);
     //   Add the card to the shop
     m_deck.push_back(std::move(card));

@@ -19,8 +19,8 @@ public:
         UNTIL_DEATH,
         // Activate when the card is dead
         ON_DEATH,
-	// Activate while the card is not damaged
-	UNTIL_DAMAGE,
+	    // Activate while the card is not damaged
+	    UNTIL_DAMAGE,
         // Activate when the card is damaged
         ON_DAMAGE
     };
