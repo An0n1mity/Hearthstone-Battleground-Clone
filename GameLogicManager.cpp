@@ -135,6 +135,13 @@ void GameLogicManager::battlePhase()
 	{
 	    Minion* minion = dynamic_cast<Minion*>(&card.get());
 	    minion->attackEnemy(*defender);
+
+	    m_cli->clear();
+	    m_cli->drawBoard(*m_board, *m_player1, *m_bot);
+	    std::cout << minion->getName() << " attacks " << defender->getName() << std::endl;
+	    std::this_thread::sleep_for(std::chrono::seconds(3));
+
+	    minion->setState(Minion::State::IDLING);
 	    continue;
 	}
         // Select a random card of the defending player
@@ -143,19 +150,24 @@ void GameLogicManager::battlePhase()
         Minion *minion = dynamic_cast<Minion *>(&card.get());
         Minion *minion2 = dynamic_cast<Minion *>(&player2_cards[card_to_attack].get());
         // Attack the card if the minion is alive 
-	if (minion->getHealth() > 0)
-	    minion->attackEnemy(*minion2);
 
 	m_cli->clear();
+	if (minion->getHealth() > 0){
+	    minion->attackEnemy(*minion2);
+	    std::cout << minion->getName() << " attacks " << minion2->getName() << std::endl;
+	}
 	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
-	std::this_thread::sleep_for(std::chrono::seconds(2));
+	std::this_thread::sleep_for(std::chrono::seconds(3));
+
+	minion->setState(Minion::State::IDLING);
+	minion2->setState(Minion::State::IDLING);
 
 	m_board->destroyCards();
 	player2_cards = m_board->getPlayerCardsView(*defender);
 
 	m_cli->clear();
 	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
-	std::this_thread::sleep_for(std::chrono::seconds(2));
+	std::this_thread::sleep_for(std::chrono::seconds(3));
     }
 
     // For each card of the defending player
@@ -166,6 +178,13 @@ void GameLogicManager::battlePhase()
 	{
 	    Minion* minion = dynamic_cast<Minion*>(&card.get());
 	    minion->attackEnemy(*attacker);
+
+	    m_cli->clear();
+	    m_cli->drawBoard(*m_board, *m_player1, *m_bot);
+	    std::cout << minion->getName() << " attacks " << attacker->getName() << std::endl;
+	    std::this_thread::sleep_for(std::chrono::seconds(3));
+
+	    minion->setState(Minion::State::IDLING);
 	    continue;
 	}
         // Select a random card of the attacking player
@@ -174,18 +193,24 @@ void GameLogicManager::battlePhase()
         Minion *minion = dynamic_cast<Minion *>(&card.get());
         Minion *minion2 = dynamic_cast<Minion *>(&player_cards[card_to_attack].get());
         // Attack the card
-	if (minion->getHealth() > 0)
-	    minion->attackEnemy(*minion2);
 
 	m_cli->clear();
+	if (minion->getHealth() > 0){
+	    minion->attackEnemy(*minion2);
+	    std::cout << minion->getName() << " attacks " << minion2->getName() << std::endl;
+	}
+
 	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
-	std::this_thread::sleep_for(std::chrono::seconds(2));
+	std::this_thread::sleep_for(std::chrono::seconds(3));
+
+	minion->setState(Minion::State::IDLING);
+	minion2->setState(Minion::State::IDLING);
 
 	m_board->destroyCards();
 	player_cards = m_board->getPlayerCardsView(*attacker);
 
 	m_cli->clear();
 	m_cli->drawBoard(*m_board, *m_player1, *m_bot);
-	std::this_thread::sleep_for(std::chrono::seconds(2));
+	std::this_thread::sleep_for(std::chrono::seconds(3));
     }
 }

@@ -7,7 +7,14 @@
 // Minion is a type of card
 class Minion : public Card
 {
+    public:
 
+    // State of the minion 
+    enum State{
+	ATTACKING,
+	DEFENDING,
+	IDLING
+    };
 protected:
     // Minions have a rank
     const unsigned int m_rank;
@@ -16,13 +23,16 @@ protected:
     unsigned int m_attack_points;
     // Minion have a description for the effects 
     std::string m_effect_description;
+    enum State m_state;
 
 public:
-    Minion(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Card(3, std::move(effects)), m_rank(rank), m_health_points(health_points), m_attack_points(attack_points) {}
+    Minion(const unsigned int rank, unsigned int health_points, unsigned int attack_points, std::vector<std::unique_ptr<Effect>> effects = {}) : Card(3, std::move(effects)), m_rank(rank), m_health_points(health_points), m_attack_points(attack_points), m_state(IDLING) {}
     virtual ~Minion() {}
     void attackEnemy(Minion &enemy);
     void attackEnemy(Player &enemy);
     int getHealth() const { return m_health_points; }
+    enum State getState() const { return m_state; }
+    void setState(enum State state) { m_state = state; }
     unsigned int getAttack() const { return m_attack_points; }
     std::string getEffectDescription() const { return m_effect_description; }
     // Summon a minion of a type T on the board

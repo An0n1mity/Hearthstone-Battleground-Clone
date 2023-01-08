@@ -66,64 +66,84 @@ std::string CLI::cardToString(const Card &card)
     int width = 20;
     // Create the top and bottom borders of the card
     std::string border(width, '-');
-    std::string spaces(width, ' ');
-    std::string output = "|" + border + "|\n";
+	std::string left_border = "| ";
+	std::string right_border = " |\033[0m\n";
+	// If state of card is attacking or defending
+	if (minion->getState() == Minion::State::ATTACKING)
+	{
+	border = "\033[0;31m" + border + "\033[0m";
+	left_border = "\033[0;31m" + left_border + "\033[0m";
+	right_border = "\033[0;31m" + right_border;
+	}
+	else if (minion->getState() == Minion::State::DEFENDING)
+	{
+	border = "\033[0;32m" + border + "\033[0m";
+	left_border = "\033[0;32m" + left_border + "\033[0m";
+	right_border = "\033[0;32m" + right_border;
+	}
+	std::string spaces(width, ' ');
+	std::string output = left_border + border + right_border;
 
+	// Add the name statistic to the card
+	output += left_border + name + std::string(width - name.length(), ' ') + right_border;
 
-    // Add the name statistic to the card
-    output += "| " + name + std::string(width - name.length() - 2, ' ') + " |\n";
-
-    for (int i = 0; i < 2; i++) {
-	output += "|" + spaces + "|\n";
-    }
-
-    
-    std::string description = "This is a description";
-    std::string formated = formatString(effect_description, width );
-    output += "|" + formated + "|\n";
-
-    for (int i = 0; i < 2; i++) {
-	output += "|" + spaces + "|\n";
+	for (int i = 0; i < 2; i++)
+	{
+	output += left_border + spaces + right_border;
 	}
 
-    // Add the health/attack statistic to the card
-    output += "| \033[0;33m"+std::to_string(attack)+"\033[0m" + std::string(width - std::to_string(health).length() -
-	  std::to_string(attack).length()  - 2, ' ') + "\033[1;31m"+std::to_string(health)+"\033[0m" + " |\n";
+	std::string formated = formatString(effect_description, width + 1);
+	output += left_border + formated + right_border;
 
-    // Add the bottom border of the card
-    output += "|" + border + "|\n";
-    return output;
+	for (int i = 0; i < 2; i++)
+	{
+	output += left_border + spaces + right_border;
+	}
 
+	// Add the health/attack statistic to the card
+	output += left_border + "\033[0;33m" + std::to_string(attack) + "\033[0m" + std::string(width - std::to_string(health).length() - std::to_string(attack).length(), ' ') + "\033[1;31m" + std::to_string(health) + "\033[0m" + right_border;
+
+	// Add the bottom border of the card
+	output += left_border + border + right_border;
+
+	return output;
 }
 
 void CLI::drawCards(std::vector<std::reference_wrapper<Card>> &cards_)
 {
-    std::vector<std::string> cards;
-    for (auto &card : cards_)
-    {
+	std::vector<std::string> cards;
+	for (auto &card : cards_)
+	{
 	cards.push_back(cardToString(card));
-    }
-    // Split the cards into lines
-    std::vector<std::vector<std::string>> lines(cards.size());
-      for (int c = 0; c < cards.size(); c++) {
+	}
+	// Split the cards into lines
+	std::vector<std::vector<std::string>> lines(cards.size());
+	for (int c = 0; c < cards.size(); c++)
+	{
 	size_t start = 0, end = cards[c].find('\n');
-	while (end != std::string::npos) {
+	while (end != std::string::npos)
+	{
 	  lines[c].push_back(cards[c].substr(start, end - start));
 	  start = end + 1;
 	  end = cards[c].find('\n', start);
 	}
-      }     // Combine the lines of the cards
-      std::string output;
-      for (int i = 0; i < 10; i++) {
-	for (int c = 0; c < cards.size(); c++) {
+	} // Combine the lines of the cards
+	std::string output;
+	for (int i = 0; i < 10; i++)
+	{
+	for (int c = 0; c < cards.size(); c++)
+	{
 	  output += lines[c][i];
-	  if (c < cards.size() - 1) {
-	    output += "  ";
+	  if (c < cards.size() - 1)
+	  {
+		  output += "  ";
 	  }
 	}
 	output += "\n";
-      }
-      std::cout << output;
+	}
+	std::cout << output;
+	// Reset the colour
+	std::cout << "\033[0m";
 }
 
 CLI::cli_input CLI::getInput(const Player& player)

@@ -11,6 +11,10 @@ void Minion::attackEnemy(Minion &enemy)
 	enemy.applyEffects(Effect::ON_DAMAGE);
 	enemy.m_health_points -= m_attack_points;
 	m_health_points -= enemy.m_attack_points;
+
+	// Update the state of the minion
+	m_state = ATTACKING;
+	enemy.m_state = DEFENDING;
 }
 
 void Minion::attackEnemy(Player &enemy)
@@ -24,4 +28,5 @@ void Minion::attackEnemy(Player &enemy)
 	    enemy.setHealth(0);	
 	else
 	    enemy.setHealth(enemy_health - attack_points);
+	m_state = ATTACKING;
 }
