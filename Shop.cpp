@@ -67,10 +67,6 @@ void Shop::createDeck()
     m_deck.push_back(std::make_unique<DozyWhelp>());
     m_deck.push_back(std::make_unique<DozyWhelp>());
     m_deck.push_back(std::make_unique<DozyWhelp>());
-    m_deck.push_back(std::make_unique<Evolving_Chromawing>());
-    m_deck.push_back(std::make_unique<Evolving_Chromawing>());
-    m_deck.push_back(std::make_unique<Evolving_Chromawing>());
-    m_deck.push_back(std::make_unique<Evolving_Chromawing>());
     m_deck.push_back(std::make_unique<Glyph_Guardian>());
     m_deck.push_back(std::make_unique<Glyph_Guardian>());
     m_deck.push_back(std::make_unique<Glyph_Guardian>());
